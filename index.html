@@ -11,7 +11,7 @@
 :root{
   --accent:#00ffff;
   --gold:#ffd700;
-  --bg-overlay:rgba(0,0,0,.75);
+  --bg-overlay:rgba(0,0,0,.7);
 }
 
 body.neon{
@@ -19,6 +19,7 @@ body.neon{
   --gold:#00ffff;
 }
 
+/* ===== BASE ===== */
 html,body{
   margin:0;
   font-family:Inter,sans-serif;
@@ -26,28 +27,50 @@ html,body{
   background:
     linear-gradient(var(--bg-overlay),var(--bg-overlay)),
     url("background.png") center/cover fixed;
+  overflow-x:hidden;
 }
 
+/* ===== TITLE ===== */
 header{
   text-align:center;
-  padding:80px 20px;
+  padding:90px 20px 60px;
 }
 
 h1{
   font-family:Cinzel,serif;
   font-size:clamp(42px,7vw,80px);
   color:var(--gold);
+  letter-spacing:2px;
+  animation:titleGlow 6s infinite alternate;
 }
 
+@keyframes titleGlow{
+  from{ text-shadow:0 0 10px var(--gold); }
+  to{ text-shadow:0 0 30px var(--accent); }
+}
+
+header p{
+  color:var(--accent);
+}
+
+/* ===== SECTIONS ===== */
 section{
   max-width:1200px;
   margin:auto;
   padding:60px 20px;
 }
 
+h2{
+  font-family:Cinzel,serif;
+  color:var(--gold);
+  text-align:center;
+  margin-bottom:30px;
+}
+
+/* ===== STATUS ===== */
 .status{
   display:flex;
-  gap:30px;
+  gap:25px;
   justify-content:center;
   flex-wrap:wrap;
 }
@@ -58,22 +81,41 @@ section{
   border-radius:50%;
   background:red;
 }
+.dot.online{background:#00ff00}
 
-.dot.online{
-  background:#00ff00;
+/* ===== CARDS ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
 }
 
-canvas{
-  display:block;
-  margin:40px auto;
+.card{
+  background:rgba(0,0,0,.8);
   border:1px solid var(--accent);
+  padding:20px;
 }
 
+/* ===== DROPDOWN ===== */
+details{
+  background:rgba(0,0,0,.8);
+  border:1px solid var(--accent);
+  padding:15px;
+}
+
+/* ===== BUTTONS ===== */
 button{
-  padding:12px 20px;
   background:var(--accent);
   border:none;
+  padding:12px 20px;
   cursor:pointer;
+}
+
+/* ===== NEON BUTTON ===== */
+#neonToggle{
+  position:fixed;
+  right:20px;
+  bottom:20px;
 }
 </style>
 </head>
@@ -82,114 +124,81 @@ button{
 
 <header>
   <h1>DeathDevil.eu</h1>
-  <p>Der ultimative Minecraft Server</p>
+  <p>Ein deutscher Citybuild Server</p>
 </header>
 
 <section>
-  <h2>Live Server Status</h2>
-
-  <div class="status">
-    <div><span id="dot" class="dot"></span> <span id="state">Offline</span></div>
-    <div>Spieler: <span id="players">0</span> / 4</div>
-    <div>Ping: <span id="ping">–</span> ms</div>
-    <div>Version: <span id="version">–</span></div>
+  <h2>Server Features</h2>
+  <div class="grid">
+    <div class="card">🏙️ Citybuild</div>
+    <div class="card">🎮 Minigames</div>
+    <div class="card">⚔️ PvP</div>
+    <div class="card">✨ Und vieles mehr</div>
   </div>
-
-  <p id="motd" style="text-align:center;margin-top:20px"></p>
-
-  <div style="text-align:center">
-    <button onclick="copyIP()">IP kopieren</button>
-  </div>
-
-  <canvas id="chart" width="600" height="200"></canvas>
 </section>
 
-<button onclick="toggleMode()" style="position:fixed;right:20px;bottom:20px">
-Neon Mode
-</button>
+<section>
+  <h2>Ränge</h2>
+  <p style="text-align:center">
+    Alle Ränge können <strong>mit Ingame-Geld</strong> erspielt werden:
+    <br><br>
+    👑 Premium • Ultra • King
+  </p>
+</section>
+
+<section>
+  <h2>Plugins</h2>
+  <details>
+    <summary>Klicken für Plugin-Infos</summary>
+    <ul>
+      <li>Economy & Jobs</li>
+      <li>Claims & Schutzsystem</li>
+      <li>Custom Items & Ränge</li>
+      <li>Events & Minigames</li>
+    </ul>
+  </details>
+</section>
+
+<section>
+  <h2>Community</h2>
+  <p style="text-align:center">
+    👉 <a href="https://discord.gg/7w2QeHq9rh" target="_blank" style="color:var(--accent)">
+      Unser Discord
+    </a>
+  </p>
+</section>
+
+<button id="neonToggle">Neon Mode</button>
 
 <script type="module">
-/* ===== SERVER CONFIG ===== */
-const STATUS_IP = "134.255.220.222:2200";
-const JOIN_IP   = "gray-crocodile-04861.zap.cloud";
-const MAX_SLOTS = 4;
-
-/* ===== ELEMENTS ===== */
-const dot       = document.getElementById("dot");
-const stateEl   = document.getElementById("state");
-const playersEl = document.getElementById("players");
-const pingEl    = document.getElementById("ping");
-const versionEl = document.getElementById("version");
-const motdEl    = document.getElementById("motd");
-
-/* ===== STATUS FETCH ===== */
-async function fetchStatus(){
-  try{
-    const start = performance.now();
-    const res = await fetch(
-      "https://api.mcstatus.io/v2/status/java/" + STATUS_IP
-    );
-    const data = await res.json();
-    const ping = Math.round(performance.now() - start);
-
-    if(!data.online) throw 0;
-
-    dot.classList.add("online");
-    stateEl.textContent = "Online";
-    playersEl.textContent = data.players.online;
-    versionEl.textContent = data.version.name_clean;
-    pingEl.textContent = ping;
-
-    if (data.motd && data.motd.clean && data.motd.clean.length) {
-      motdEl.textContent = data.motd.clean.join(" ");
-    } else {
-      motdEl.textContent = "Willkommen auf DeathDevil.eu";
-    }
-
-    updateChart(data.players.online);
-
-  } catch {
-    dot.classList.remove("online");
-    stateEl.textContent = "Offline";
-    playersEl.textContent = "0";
-    pingEl.textContent = "–";
-    versionEl.textContent = "–";
-    motdEl.textContent = "Server aktuell offline";
-    updateChart(0);
-  }
-}
-
-setInterval(fetchStatus, 5000);
-fetchStatus();
-
-/* ===== GRAPH ===== */
-const ctx = document.getElementById("chart").getContext("2d");
-let history = Array(30).fill(0);
-
-function updateChart(v){
-  history.push(v);
-  history.shift();
-
-  ctx.clearRect(0,0,600,200);
-  ctx.beginPath();
-  ctx.moveTo(0, 200 - history[0] * 40);
-
-  for(let i=1;i<history.length;i++){
-    ctx.lineTo(i*20, 200 - history[i] * 40);
-  }
-
-  ctx.stroke();
-}
-
-/* ===== COPY IP ===== */
-function copyIP(){
-  navigator.clipboard.writeText(JOIN_IP);
-  alert("IP kopiert: " + JOIN_IP);
-}
-
-/* ===== NEON TOGGLE ===== */
-function toggleMode(){
+const neonBtn = document.getElementById("neonToggle");
+neonBtn.addEventListener("click",()=>{
   document.body.classList.toggle("neon");
-}
+});
+
+/* ===== MINECRAFT ITEM RAIN ===== */
+const items=[
+  "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7b/Grass_Block_JE3.png",
+  "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/26/Diamond_Block_JE2.png",
+  "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/60/Gold_Block_JE2.png"
+];
+
+setInterval(()=>{
+  const el=document.createElement("img");
+  el.src=items[Math.floor(Math.random()*items.length)];
+  el.style.position="fixed";
+  el.style.left=Math.random()*100+"vw";
+  el.style.top="-50px";
+  el.style.width="40px";
+  el.style.animation="fall 6s linear";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6000);
+},800);
+
+const style=document.createElement("style");
+style.innerHTML=`@keyframes fall{to{transform:translateY(110vh) rotate(360deg);}}`;
+document.head.appendChild(style);
 </script>
 
+</body>
+</html>
