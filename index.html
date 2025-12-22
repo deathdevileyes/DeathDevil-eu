@@ -13,6 +13,7 @@ body, html {
     font-family: 'Press Start 2P', cursive;
     background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
     color: #fff;
+    overflow-x: hidden;
 }
 a { text-decoration: none; }
 
@@ -28,8 +29,14 @@ header {
 }
 header h1 {
     font-size: 48px;
-    color: #ffd700;
-    text-shadow: 3px 3px 0 #000, 0 0 10px #00ffff;
+    background: linear-gradient(45deg, #ff0000, #ff8800, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hue 10s linear infinite;
+}
+@keyframes hue {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
 }
 header p {
     font-size: 14px;
@@ -89,6 +96,7 @@ footer {
     color: #00ffff;
     border-top: 2px solid #ffd700;
 }
+footer a { color: #00ffff; text-decoration: underline; }
 
 /* ====== Animierte Blöcke ====== */
 .block {
@@ -97,12 +105,15 @@ footer {
     height: 40px;
     background-size: cover;
     animation: float linear infinite;
+    pointer-events: none;
 }
 @keyframes float {
     0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
     10% { opacity: 1; }
     100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
 }
+
+/* ====== Buttons ====== */
 button {
     padding: 10px 20px;
     background: #00ffff;
@@ -112,7 +123,16 @@ button {
     font-family: 'Press Start 2P', cursive;
     transition: 0.3s;
 }
-button:hover { background: #ffd700; color: #000; }
+button:hover {
+    background: linear-gradient(90deg, #00ffff, #ffd700, #ff00ff);
+    color: #000;
+    animation: buttonGlow 2s infinite;
+}
+@keyframes buttonGlow {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+    100% { filter: brightness(1); }
+}
 </style>
 </head>
 <body>
@@ -174,14 +194,18 @@ button:hover { background: #ffd700; color: #000; }
         <div class="card">
             <h3>Jetzt mitmachen!</h3>
             <p>Klicke auf den Button und ein Zufallsgenerator wählt deinen Gewinn auf Discord aus.</p>
-            <button onclick="alert('🎉 Du bist im Lostopf!');">Teilnehmen</button>
+            <button onclick="window.open('https://discord.gg/7w2QeHq9rh', '_blank');">
+                Discord Beitreten
+            </button>
         </div>
     </div>
 </section>
 
 <!-- ====== Footer ====== -->
 <footer id="contact">
-    <p>Kontaktiere uns auf Discord: <strong>discord.gg/deathdevil</strong></p>
+    <p>Kontaktiere uns auf Discord: 
+       <a href="https://discord.gg/7w2QeHq9rh" target="_blank">discord.gg/7w2QeHq9rh</a>
+    </p>
     <p>&copy; 2025 DeathDevil.eu</p>
 </footer>
 
@@ -208,3 +232,4 @@ for (let i=0;i<30;i++){
 
 </body>
 </html>
+
