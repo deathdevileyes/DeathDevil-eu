@@ -1,177 +1,7 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeathDevil.eu – Minecraft Server</title>
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --accent:#00ffff;
-  --gold:#ffd700;
-  --bg-overlay:rgba(0,0,0,.75);
-}
-
-body.neon{
-  --accent:#ff00ff;
-  --gold:#00ffff;
-}
-
-/* ===== Base ===== */
-html,body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  color:#fff;
-  background:
-    linear-gradient(var(--bg-overlay),var(--bg-overlay)),
-    url("ChatGPT Image 22. Dez. 2025, 23_18_27.png") center/cover fixed;
-  overflow-x:hidden;
-}
-
-/* ===== Fog ===== */
-.fog{
-  position:fixed;
-  inset:-50%;
-  background:url("https://i.imgur.com/8KqZPpU.png") repeat;
-  opacity:.12;
-  animation:fogMove 120s linear infinite;
-  pointer-events:none;
-}
-@keyframes fogMove{
-  from{transform:translateX(0);}
-  to{transform:translateX(50%);}
-}
-
-/* ===== Header ===== */
-header{
-  text-align:center;
-  padding:90px 20px 60px;
-}
-h1{
-  font-family:Cinzel,serif;
-  font-size:clamp(42px,7vw,80px);
-  letter-spacing:5px;
-  color:var(--gold);
-  text-shadow:0 0 25px rgba(255,215,0,.4);
-}
-header p{color:var(--accent);}
-
-/* ===== Sections ===== */
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:70px 20px;
-}
-h2{
-  font-family:Cinzel,serif;
-  color:var(--gold);
-  text-align:center;
-  margin-bottom:40px;
-}
-
-/* ===== Status ===== */
-.status{
-  display:flex;
-  justify-content:center;
-  gap:35px;
-  flex-wrap:wrap;
-  font-size:18px;
-}
-.dot{
-  width:12px;height:12px;
-  border-radius:50%;
-  background:red;
-  box-shadow:0 0 12px red;
-}
-.online{
-  background:#00ff00;
-  box-shadow:0 0 12px #00ff00;
-}
-
-/* ===== Cards ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:25px;
-}
-.card{
-  background:rgba(0,0,0,.8);
-  border:1px solid var(--accent);
-  padding:25px;
-  backdrop-filter:blur(6px);
-}
-
-/* ===== Canvas ===== */
-canvas{
-  display:block;
-  margin:40px auto 0;
-  background:rgba(0,0,0,.6);
-  border:1px solid var(--accent);
-}
-
-/* ===== Buttons ===== */
-button{
-  background:var(--accent);
-  color:#000;
-  padding:12px 20px;
-  border:none;
-  cursor:pointer;
-  font-weight:600;
-}
-.toggle{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-}
-</style>
-</head>
-
-<body>
-<div class="fog"></div>
-
-<header>
-  <h1>DeathDevil.eu</h1>
-  <p>Der ultimative Minecraft Server</p>
-</header>
-
-<section>
-  <h2>Live Server Status</h2>
-
-  <div class="status">
-    <div><span id="dot" class="dot"></span> <span id="state">Offline</span></div>
-    <div>Spieler: <strong><span id="players">0</span> / 4</strong></div>
-    <div>Ping: <strong id="ping">–</strong> ms</div>
-    <div>Version: <strong id="version">–</strong></div>
-  </div>
-
-  <p id="motd" style="margin-top:30px;opacity:.85;text-align:center"></p>
-
-  <div style="text-align:center">
-    <button onclick="copyIP()">IP kopieren</button>
-  </div>
-
-  <canvas id="chart" width="600" height="200"></canvas>
-</section>
-
-<section>
-  <h2>Features</h2>
-  <div class="grid">
-    <div class="card">Parkour & Minigames</div>
-    <div class="card">PvP & Turniere</div>
-    <div class="card">Custom Items</div>
-    <div class="card">Aktive Community</div>
-  </div>
-</section>
-
-<button class="toggle" onclick="toggleMode()">Neon Mode</button>
-
 <script>
 /* ===== SERVER CONFIG ===== */
-const STATUS_IP = "134.255.220.222:2200";          // für Website
-const JOIN_IP   = "gray-crocodile-04861.zap.cloud"; // für Spieler
+const STATUS_IP = "134.255.220.222:2200";
+const JOIN_IP   = "gray-crocodile-04861.zap.cloud";
 const MAX_SLOTS = 4;
 
 /* ===== ELEMENTS ===== */
@@ -187,31 +17,38 @@ async function fetchStatus(){
   try{
     const start = performance.now();
     const res = await fetch(
-      `https://api.mcstatus.io/v2/status/java/${STATUS_IP}`
+      "https://api.mcstatus.io/v2/status/java/" + STATUS_IP
     );
     const data = await res.json();
     const ping = Math.round(performance.now() - start);
 
     if(!data.online) throw "offline";
 
+    /* Online */
     stateEl.textContent = "Online";
     dot.classList.add("online");
 
     playersEl.textContent = data.players.online;
-    versionEl.textContent = data.version.name_clean || "Java";
-    pingEl.textContent = ping;
+    versionEl.textContent =
+      data.version && data.version.name_clean
+        ? data.version.name_clean
+        : "Java";
 
+    pingEl.textContent = ping;
     pingEl.style.color =
       ping < 80 ? "#00ff00" :
       ping < 150 ? "#ffd700" : "#ff5555";
 
-    motdEl.textContent =
-      data.motd?.clean?.join(" ") ||
-      "Willkommen auf DeathDevil.eu";
+    /* MOTD (ohne optional chaining!) */
+    if (data.motd && data.motd.clean && data.motd.clean.length > 0) {
+      motdEl.textContent = data.motd.clean.join(" ");
+    } else {
+      motdEl.textContent = "Willkommen auf DeathDevil.eu";
+    }
 
     updateChart(data.players.online);
 
-  } catch {
+  } catch (e) {
     stateEl.textContent = "Offline";
     dot.classList.remove("online");
     playersEl.textContent = "0";
@@ -221,23 +58,29 @@ async function fetchStatus(){
     updateChart(0);
   }
 }
+
 setInterval(fetchStatus, 5000);
 fetchStatus();
 
-/* ===== GRAPH ===== */
+/* ===== GRAPH (FEHLERFREI) ===== */
 const ctx = document.getElementById("chart").getContext("2d");
 let history = new Array(30).fill(0);
 
 function updateChart(val){
   history.push(val);
   history.shift();
-  ctx.clearRect(0,0,600,200);
+
+  ctx.clearRect(0, 0, 600, 200);
   ctx.beginPath();
   ctx.strokeStyle =
     getComputedStyle(document.body).getPropertyValue("--accent");
-  history.forEach((v,i)=>{
-    ctx.lineTo(i*20, 200 - v*40);
-  });
+
+  ctx.moveTo(0, 200 - history[0] * 40);
+
+  for(let i = 1; i < history.length; i++){
+    ctx.lineTo(i * 20, 200 - history[i] * 40);
+  }
+
   ctx.stroke();
 }
 
@@ -250,11 +93,13 @@ function copyIP(){
 /* ===== NEON TOGGLE ===== */
 function toggleMode(){
   document.body.classList.toggle("neon");
-  localStorage.setItem("mode", document.body.classList.contains("neon"));
+  localStorage.setItem(
+    "mode",
+    document.body.classList.contains("neon")
+  );
 }
+
 if(localStorage.getItem("mode") === "true"){
   document.body.classList.add("neon");
 }
 </script>
-</body>
-</html>
