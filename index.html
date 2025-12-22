@@ -109,20 +109,26 @@ Neon Mode
 </button>
 
 <script>
+/* ===== SERVER CONFIG ===== */
 const STATUS_IP = "134.255.220.222:2200";
-const JOIN_IP = "gray-crocodile-04861.zap.cloud";
+const JOIN_IP   = "gray-crocodile-04861.zap.cloud";
+const MAX_SLOTS = 4;
 
-const dot = document.getElementById("dot");
-const stateEl = document.getElementById("state");
+/* ===== ELEMENTS ===== */
+const dot       = document.getElementById("dot");
+const stateEl   = document.getElementById("state");
 const playersEl = document.getElementById("players");
-const pingEl = document.getElementById("ping");
+const pingEl    = document.getElementById("ping");
 const versionEl = document.getElementById("version");
-const motdEl = document.getElementById("motd");
+const motdEl    = document.getElementById("motd");
 
+/* ===== STATUS FETCH ===== */
 async function fetchStatus(){
   try{
     const start = performance.now();
-    const res = await fetch("https://api.mcstatus.io/v2/status/java/" + STATUS_IP);
+    const res = await fetch(
+      "https://api.mcstatus.io/v2/status/java/" + STATUS_IP
+    );
     const data = await res.json();
     const ping = Math.round(performance.now() - start);
 
@@ -133,15 +139,22 @@ async function fetchStatus(){
     playersEl.textContent = data.players.online;
     versionEl.textContent = data.version.name_clean;
     pingEl.textContent = ping;
-    motdEl.textContent = data.motd.clean.join(" ");
+
+    if (data.motd && data.motd.clean && data.motd.clean.length) {
+      motdEl.textContent = data.motd.clean.join(" ");
+    } else {
+      motdEl.textContent = "Willkommen auf DeathDevil.eu";
+    }
+
     updateChart(data.players.online);
+
   } catch {
     dot.classList.remove("online");
     stateEl.textContent = "Offline";
     playersEl.textContent = "0";
     pingEl.textContent = "–";
     versionEl.textContent = "–";
-    motdEl.textContent = "Server offline";
+    motdEl.textContent = "Server aktuell offline";
     updateChart(0);
   }
 }
@@ -149,30 +162,33 @@ async function fetchStatus(){
 setInterval(fetchStatus, 5000);
 fetchStatus();
 
+/* ===== GRAPH ===== */
 const ctx = document.getElementById("chart").getContext("2d");
 let history = Array(30).fill(0);
 
 function updateChart(v){
   history.push(v);
   history.shift();
+
   ctx.clearRect(0,0,600,200);
   ctx.beginPath();
-  ctx.moveTo(0,200-history[0]*40);
+  ctx.moveTo(0, 200 - history[0] * 40);
+
   for(let i=1;i<history.length;i++){
-    ctx.lineTo(i*20,200-history[i]*40);
+    ctx.lineTo(i*20, 200 - history[i] * 40);
   }
+
   ctx.stroke();
 }
 
+/* ===== COPY IP ===== */
 function copyIP(){
   navigator.clipboard.writeText(JOIN_IP);
   alert("IP kopiert: " + JOIN_IP);
 }
 
+/* ===== NEON TOGGLE ===== */
 function toggleMode(){
   document.body.classList.toggle("neon");
 }
 </script>
-
-</body>
-</html>
