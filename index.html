@@ -3,233 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeathDevil.eu - Minecraft Server</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>DeathDevil.eu – Minecraft Server</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-/* ====== Grundstyles ====== */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Press Start 2P', cursive;
-    background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
-    color: #fff;
-    overflow-x: hidden;
-}
-a { text-decoration: none; }
-
-/* ====== Header ====== */
-header {
-    width: 100%;
-    text-align: center;
-    padding: 30px 0;
-    position: sticky;
-    top: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 10;
-}
-header h1 {
-    font-size: 48px;
-    background: linear-gradient(45deg, #ff0000, #ff8800, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: hue 10s linear infinite;
-}
-@keyframes hue {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
-}
-header p {
-    font-size: 14px;
-    color: #00ffff;
-    text-shadow: 1px 1px #000;
-    margin-top: -10px;
+:root{
+  --accent:#00ffff;
+  --gold:#ffd700;
+  --bg-overlay:rgba(0,0,0,.75);
 }
 
-/* ====== Navigation ====== */
-nav {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    gap: 20px;
-}
-nav a {
-    padding: 10px 20px;
-    border: 2px solid #00ffff;
-    color: #00ffff;
-    transition: 0.3s;
-}
-nav a:hover {
-    background: #00ffff;
-    color: #000;
+body.neon{
+  --accent:#ff00ff;
+  --gold:#00ffff;
 }
 
-/* ====== Sektionen ====== */
-section {
-    padding: 60px 20px;
-    text-align: center;
-}
-section h2 {
-    font-size: 28px;
-    color: #ffd700;
-    margin-bottom: 40px;
-}
-.features, .events, .raffle {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    justify-items: center;
-}
-.card {
-    background: rgba(0,0,0,0.8);
-    padding: 20px;
-    border: 2px solid #00ffff;
-    min-height: 150px;
-}
-.card h3 { color: #00ffff; margin-bottom: 10px; }
-.card p { font-size: 12px; }
-
-/* ====== Footer ====== */
-footer {
-    background: rgba(0,0,0,0.9);
-    padding: 40px 20px;
-    text-align: center;
-    color: #00ffff;
-    border-top: 2px solid #ffd700;
-}
-footer a { color: #00ffff; text-decoration: underline; }
-
-/* ====== Animierte Blöcke ====== */
-.block {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-size: cover;
-    animation: float linear infinite;
-    pointer-events: none;
-}
-@keyframes float {
-    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-    10% { opacity: 1; }
-    100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
+/* ===== Base ===== */
+html,body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  color:#fff;
+  background:
+    linear-gradient(var(--bg-overlay),var(--bg-overlay)),
+    url("ChatGPT Image 22. Dez. 2025, 23_18_27.png") center/cover fixed;
+  overflow-x:hidden;
 }
 
-/* ====== Buttons ====== */
-button {
-    padding: 10px 20px;
-    background: #00ffff;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    font-family: 'Press Start 2P', cursive;
-    transition: 0.3s;
+/* ===== Fog ===== */
+.fog{
+  position:fixed;
+  inset:-50%;
+  background:url("https://i.imgur.com/8KqZPpU.png") repeat;
+  opacity:.12;
+  animation:fogMove 120s linear infinite;
+  pointer-events:none;
 }
-button:hover {
-    background: linear-gradient(90deg, #00ffff, #ffd700, #ff00ff);
-    color: #000;
-    animation: buttonGlow 2s infinite;
+@keyframes fogMove{
+  from{transform:translateX(0);}
+  to{transform:translateX(50%);}
 }
-@keyframes buttonGlow {
-    0% { filter: brightness(1); }
-    50% { filter: brightness(1.5); }
-    100% { filter: brightness(1); }
+
+/* ===== Header ===== */
+header{
+  text-align:center;
+  padding:90px 20px 60px;
+}
+h1{
+  font-family:Cinzel,serif;
+  font-size:clamp(42px,7vw,80px);
+  letter-spacing:5px;
+  color:var(--gold);
+  text-shadow:0 0 25px rgba(255,215,0,.4);
+}
+header p{color:var(--accent);}
+
+/* ===== Sections ===== */
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:70px 20px;
+}
+h2{
+  font-family:Cinzel,serif;
+  color:var(--gold);
+  text-align:center;
+  margin-bottom:40px;
+}
+
+/* ===== Status ===== */
+.status{
+  display:flex;
+  justify-content:center;
+  gap:35px;
+  flex-wrap:wrap;
+  font-size:18px;
+}
+.dot{
+  width:12px;height:12px;
+  border-radius:50%;
+  background:red;
+  box-shadow:0 0 12px red;
+}
+.online{
+  background:#00ff00;
+  box-shadow:0 0 12px #00ff00;
+}
+
+/* ===== Cards ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+}
+.card{
+  background:rgba(0,0,0,.8);
+  border:1px solid var(--accent);
+  padding:25px;
+  backdrop-filter:blur(6px);
+}
+
+/* ===== Canvas ===== */
+canvas{
+  display:block;
+  margin:40px auto 0;
+  background:rgba(0,0,0,.6);
+  border:1px solid var(--accent);
+}
+
+/* ===== Buttons ===== */
+button{
+  background:var(--accent);
+  color:#000;
+  padding:12px 20px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+.toggle{
+  position:fixed;
+  right:20px;
+  bottom:20px;
 }
 </style>
 </head>
-<body>
 
-<!-- ====== Header ====== -->
+<body>
+<div class="fog"></div>
+
 <header>
-    <h1>DeathDevil.eu</h1>
-    <p>Der ultimative Minecraft Server</p>
-    <nav>
-        <a href="#features">Features</a>
-        <a href="#events">Events</a>
-        <a href="#raffle">Item-Verlosungen</a>
-        <a href="#contact">Kontakt</a>
-    </nav>
+  <h1>DeathDevil.eu</h1>
+  <p>Der ultimative Minecraft Server</p>
 </header>
 
-<!-- ====== Features ====== -->
-<section id="features">
-    <h2>Server Features</h2>
-    <div class="features">
-        <div class="card">
-            <h3>Parkour Maps</h3>
-            <p>Spannende und abwechslungsreiche Parkour Maps für alle Level.</p>
-        </div>
-        <div class="card">
-            <h3>Minispiele</h3>
-            <p>PvP, Survival Games, Skyblock und mehr – alles auf DeathDevil.eu!</p>
-        </div>
-        <div class="card">
-            <h3>Custom Items</h3>
-            <p>Einzigartige Items, Blöcke und Extras für Premium & Ultra Spieler.</p>
-        </div>
-        <div class="card">
-            <h3>Events</h3>
-            <p>Regelmäßige Server Events mit tollen Belohnungen für alle Spieler.</p>
-        </div>
-    </div>
+<section>
+  <h2>Live Server Status</h2>
+
+  <div class="status">
+    <div><span id="dot" class="dot"></span> <span id="state">Offline</span></div>
+    <div>Spieler: <strong><span id="players">0</span> / 4</strong></div>
+    <div>Ping: <strong id="ping">–</strong> ms</div>
+    <div>Version: <strong id="version">–</strong></div>
+  </div>
+
+  <p id="motd" style="margin-top:30px;opacity:.85;text-align:center"></p>
+
+  <div style="text-align:center">
+    <button onclick="copyIP()">IP kopieren</button>
+  </div>
+
+  <canvas id="chart" width="600" height="200"></canvas>
 </section>
 
-<!-- ====== Events ====== -->
-<section id="events">
-    <h2>Nächste Events</h2>
-    <div class="events">
-        <div class="card">
-            <h3>Parkour Turnier</h3>
-            <p>Datum: 25.12.2025<br>Preis: 50 Gold Blöcke</p>
-        </div>
-        <div class="card">
-            <h3>PvP Championship</h3>
-            <p>Datum: 31.12.2025<br>Preis: 1 Diamond Rüstung</p>
-        </div>
-    </div>
+<section>
+  <h2>Features</h2>
+  <div class="grid">
+    <div class="card">Parkour & Minigames</div>
+    <div class="card">PvP & Turniere</div>
+    <div class="card">Custom Items</div>
+    <div class="card">Aktive Community</div>
+  </div>
 </section>
 
-<!-- ====== Item-Verlosungen ====== -->
-<section id="raffle">
-    <h2>Item-Verlosungen</h2>
-    <div class="raffle">
-        <div class="card">
-            <h3>Jetzt mitmachen!</h3>
-            <p>Klicke auf den Button und ein Zufallsgenerator wählt deinen Gewinn auf Discord aus.</p>
-            <button onclick="window.open('https://discord.gg/7w2QeHq9rh', '_blank');">
-                Discord Beitreten
-            </button>
-        </div>
-    </div>
-</section>
+<button class="toggle" onclick="toggleMode()">Neon Mode</button>
 
-<!-- ====== Footer ====== -->
-<footer id="contact">
-    <p>Kontaktiere uns auf Discord: 
-       <a href="https://discord.gg/7w2QeHq9rh" target="_blank">discord.gg/7w2QeHq9rh</a>
-    </p>
-    <p>&copy; 2025 DeathDevil.eu</p>
-</footer>
-
-<!-- ====== Blöcke Animation ====== -->
 <script>
-const blockImages = [
-  'https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7b/Grass_Block_JE3_BE3.png',
-  'https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/26/Diamond_Block_JE2_BE2.png',
-  'https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/60/Gold_Block_JE2_BE2.png',
-  'https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/74/Redstone_Block_JE2_BE.png',
-  'https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f0/Emerald_Block_JE2_BE2.png'
-];
-for (let i=0;i<30;i++){
-  const block = document.createElement('div');
-  block.classList.add('block');
-  block.style.left = Math.random()*window.innerWidth+'px';
-  block.style.width = block.style.height = 30 + Math.random()*30 + 'px';
-  block.style.backgroundImage = `url(${blockImages[Math.floor(Math.random()*blockImages.length)]})`;
-  block.style.animationDuration = 10 + Math.random()*15 + 's';
-  block.style.animationDelay = Math.random()*5 + 's';
-  document.body.appendChild(block);
+/* ===== SERVER CONFIG ===== */
+const STATUS_IP = "134.255.220.222:2200";          // für Website
+const JOIN_IP   = "gray-crocodile-04861.zap.cloud"; // für Spieler
+const MAX_SLOTS = 4;
+
+/* ===== ELEMENTS ===== */
+const playersEl = document.getElementById("players");
+const stateEl   = document.getElementById("state");
+const dot       = document.getElementById("dot");
+const pingEl    = document.getElementById("ping");
+const versionEl = document.getElementById("version");
+const motdEl    = document.getElementById("motd");
+
+/* ===== STATUS FETCH (JAVA 1.21.5) ===== */
+async function fetchStatus(){
+  try{
+    const start = performance.now();
+    const res = await fetch(
+      `https://api.mcstatus.io/v2/status/java/${STATUS_IP}`
+    );
+    const data = await res.json();
+    const ping = Math.round(performance.now() - start);
+
+    if(!data.online) throw "offline";
+
+    stateEl.textContent = "Online";
+    dot.classList.add("online");
+
+    playersEl.textContent = data.players.online;
+    versionEl.textContent = data.version.name_clean || "Java";
+    pingEl.textContent = ping;
+
+    pingEl.style.color =
+      ping < 80 ? "#00ff00" :
+      ping < 150 ? "#ffd700" : "#ff5555";
+
+    motdEl.textContent =
+      data.motd?.clean?.join(" ") ||
+      "Willkommen auf DeathDevil.eu";
+
+    updateChart(data.players.online);
+
+  } catch {
+    stateEl.textContent = "Offline";
+    dot.classList.remove("online");
+    playersEl.textContent = "0";
+    pingEl.textContent = "–";
+    versionEl.textContent = "–";
+    motdEl.textContent = "Server aktuell offline";
+    updateChart(0);
+  }
+}
+setInterval(fetchStatus, 5000);
+fetchStatus();
+
+/* ===== GRAPH ===== */
+const ctx = document.getElementById("chart").getContext("2d");
+let history = new Array(30).fill(0);
+
+function updateChart(val){
+  history.push(val);
+  history.shift();
+  ctx.clearRect(0,0,600,200);
+  ctx.beginPath();
+  ctx.strokeStyle =
+    getComputedStyle(document.body).getPropertyValue("--accent");
+  history.forEach((v,i)=>{
+    ctx.lineTo(i*20, 200 - v*40);
+  });
+  ctx.stroke();
+}
+
+/* ===== COPY IP ===== */
+function copyIP(){
+  navigator.clipboard.writeText(JOIN_IP);
+  alert("IP kopiert: " + JOIN_IP);
+}
+
+/* ===== NEON TOGGLE ===== */
+function toggleMode(){
+  document.body.classList.toggle("neon");
+  localStorage.setItem("mode", document.body.classList.contains("neon"));
+}
+if(localStorage.getItem("mode") === "true"){
+  document.body.classList.add("neon");
 }
 </script>
-
 </body>
 </html>
-
