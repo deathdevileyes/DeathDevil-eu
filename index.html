@@ -1,60 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeathDevil.eu – Minecraft Server</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --accent:#00ffff;
+  --gold:#ffd700;
+  --bg-overlay:rgba(0,0,0,.75);
+}
+
+body.neon{
+  --accent:#ff00ff;
+  --gold:#00ffff;
+}
+
+html,body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  color:#fff;
+  background:
+    linear-gradient(var(--bg-overlay),var(--bg-overlay)),
+    url("background.png") center/cover fixed;
+}
+
+header{
+  text-align:center;
+  padding:80px 20px;
+}
+
+h1{
+  font-family:Cinzel,serif;
+  font-size:clamp(42px,7vw,80px);
+  color:var(--gold);
+}
+
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+.status{
+  display:flex;
+  gap:30px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:red;
+}
+
+.dot.online{
+  background:#00ff00;
+}
+
+canvas{
+  display:block;
+  margin:40px auto;
+  border:1px solid var(--accent);
+}
+
+button{
+  padding:12px 20px;
+  background:var(--accent);
+  border:none;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>DeathDevil.eu</h1>
+  <p>Der ultimative Minecraft Server</p>
+</header>
+
+<section>
+  <h2>Live Server Status</h2>
+
+  <div class="status">
+    <div><span id="dot" class="dot"></span> <span id="state">Offline</span></div>
+    <div>Spieler: <span id="players">0</span> / 4</div>
+    <div>Ping: <span id="ping">–</span> ms</div>
+    <div>Version: <span id="version">–</span></div>
+  </div>
+
+  <p id="motd" style="text-align:center;margin-top:20px"></p>
+
+  <div style="text-align:center">
+    <button onclick="copyIP()">IP kopieren</button>
+  </div>
+
+  <canvas id="chart" width="600" height="200"></canvas>
+</section>
+
+<button onclick="toggleMode()" style="position:fixed;right:20px;bottom:20px">
+Neon Mode
+</button>
+
 <script>
-/* ===== SERVER CONFIG ===== */
 const STATUS_IP = "134.255.220.222:2200";
-const JOIN_IP   = "gray-crocodile-04861.zap.cloud";
-const MAX_SLOTS = 4;
+const JOIN_IP = "gray-crocodile-04861.zap.cloud";
 
-/* ===== ELEMENTS ===== */
+const dot = document.getElementById("dot");
+const stateEl = document.getElementById("state");
 const playersEl = document.getElementById("players");
-const stateEl   = document.getElementById("state");
-const dot       = document.getElementById("dot");
-const pingEl    = document.getElementById("ping");
+const pingEl = document.getElementById("ping");
 const versionEl = document.getElementById("version");
-const motdEl    = document.getElementById("motd");
+const motdEl = document.getElementById("motd");
 
-/* ===== STATUS FETCH (JAVA 1.21.5) ===== */
 async function fetchStatus(){
   try{
     const start = performance.now();
-    const res = await fetch(
-      "https://api.mcstatus.io/v2/status/java/" + STATUS_IP
-    );
+    const res = await fetch("https://api.mcstatus.io/v2/status/java/" + STATUS_IP);
     const data = await res.json();
     const ping = Math.round(performance.now() - start);
 
-    if(!data.online) throw "offline";
+    if(!data.online) throw 0;
 
-    /* Online */
-    stateEl.textContent = "Online";
     dot.classList.add("online");
-
+    stateEl.textContent = "Online";
     playersEl.textContent = data.players.online;
-    versionEl.textContent =
-      data.version && data.version.name_clean
-        ? data.version.name_clean
-        : "Java";
-
+    versionEl.textContent = data.version.name_clean;
     pingEl.textContent = ping;
-    pingEl.style.color =
-      ping < 80 ? "#00ff00" :
-      ping < 150 ? "#ffd700" : "#ff5555";
-
-    /* MOTD (ohne optional chaining!) */
-    if (data.motd && data.motd.clean && data.motd.clean.length > 0) {
-      motdEl.textContent = data.motd.clean.join(" ");
-    } else {
-      motdEl.textContent = "Willkommen auf DeathDevil.eu";
-    }
-
+    motdEl.textContent = data.motd.clean.join(" ");
     updateChart(data.players.online);
-
-  } catch (e) {
-    stateEl.textContent = "Offline";
+  } catch {
     dot.classList.remove("online");
+    stateEl.textContent = "Offline";
     playersEl.textContent = "0";
     pingEl.textContent = "–";
     versionEl.textContent = "–";
-    motdEl.textContent = "Server aktuell offline";
+    motdEl.textContent = "Server offline";
     updateChart(0);
   }
 }
@@ -62,44 +149,30 @@ async function fetchStatus(){
 setInterval(fetchStatus, 5000);
 fetchStatus();
 
-/* ===== GRAPH (FEHLERFREI) ===== */
 const ctx = document.getElementById("chart").getContext("2d");
-let history = new Array(30).fill(0);
+let history = Array(30).fill(0);
 
-function updateChart(val){
-  history.push(val);
+function updateChart(v){
+  history.push(v);
   history.shift();
-
-  ctx.clearRect(0, 0, 600, 200);
+  ctx.clearRect(0,0,600,200);
   ctx.beginPath();
-  ctx.strokeStyle =
-    getComputedStyle(document.body).getPropertyValue("--accent");
-
-  ctx.moveTo(0, 200 - history[0] * 40);
-
-  for(let i = 1; i < history.length; i++){
-    ctx.lineTo(i * 20, 200 - history[i] * 40);
+  ctx.moveTo(0,200-history[0]*40);
+  for(let i=1;i<history.length;i++){
+    ctx.lineTo(i*20,200-history[i]*40);
   }
-
   ctx.stroke();
 }
 
-/* ===== COPY IP ===== */
 function copyIP(){
   navigator.clipboard.writeText(JOIN_IP);
   alert("IP kopiert: " + JOIN_IP);
 }
 
-/* ===== NEON TOGGLE ===== */
 function toggleMode(){
   document.body.classList.toggle("neon");
-  localStorage.setItem(
-    "mode",
-    document.body.classList.contains("neon")
-  );
-}
-
-if(localStorage.getItem("mode") === "true"){
-  document.body.classList.add("neon");
 }
 </script>
+
+</body>
+</html>
