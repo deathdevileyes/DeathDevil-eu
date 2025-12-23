@@ -30,7 +30,45 @@ html,body{
   overflow-x:hidden;
 }
 
-/* ===== TITLE ===== */
+/* ===== FLOATING BLOCK BACKGROUND ===== */
+.mc-bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  overflow:hidden;
+}
+
+.mc-block{
+  position:absolute;
+  width:60px;
+  height:60px;
+  opacity:.25;
+  image-rendering:pixelated;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.15), rgba(0,0,0,.25)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,.15) 0 2px,
+      rgba(255,255,255,.05) 2px 4px
+    );
+  border:2px solid rgba(0,0,0,.4);
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.08),
+    0 10px 30px rgba(0,0,0,.4);
+}
+
+.mc-block.gold{ background-color:#c9a227; }
+.mc-block.diamond{ background-color:#3fdad1; }
+.mc-block.emerald{ background-color:#2ecc71; }
+
+body.neon .mc-block{
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.15),
+    0 0 30px var(--accent);
+}
+
+/* ===== HEADER ===== */
 header{
   text-align:center;
   padding:90px 20px 60px;
@@ -46,7 +84,7 @@ h1{
 
 @keyframes titleGlow{
   from{ text-shadow:0 0 10px var(--gold); }
-  to{ text-shadow:0 0 30px var(--accent); }
+  to{ text-shadow:0 0 22px var(--accent); }
 }
 
 header p{
@@ -66,22 +104,6 @@ h2{
   text-align:center;
   margin-bottom:30px;
 }
-
-/* ===== STATUS ===== */
-.status{
-  display:flex;
-  gap:25px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.dot{
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:red;
-}
-.dot.online{background:#00ff00}
 
 /* ===== CARDS ===== */
 .grid{
@@ -103,7 +125,7 @@ details{
   padding:15px;
 }
 
-/* ===== BUTTONS ===== */
+/* ===== BUTTON ===== */
 button{
   background:var(--accent);
   border:none;
@@ -121,6 +143,9 @@ button{
 </head>
 
 <body>
+
+<!-- Floating background -->
+<div class="mc-bg" id="mcBg"></div>
 
 <header>
   <h1>DeathDevil.eu</h1>
@@ -170,34 +195,45 @@ button{
 
 <button id="neonToggle">Neon Mode</button>
 
-<script type="module">
-const neonBtn = document.getElementById("neonToggle");
-neonBtn.addEventListener("click",()=>{
+<script>
+/* ===== NEON MODE ===== */
+document.getElementById("neonToggle").onclick = ()=>{
   document.body.classList.toggle("neon");
-});
+};
 
-/* ===== MINECRAFT ITEM RAIN ===== */
-const items=[
-  "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7b/Grass_Block_JE3.png",
-  "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/26/Diamond_Block_JE2.png",
-  "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/60/Gold_Block_JE2.png"
-];
+/* ===== FLOATING BLOCK ANIMATION ===== */
+const bg = document.getElementById("mcBg");
+const colors = ["gold","diamond","emerald"];
+const blocks = [];
 
-setInterval(()=>{
-  const el=document.createElement("img");
-  el.src=items[Math.floor(Math.random()*items.length)];
-  el.style.position="fixed";
-  el.style.left=Math.random()*100+"vw";
-  el.style.top="-50px";
-  el.style.width="40px";
-  el.style.animation="fall 6s linear";
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),6000);
-},800);
+for(let i=0;i<8;i++){
+  const b = document.createElement("div");
+  b.className = "mc-block " + colors[i % colors.length];
 
-const style=document.createElement("style");
-style.innerHTML=`@keyframes fall{to{transform:translateY(110vh) rotate(360deg);}}`;
-document.head.appendChild(style);
+  const size = 40 + Math.random()*50;
+  const speed = 0.15 + Math.random()*0.25;
+
+  b.style.width = b.style.height = size + "px";
+  bg.appendChild(b);
+
+  blocks.push({
+    el:b,
+    x:Math.random()*100,
+    y:Math.random()*120,
+    s:speed
+  });
+}
+
+function animate(){
+  blocks.forEach(b=>{
+    b.y -= b.s;
+    if(b.y < -20) b.y = 120;
+    b.el.style.transform =
+      `translate(${b.x}vw, ${b.y}vh) rotate(15deg)`;
+  });
+  requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
