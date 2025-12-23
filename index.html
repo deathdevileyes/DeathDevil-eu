@@ -118,8 +118,7 @@ h2{
   padding:22px;
   text-align:center;
   border:2px solid var(--accent);
-  box-shadow:
-    0 0 18px rgba(0,255,255,.25);
+  box-shadow:0 0 18px rgba(0,255,255,.25);
 }
 
 /* ===== ICON STYLE ===== */
@@ -127,6 +126,63 @@ h2{
   font-size:28px;
   display:block;
   margin-bottom:8px;
+}
+
+/* ===== RULES ACCORDION ===== */
+.rules-card{
+  background:rgba(0,0,0,.82);
+  border:2px solid var(--accent2);
+  box-shadow:0 0 25px rgba(122,0,255,.35);
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.rules-toggle{
+  width:100%;
+  padding:18px;
+  font-size:1.4rem;
+  font-family:Cinzel,serif;
+  color:#fff;
+  background:linear-gradient(90deg,var(--accent2),var(--accent));
+  border:none;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.rules-toggle span{
+  transition:transform .3s ease;
+}
+
+.rules-card.active .rules-toggle span{
+  transform:rotate(180deg);
+}
+
+.rules-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .5s ease;
+}
+
+.rules-card.active .rules-content{
+  max-height:3000px;
+}
+
+.rules-list{
+  list-style:none;
+  padding:25px;
+  margin:0;
+  line-height:1.6;
+}
+
+.rules-list li{
+  margin-bottom:10px;
+}
+
+.rules-sep{
+  margin:18px 0;
+  border-bottom:1px solid rgba(255,255,255,.15);
 }
 </style>
 </head>
@@ -141,9 +197,8 @@ h2{
   <h1>DeathDevil.eu</h1>
   <p>
     DeathDevil.eu ist ein deutscher Minecraft-Server mit Fokus auf Citybuild,
-    Skyblock und abwechslungsreichem Gameplay.  
-    Der Server wurde von <strong>DeathDevil</strong> erstellt und verbindet
-    Wirtschaft, Events, Minispiele und Community zu einem einzigartigen Erlebnis.
+    Skyblock und abwechslungsreichem Gameplay.<br>
+    Erstellt von <strong>DeathDevil</strong>.
   </p>
 </header>
 
@@ -187,12 +242,42 @@ h2{
 </section>
 
 <section>
+  <h2>Serverregeln</h2>
+
+  <div class="rules-card">
+    <button class="rules-toggle">
+      📜 Regeln anzeigen
+      <span>▼</span>
+    </button>
+
+    <div class="rules-content">
+      <ul class="rules-list">
+        <li>&4(✘) Diebstahl ist strengstens verboten! (auch aus Kisten, Trichtern, Farms)</li>
+        <li>&4(✘) Griefing ist verboten!</li>
+        <li>&4(✘) Beleidigungen, Spamming, CAPS & Links sind verboten.</li>
+        <li>&4(✘) Hacks, X-Ray, Autoklicker, Duplizieren sind verboten.</li>
+        <li>&4(✘) Rassistische Inhalte & Builds sind verboten (auch BuildBattlePro).</li>
+
+        <li class="rules-sep"></li>
+
+        <li>&6(⚠) Bugusing, Echtgeldhandel & Werbung sind verboten.</li>
+
+        <li class="rules-sep"></li>
+
+        <li>&2(✔) Respekt, Team-Anweisungen & Fairplay sind Pflicht.</li>
+        <li>&e(ℹ) Regeln können jederzeit angepasst werden.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
   <h2>Server-IP</h2>
   <div class="grid">
     <div class="card">
       <span>🌐</span>
-      <strong>134.255.220.222:2200</strong>
-      <br><small>Java Edition</small>
+      <strong>134.255.220.222:2200</strong><br>
+      <small>Java Edition</small>
     </div>
   </div>
 </section>
@@ -212,7 +297,7 @@ h2{
 </div>
 
 <script>
-/* ===== FLOATING BLOCKS ===== */
+/* FLOATING BLOCKS */
 const bg=document.getElementById("mcBg");
 for(let i=0;i<14;i++){
   const b=document.createElement("div");
@@ -230,6 +315,11 @@ for(let i=0;i<14;i++){
     requestAnimationFrame(anim);
   })();
 }
+
+/* RULES TOGGLE */
+document.querySelector(".rules-toggle").addEventListener("click",()=>{
+  document.querySelector(".rules-card").classList.toggle("active");
+});
 </script>
 
 </body>
