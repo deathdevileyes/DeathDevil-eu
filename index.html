@@ -9,30 +9,19 @@
 
 <style>
 :root{
-  --c1:#00ffff;
-  --c2:#ff00ff;
-  --c3:#00ff88;
+  --accent:#00ffff;
+  --accent2:#7a00ff;
   --gold:#ffd700;
-  --bg-overlay:rgba(0,0,0,.6);
-}
-
-/* ===== NEON MODE (DEUTLICH) ===== */
-body.neon{
-  --c1:#ff00ff;
-  --c2:#00ffff;
-  --c3:#9d00ff;
+  --bg-overlay:rgba(0,0,0,.65);
 }
 
 /* ===== BASE ===== */
-*{
-  transition:all .45s ease;
-}
-
 html,body{
   margin:0;
   font-family:Inter,sans-serif;
   color:#fff;
   background:
+    radial-gradient(circle at top, rgba(0,255,255,.08), transparent 60%),
     linear-gradient(var(--bg-overlay),var(--bg-overlay)),
     url("background.png") center/cover fixed;
   overflow-x:hidden;
@@ -50,22 +39,16 @@ html,body{
   position:absolute;
   width:60px;
   height:60px;
-  opacity:.25;
+  opacity:.22;
   background:
-    linear-gradient(135deg, rgba(255,255,255,.2), rgba(0,0,0,.3)),
+    linear-gradient(135deg, rgba(255,255,255,.18), rgba(0,0,0,.35)),
     repeating-linear-gradient(
       0deg,
-      rgba(0,0,0,.2) 0 2px,
+      rgba(0,0,0,.25) 0 2px,
       rgba(255,255,255,.08) 2px 4px
     );
-  border:2px solid #000;
-  box-shadow:0 0 15px rgba(0,0,0,.8);
-}
-
-body.neon .mc-block{
-  box-shadow:
-    0 0 20px var(--c1),
-    0 0 45px var(--c2);
+  border:2px solid rgba(0,0,0,.6);
+  box-shadow:0 0 25px rgba(0,0,0,.8);
 }
 
 /* ===== CONTENT ===== */
@@ -74,28 +57,39 @@ body.neon .mc-block{
 /* ===== HEADER ===== */
 header{
   text-align:center;
-  padding:100px 20px 70px;
+  padding:110px 20px 80px;
 }
 
 h1{
   font-family:Cinzel,serif;
-  font-size:clamp(46px,7vw,88px);
+  font-size:clamp(46px,7vw,92px);
+  letter-spacing:5px;
   color:var(--gold);
-  letter-spacing:4px;
-  animation:titlePulse 2s ease-in-out infinite;
+  animation:mysticTitle 1.8s ease-in-out infinite;
 }
 
-@keyframes titlePulse{
-  0%{transform:translateY(0);text-shadow:0 0 10px var(--c1);}
-  50%{transform:translateY(-18px);text-shadow:0 0 45px var(--c2);}
-  100%{transform:translateY(0);text-shadow:0 0 10px var(--c3);}
+@keyframes mysticTitle{
+  0%{
+    transform:translateY(0) scale(1);
+    text-shadow:0 0 10px var(--gold);
+  }
+  50%{
+    transform:translateY(-18px) scale(1.04);
+    text-shadow:
+      0 0 30px var(--accent),
+      0 0 60px var(--accent2);
+  }
+  100%{
+    transform:translateY(0) scale(1);
+    text-shadow:0 0 10px var(--gold);
+  }
 }
 
 header p{
-  max-width:950px;
+  max-width:1000px;
   margin:25px auto 0;
-  color:var(--c1);
-  line-height:1.6;
+  line-height:1.7;
+  color:var(--accent);
 }
 
 /* ===== SECTIONS ===== */
@@ -112,7 +106,7 @@ h2{
   margin-bottom:35px;
 }
 
-/* ===== NEON GRID ===== */
+/* ===== GRID / CARDS ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -120,36 +114,19 @@ h2{
 }
 
 .card{
-  background:rgba(0,0,0,.85);
+  background:rgba(0,0,0,.82);
   padding:22px;
   text-align:center;
-  border:2px solid var(--c1);
+  border:2px solid var(--accent);
   box-shadow:
-    0 0 15px rgba(0,255,255,.25);
+    0 0 18px rgba(0,255,255,.25);
 }
 
-body.neon .card{
-  border-color:var(--c2);
-  box-shadow:
-    0 0 25px var(--c1),
-    0 0 55px var(--c2);
-}
-
-/* ===== BUTTON ===== */
-button{
-  background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));
-  border:none;
-  padding:14px 26px;
-  cursor:pointer;
-  font-weight:700;
-  color:#000;
-}
-
-/* ===== NEON TOGGLE ===== */
-#neonToggle{
-  position:fixed;
-  right:20px;
-  bottom:20px;
+/* ===== ICON STYLE ===== */
+.card span{
+  font-size:28px;
+  display:block;
+  margin-bottom:8px;
 }
 </style>
 </head>
@@ -163,22 +140,31 @@ button{
 <header>
   <h1>DeathDevil.eu</h1>
   <p>
-    DeathDevil.eu ist ein deutscher Minecraft-Server mit Citybuild,
-    Skyblock und vielseitigem Gameplay.  
-    Erstellt von <strong>DeathDevil</strong> – mit aktiver Wirtschaft,
-    Events und Community.
-    <br><br>
-    🌐 <strong>Server-IP:</strong> 134.255.220.222:2200
+    DeathDevil.eu ist ein deutscher Minecraft-Server mit Fokus auf Citybuild,
+    Skyblock und abwechslungsreichem Gameplay.  
+    Der Server wurde von <strong>DeathDevil</strong> erstellt und verbindet
+    Wirtschaft, Events, Minispiele und Community zu einem einzigartigen Erlebnis.
   </p>
 </header>
 
 <section>
   <h2>Server-Features</h2>
   <div class="grid">
-    <div class="card">🏙️ Citybuild</div>
-    <div class="card">🏝️ Skyblock & Varianten</div>
-    <div class="card">⚔️ PvP & Minigames</div>
-    <div class="card">🎉 Events & Belohnungen</div>
+    <div class="card"><span>🏙️</span>Citybuild</div>
+    <div class="card"><span>🏝️</span>Skyblock & Varianten</div>
+    <div class="card"><span>🎰</span>Casino (Ingame-Geld)</div>
+    <div class="card"><span>🎉</span>Events & Belohnungen</div>
+  </div>
+</section>
+
+<section>
+  <h2>Minispiele</h2>
+  <div class="grid">
+    <div class="card"><span>🛏️</span>BedWars</div>
+    <div class="card"><span>🌌</span>SkyWars</div>
+    <div class="card"><span>🧱</span>BuildBattlePro</div>
+    <div class="card"><span>🧟</span>MobArena</div>
+    <div class="card"><span>⚔️</span>KitBattle</div>
   </div>
 </section>
 
@@ -201,11 +187,13 @@ button{
 </section>
 
 <section>
-  <h2>Ränge</h2>
+  <h2>Server-IP</h2>
   <div class="grid">
-    <div class="card">👑 Premium</div>
-    <div class="card">👑 Ultra</div>
-    <div class="card">👑 King</div>
+    <div class="card">
+      <span>🌐</span>
+      <strong>134.255.220.222:2200</strong>
+      <br><small>Java Edition</small>
+    </div>
   </div>
 </section>
 
@@ -213,9 +201,9 @@ button{
   <h2>Community</h2>
   <div class="grid">
     <div class="card">
-      💬 Discord Community<br><br>
-      <a href="https://discord.gg/7w2QeHq9rh" target="_blank" style="color:var(--c1)">
-        Jetzt beitreten
+      <span>💬</span>
+      <a href="https://discord.gg/7w2QeHq9rh" target="_blank" style="color:var(--accent)">
+        Discord beitreten
       </a>
     </div>
   </div>
@@ -223,25 +211,18 @@ button{
 
 </div>
 
-<button id="neonToggle">Neon Mode</button>
-
 <script>
-/* ===== NEON TOGGLE ===== */
-document.getElementById("neonToggle").onclick=()=>{
-  document.body.classList.toggle("neon");
-};
-
 /* ===== FLOATING BLOCKS ===== */
 const bg=document.getElementById("mcBg");
-for(let i=0;i<12;i++){
+for(let i=0;i<14;i++){
   const b=document.createElement("div");
   b.className="mc-block";
-  const s=35+Math.random()*60;
+  const s=40+Math.random()*60;
   b.style.width=b.style.height=s+"px";
   b.style.left=Math.random()*100+"vw";
   let y=Math.random()*120;
   bg.appendChild(b);
-  const speed=0.08+Math.random()*0.18;
+  const speed=0.06+Math.random()*0.15;
   (function anim(){
     y-=speed;
     if(y<-20)y=120;
