@@ -9,23 +9,23 @@
 
 <style>
 :root{
-  --accent:#00ffff;
-  --accent2:#ff00ff;
-  --accent3:#00ff88;
+  --c1:#00ffff;
+  --c2:#ff00ff;
+  --c3:#00ff88;
   --gold:#ffd700;
   --bg-overlay:rgba(0,0,0,.6);
 }
 
-/* ===== NEON MODE ===== */
+/* ===== NEON MODE (DEUTLICH) ===== */
 body.neon{
-  --accent:#ff00ff;
-  --accent2:#00ffff;
-  --accent3:#9d00ff;
+  --c1:#ff00ff;
+  --c2:#00ffff;
+  --c3:#9d00ff;
 }
 
 /* ===== BASE ===== */
 *{
-  transition: color .4s ease, border-color .4s ease, box-shadow .4s ease;
+  transition:all .45s ease;
 }
 
 html,body{
@@ -50,22 +50,22 @@ html,body{
   position:absolute;
   width:60px;
   height:60px;
-  opacity:.35;
+  opacity:.25;
   background:
-    linear-gradient(135deg, rgba(255,255,255,.15), rgba(0,0,0,.25)),
+    linear-gradient(135deg, rgba(255,255,255,.2), rgba(0,0,0,.3)),
     repeating-linear-gradient(
       0deg,
       rgba(0,0,0,.2) 0 2px,
       rgba(255,255,255,.08) 2px 4px
     );
-  border:2px solid rgba(0,0,0,.4);
-  box-shadow:0 0 20px rgba(0,0,0,.6);
+  border:2px solid #000;
+  box-shadow:0 0 15px rgba(0,0,0,.8);
 }
 
 body.neon .mc-block{
   box-shadow:
-    0 0 15px var(--accent),
-    0 0 35px var(--accent2);
+    0 0 20px var(--c1),
+    0 0 45px var(--c2);
 }
 
 /* ===== CONTENT ===== */
@@ -79,22 +79,22 @@ header{
 
 h1{
   font-family:Cinzel,serif;
-  font-size:clamp(44px,7vw,86px);
-  letter-spacing:3px;
+  font-size:clamp(46px,7vw,88px);
   color:var(--gold);
-  animation:titleMove 2.4s ease-in-out infinite;
+  letter-spacing:4px;
+  animation:titlePulse 2s ease-in-out infinite;
 }
 
-@keyframes titleMove{
-  0%{transform:translateY(0);text-shadow:0 0 15px var(--accent);}
-  50%{transform:translateY(-14px);text-shadow:0 0 40px var(--accent2);}
-  100%{transform:translateY(0);text-shadow:0 0 15px var(--accent3);}
+@keyframes titlePulse{
+  0%{transform:translateY(0);text-shadow:0 0 10px var(--c1);}
+  50%{transform:translateY(-18px);text-shadow:0 0 45px var(--c2);}
+  100%{transform:translateY(0);text-shadow:0 0 10px var(--c3);}
 }
 
 header p{
   max-width:950px;
-  margin:20px auto 0;
-  color:var(--accent);
+  margin:25px auto 0;
+  color:var(--c1);
   line-height:1.6;
 }
 
@@ -109,47 +109,40 @@ h2{
   font-family:Cinzel,serif;
   color:var(--gold);
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom:35px;
 }
 
-/* ===== GRID ===== */
+/* ===== NEON GRID ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  gap:22px;
 }
 
 .card{
-  background:rgba(0,0,0,.8);
-  border:1px solid var(--accent);
-  padding:20px;
-  box-shadow:0 0 20px rgba(0,255,255,.15);
+  background:rgba(0,0,0,.85);
+  padding:22px;
+  text-align:center;
+  border:2px solid var(--c1);
+  box-shadow:
+    0 0 15px rgba(0,255,255,.25);
 }
 
 body.neon .card{
+  border-color:var(--c2);
   box-shadow:
-    0 0 20px var(--accent),
-    0 0 45px var(--accent2);
-}
-
-/* ===== LIST ===== */
-ul{
-  list-style:none;
-  padding:0;
-  columns:2;
-}
-ul li::before{
-  content:"◆ ";
-  color:var(--accent);
+    0 0 25px var(--c1),
+    0 0 55px var(--c2);
 }
 
 /* ===== BUTTON ===== */
 button{
-  background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));
+  background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));
   border:none;
-  padding:12px 22px;
+  padding:14px 26px;
   cursor:pointer;
-  font-weight:600;
+  font-weight:700;
+  color:#000;
 }
 
 /* ===== NEON TOGGLE ===== */
@@ -170,10 +163,12 @@ button{
 <header>
   <h1>DeathDevil.eu</h1>
   <p>
-    DeathDevil.eu ist ein deutscher Minecraft-Server mit Fokus auf Citybuild,
+    DeathDevil.eu ist ein deutscher Minecraft-Server mit Citybuild,
     Skyblock und vielseitigem Gameplay.  
-    Der Server wurde von <strong>DeathDevil</strong> erstellt und bietet
-    ein aktives Wirtschaftssystem, Events und eine starke Community.
+    Erstellt von <strong>DeathDevil</strong> – mit aktiver Wirtschaft,
+    Events und Community.
+    <br><br>
+    🌐 <strong>Server-IP:</strong> 134.255.220.222:2200
   </p>
 </header>
 
@@ -188,55 +183,42 @@ button{
 </section>
 
 <section>
-  <h2>Features (A–Z)</h2>
-  <ul>
-    <li>Backpack</li>
-    <li>Belohnungssystem</li>
-    <li>Haustiere</li>
-    <li>Jobs</li>
-    <li>Jump and Run</li>
-    <li>Kosmetik</li>
-    <li>Parkour</li>
-    <li>Quests</li>
-    <li>Skyblock</li>
-    <li>Skyblock-Varianten</li>
-    <li>Spielerauktionen</li>
-    <li>Tradesystem</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Ränge</h2>
-  <p style="text-align:center">
-    Alle Ränge sind <strong>mit Ingame-Geld erspielbar</strong>:<br><br>
-    👑 Premium • Ultra • King
-  </p>
-</section>
-
-<section>
-  <h2>Server-IP</h2>
+  <h2>Features A–Z</h2>
   <div class="grid">
-    <div class="card" onclick="copyIP()" style="text-align:center;cursor:pointer">
-      🌐 <strong>134.255.220.222:2200</strong><br>
-      <small>Klicken zum Kopieren</small>
-    </div>
+    <div class="card">Backpack</div>
+    <div class="card">Belohnungssystem</div>
+    <div class="card">Haustiere</div>
+    <div class="card">Jobs</div>
+    <div class="card">Jump and Run</div>
+    <div class="card">Kosmetik</div>
+    <div class="card">Parkour</div>
+    <div class="card">Quests</div>
+    <div class="card">Skyblock</div>
+    <div class="card">Skyblock-Varianten</div>
+    <div class="card">Spielerauktionen</div>
+    <div class="card">Tradesystem</div>
   </div>
 </section>
 
 <section>
-  <h2>Item-Verlosung</h2>
-  <p style="text-align:center">
-    Regelmäßige Item-Verlosungen auf dem Server und auf Discord.
-  </p>
+  <h2>Ränge</h2>
+  <div class="grid">
+    <div class="card">👑 Premium</div>
+    <div class="card">👑 Ultra</div>
+    <div class="card">👑 King</div>
+  </div>
 </section>
 
 <section>
   <h2>Community</h2>
-  <p style="text-align:center">
-    👉 <a href="https://discord.gg/7w2QeHq9rh" target="_blank" style="color:var(--accent)">
-      Unser Discord
-    </a>
-  </p>
+  <div class="grid">
+    <div class="card">
+      💬 Discord Community<br><br>
+      <a href="https://discord.gg/7w2QeHq9rh" target="_blank" style="color:var(--c1)">
+        Jetzt beitreten
+      </a>
+    </div>
+  </div>
 </section>
 
 </div>
@@ -245,29 +227,21 @@ button{
 
 <script>
 /* ===== NEON TOGGLE ===== */
-document.getElementById("neonToggle").onclick = ()=>{
+document.getElementById("neonToggle").onclick=()=>{
   document.body.classList.toggle("neon");
 };
 
-/* ===== COPY IP ===== */
-function copyIP(){
-  navigator.clipboard.writeText("134.255.220.222:2200");
-  alert("Server-IP kopiert!");
-}
-
 /* ===== FLOATING BLOCKS ===== */
 const bg=document.getElementById("mcBg");
-const colors=["gold","diamond","emerald"];
 for(let i=0;i<12;i++){
   const b=document.createElement("div");
-  b.className="mc-block "+colors[i%3];
-  const s=35+Math.random()*55;
+  b.className="mc-block";
+  const s=35+Math.random()*60;
   b.style.width=b.style.height=s+"px";
   b.style.left=Math.random()*100+"vw";
-  b.style.top=Math.random()*120+"vh";
+  let y=Math.random()*120;
   bg.appendChild(b);
-  let y=parseFloat(b.style.top);
-  const speed=0.1+Math.random()*0.2;
+  const speed=0.08+Math.random()*0.18;
   (function anim(){
     y-=speed;
     if(y<-20)y=120;
@@ -279,4 +253,3 @@ for(let i=0;i<12;i++){
 
 </body>
 </html>
-
