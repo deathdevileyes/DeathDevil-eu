@@ -15,7 +15,6 @@
   --bg-overlay:rgba(0,0,0,.65);
 }
 
-/* ===== BASE ===== */
 html,body{
   margin:0;
   font-family:Inter,sans-serif;
@@ -27,163 +26,44 @@ html,body{
   overflow-x:hidden;
 }
 
-/* ===== FLOATING BLOCKS ===== */
-.mc-bg{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-}
-
+.mc-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
 .mc-block{
   position:absolute;
-  width:60px;
-  height:60px;
-  opacity:.22;
+  width:60px;height:60px;opacity:.22;
   background:
     linear-gradient(135deg, rgba(255,255,255,.18), rgba(0,0,0,.35)),
-    repeating-linear-gradient(
-      0deg,
-      rgba(0,0,0,.25) 0 2px,
-      rgba(255,255,255,.08) 2px 4px
-    );
+    repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,rgba(255,255,255,.08) 2px 4px);
   border:2px solid rgba(0,0,0,.6);
   box-shadow:0 0 25px rgba(0,0,0,.8);
 }
 
-/* ===== CONTENT ===== */
 .page{position:relative;z-index:1}
 
-/* ===== HEADER ===== */
-header{
-  text-align:center;
-  padding:110px 20px 80px;
-}
-
+header{text-align:center;padding:110px 20px 80px}
 h1{
   font-family:Cinzel,serif;
   font-size:clamp(46px,7vw,92px);
-  letter-spacing:5px;
-  color:var(--gold);
+  letter-spacing:5px;color:var(--gold);
   animation:mysticTitle 1.8s ease-in-out infinite;
 }
 
 @keyframes mysticTitle{
-  0%{
-    transform:translateY(0) scale(1);
-    text-shadow:0 0 10px var(--gold);
-  }
-  50%{
-    transform:translateY(-18px) scale(1.04);
-    text-shadow:
-      0 0 30px var(--accent),
-      0 0 60px var(--accent2);
-  }
-  100%{
-    transform:translateY(0) scale(1);
-    text-shadow:0 0 10px var(--gold);
-  }
+  0%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
+  50%{transform:translateY(-18px) scale(1.04);text-shadow:0 0 30px var(--accent),0 0 60px var(--accent2)}
+  100%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
 }
 
-header p{
-  max-width:1000px;
-  margin:25px auto 0;
-  line-height:1.7;
-  color:var(--accent);
-}
+section{max-width:1200px;margin:auto;padding:60px 20px}
+h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35px}
 
-/* ===== SECTIONS ===== */
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:60px 20px;
-}
-
-h2{
-  font-family:Cinzel,serif;
-  color:var(--gold);
-  text-align:center;
-  margin-bottom:35px;
-}
-
-/* ===== GRID / CARDS ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:22px;
-}
-
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
 .card{
   background:rgba(0,0,0,.82);
-  padding:22px;
-  text-align:center;
+  padding:22px;text-align:center;
   border:2px solid var(--accent);
   box-shadow:0 0 18px rgba(0,255,255,.25);
 }
-
-/* ===== ICON STYLE ===== */
-.card span{
-  font-size:28px;
-  display:block;
-  margin-bottom:8px;
-}
-
-/* ===== RULES ACCORDION ===== */
-.rules-card{
-  background:rgba(0,0,0,.82);
-  border:2px solid var(--accent2);
-  box-shadow:0 0 25px rgba(122,0,255,.35);
-  border-radius:14px;
-  overflow:hidden;
-}
-
-.rules-toggle{
-  width:100%;
-  padding:18px;
-  font-size:1.4rem;
-  font-family:Cinzel,serif;
-  color:#fff;
-  background:linear-gradient(90deg,var(--accent2),var(--accent));
-  border:none;
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.rules-toggle span{
-  transition:transform .3s ease;
-}
-
-.rules-card.active .rules-toggle span{
-  transform:rotate(180deg);
-}
-
-.rules-content{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .5s ease;
-}
-
-.rules-card.active .rules-content{
-  max-height:3000px;
-}
-
-.rules-list{
-  list-style:none;
-  padding:25px;
-  margin:0;
-  line-height:1.6;
-}
-
-.rules-list li{
-  margin-bottom:10px;
-}
-
-.rules-sep{
-  margin:18px 0;
-  border-bottom:1px solid rgba(255,255,255,.15);
-}
+.card span{font-size:28px;display:block;margin-bottom:8px}
 </style>
 </head>
 
@@ -195,102 +75,17 @@ h2{
 
 <header>
   <h1>DeathDevil.eu</h1>
-  <p>
-    DeathDevil.eu ist ein deutscher Minecraft-Server mit Fokus auf Citybuild,
-    Skyblock und abwechslungsreichem Gameplay.<br>
-    Erstellt von <strong>DeathDevil</strong>.
-  </p>
+  <p>Deutscher Minecraft Server mit Citybuild & stabiler Wirtschaft</p>
 </header>
 
 <section>
-  <h2>Server-Features</h2>
+  <h2>📊 Marktpreise (Richtwerte)</h2>
   <div class="grid">
-    <div class="card"><span>🏙️</span>Citybuild</div>
-    <div class="card"><span>🏝️</span>Skyblock & Varianten</div>
-    <div class="card"><span>🎰</span>Casino (Ingame-Geld)</div>
-    <div class="card"><span>🎉</span>Events & Belohnungen</div>
-  </div>
-</section>
-
-<section>
-  <h2>Minispiele</h2>
-  <div class="grid">
-    <div class="card"><span>🛏️</span>BedWars</div>
-    <div class="card"><span>🌌</span>SkyWars</div>
-    <div class="card"><span>🧱</span>BuildBattlePro</div>
-    <div class="card"><span>🧟</span>MobArena</div>
-    <div class="card"><span>⚔️</span>KitBattle</div>
-  </div>
-</section>
-
-<section>
-  <h2>Features A–Z</h2>
-  <div class="grid">
-    <div class="card">Backpack</div>
-    <div class="card">Belohnungssystem</div>
-    <div class="card">Haustiere</div>
-    <div class="card">Jobs</div>
-    <div class="card">Jump and Run</div>
-    <div class="card">Kosmetik</div>
-    <div class="card">Parkour</div>
-    <div class="card">Quests</div>
-    <div class="card">Skyblock</div>
-    <div class="card">Skyblock-Varianten</div>
-    <div class="card">Spielerauktionen</div>
-    <div class="card">Tradesystem</div>
-  </div>
-</section>
-
-<section>
-  <h2>Serverregeln</h2>
-
-  <div class="rules-card">
-    <button class="rules-toggle">
-      📜 Regeln anzeigen
-      <span>▼</span>
-    </button>
-
-    <div class="rules-content">
-      <ul class="rules-list">
-        <li>&4(✘) Diebstahl ist strengstens verboten! (auch aus Kisten, Trichtern, Farms)</li>
-        <li>&4(✘) Griefing ist verboten!</li>
-        <li>&4(✘) Beleidigungen, Spamming, CAPS & Links sind verboten.</li>
-        <li>&4(✘) Hacks, X-Ray, Autoklicker, Duplizieren sind verboten.</li>
-        <li>&4(✘) Rassistische Inhalte & Builds sind verboten (auch BuildBattlePro).</li>
-
-        <li class="rules-sep"></li>
-
-        <li>&6(⚠) Bugusing, Echtgeldhandel & Werbung sind verboten.</li>
-
-        <li class="rules-sep"></li>
-
-        <li>&2(✔) Respekt, Team-Anweisungen & Fairplay sind Pflicht.</li>
-        <li>&e(ℹ) Regeln können jederzeit angepasst werden.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Server-IP</h2>
-  <div class="grid">
-    <div class="card">
-      <span>🌐</span>
-      <strong>134.255.220.222:2200</strong><br>
-      <small>Java Edition</small>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Community</h2>
-  <div class="grid">
-    <div class="card">
-      <span>💬</span>
-      <a href="https://discord.gg/7w2QeHq9rh" target="_blank" style="color:var(--accent)">
-        Discord beitreten
-      </a>
-    </div>
+    <div class="card"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
+    <div class="card"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
+    <div class="card"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
+    <div class="card"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
+    <div class="card"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
   </div>
 </section>
 
@@ -309,17 +104,37 @@ for(let i=0;i<14;i++){
   bg.appendChild(b);
   const speed=0.06+Math.random()*0.15;
   (function anim(){
-    y-=speed;
-    if(y<-20)y=120;
+    y-=speed;if(y<-20)y=120;
     b.style.transform=`translateY(${y}vh) rotate(15deg)`;
     requestAnimationFrame(anim);
   })();
 }
 
-/* RULES TOGGLE */
-document.querySelector(".rules-toggle").addEventListener("click",()=>{
-  document.querySelector(".rules-card").classList.toggle("active");
-});
+/* MARKET PRICES */
+async function loadMarketPrices(){
+  const res=await fetch("prices.json");
+  const data=await res.json();
+  const last=localStorage.getItem("priceUpdate");
+  const now=Date.now();
+  const interval=data.update_interval_days*86400000;
+  let prices=JSON.parse(localStorage.getItem("marketPrices"));
+
+  if(!last||now-last>interval||!prices){
+    prices={};
+    for(const k in data.items){
+      const i=data.items[k];
+      let p=Math.round(i.base*(1+(Math.random()*0.16-0.08)));
+      prices[k]=Math.max(i.min,Math.min(i.max,p));
+    }
+    localStorage.setItem("marketPrices",JSON.stringify(prices));
+    localStorage.setItem("priceUpdate",now);
+  }
+
+  document.querySelectorAll("[data-item]").forEach(e=>{
+    e.textContent=prices[e.dataset.item]+" $";
+  });
+}
+loadMarketPrices();
 </script>
 
 </body>
