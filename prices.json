@@ -1,0 +1,35 @@
+{
+  "update_interval_days": 7,
+  "items": {
+    "diamond": {
+      "name": "Diamant",
+      "base": 100,
+      "min": 85,
+      "max": 130
+    },
+    "emerald": {
+      "name": "Emerald",
+      "base": 120,
+      "min": 95,
+      "max": 150
+    },
+    "iron": {
+      "name": "Eisenbarren",
+      "base": 15,
+      "min": 10,
+      "max": 22
+    },
+    "gold": {
+      "name": "Goldbarren",
+      "base": 22,
+      "min": 16,
+      "max": 32
+    },
+    "netherite": {
+      "name": "Netherite-Barren",
+      "base": 2200,
+      "min": 1900,
+      "max": 2600
+    }
+  }
+}
