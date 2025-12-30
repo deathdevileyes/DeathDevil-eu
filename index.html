@@ -64,6 +64,21 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
   box-shadow:0 0 18px rgba(0,255,255,.25);
 }
 .card span{font-size:28px;display:block;margin-bottom:8px}
+
+details{
+  background:rgba(0,0,0,.82);
+  border:2px solid var(--accent2);
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 0 22px rgba(122,0,255,.45);
+}
+summary{
+  font-size:20px;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--gold);
+}
+summary:hover{color:var(--accent)}
 </style>
 </head>
 
@@ -89,34 +104,72 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
 </section>
 
 <section>
-  <h2>📊 Marktpreise (Spielerhandel)</h2>
-  <p style="text-align:center;color:var(--accent)">
-    Richtwerte – Preise ändern sich wöchentlich automatisch
-  </p>
+  <h2>📊 Marktpreise</h2>
   <div class="grid">
     <div class="card"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
     <div class="card"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
     <div class="card"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
     <div class="card"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
     <div class="card"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
+    <div class="card"><span>🌾</span>Weizen<br><strong><span data-item="wheat"></span></strong></div>
+    <div class="card"><span>🧱</span>Stein<br><strong><span data-item="stone"></span></strong></div>
+    <div class="card"><span>🪵</span>Holz<br><strong><span data-item="wood"></span></strong></div>
   </div>
 </section>
 
 <section>
-  <h2>Server-IP</h2>
+  <h2>🌐 Server-IP</h2>
   <div class="grid">
-    <div class="card">
-      <span>🌐</span>
-      <strong>134.255.220.222:2200</strong><br>
-      <small>Java Edition</small>
+    <div class="card" onclick="navigator.clipboard.writeText('DeathDevil.eu')">
+      <span>📋</span>
+      <strong>DeathDevil.eu</strong><br>
+      <small>Klicken zum Kopieren</small>
     </div>
+  </div>
+</section>
+
+<section>
+  <h2>📜 Serverregeln</h2>
+  <details open>
+    <summary>📌 Regeln anzeigen</summary>
+    <ul>
+      <li>❌ Kein Griefing</li>
+      <li>❌ Kein Cheaten / Hackclients</li>
+      <li>🤝 Respektvoller Umgang</li>
+      <li>⚖️ Admins haben das letzte Wort</li>
+    </ul>
+  </details>
+</section>
+
+<section>
+  <h2>📘 Server erklärt</h2>
+  <details>
+    <summary>🎒 Backpack</summary>
+    <p>Befehl: <strong>/backpack</strong></p>
+  </details>
+  <details>
+    <summary>🏠 Homes</summary>
+    <p>Befehl: <strong>/sethome</strong> & <strong>/home</strong></p>
+  </details>
+  <details>
+    <summary>🛒 Shop</summary>
+    <p>Befehl: <strong>/shop</strong></p>
+  </details>
+</section>
+
+<section>
+  <h2>💬 Discord</h2>
+  <div class="grid">
+    <a class="card" href="https://discord.gg/7w2QeHq9rh" target="_blank">
+      <span>🔗</span>
+      Discord beitreten
+    </a>
   </div>
 </section>
 
 </div>
 
 <script>
-/* FLOATING BLOCKS */
 const bg=document.getElementById("mcBg");
 for(let i=0;i<14;i++){
   const b=document.createElement("div");
@@ -134,32 +187,16 @@ for(let i=0;i<14;i++){
   })();
 }
 
-/* MARKET PRICES */
-async function loadMarketPrices(){
-  const res=await fetch("prices.json");
-  const data=await res.json();
-  const last=localStorage.getItem("priceUpdate");
-  const now=Date.now();
-  const interval=data.update_interval_days*86400000;
-  let prices=JSON.parse(localStorage.getItem("marketPrices"));
+const prices={
+  diamond:120, emerald:90, gold:45, iron:25, netherite:800,
+  wheat:6, stone:4, wood:8
+};
 
-  if(!last||now-last>interval||!prices){
-    prices={};
-    for(const k in data.items){
-      const i=data.items[k];
-      let p=Math.round(i.base*(1+(Math.random()*0.16-0.08)));
-      prices[k]=Math.max(i.min,Math.min(i.max,p));
-    }
-    localStorage.setItem("marketPrices",JSON.stringify(prices));
-    localStorage.setItem("priceUpdate",now);
-  }
-
-  document.querySelectorAll("[data-item]").forEach(e=>{
-    e.textContent=prices[e.dataset.item]+" $";
-  });
-}
-loadMarketPrices();
+document.querySelectorAll("[data-item]").forEach(e=>{
+  e.textContent=prices[e.dataset.item]+" €";
+});
 </script>
 
 </body>
 </html>
+
