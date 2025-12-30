@@ -13,6 +13,10 @@
   --accent2:#7a00ff;
   --gold:#ffd700;
   --bg-overlay:rgba(0,0,0,.65);
+  --red:#ff4d4d;
+  --orange:#ffae42;
+  --green:#4dff88;
+  --info:#ffd966;
 }
 
 html,body{
@@ -26,31 +30,46 @@ html,body{
   overflow-x:hidden;
 }
 
-.mc-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
-.mc-block{
-  position:absolute;
-  width:60px;height:60px;opacity:.22;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.18), rgba(0,0,0,.35)),
-    repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,rgba(255,255,255,.08) 2px 4px);
-  border:2px solid rgba(0,0,0,.6);
-  box-shadow:0 0 25px rgba(0,0,0,.8);
-}
-
 .page{position:relative;z-index:1}
 
-header{text-align:center;padding:110px 20px 80px}
+.top-bar{
+  position:fixed;
+  top:15px;
+  left:20px;
+  right:20px;
+  display:flex;
+  justify-content:space-between;
+  z-index:10;
+}
+
+.top-card{
+  background:rgba(0,0,0,.75);
+  border:2px solid var(--accent);
+  padding:12px 18px;
+  cursor:pointer;
+  box-shadow:0 0 18px rgba(0,255,255,.35);
+  transition:.3s;
+}
+.top-card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 30px rgba(0,255,255,.7);
+}
+
+header{text-align:center;padding:140px 20px 90px}
+
 h1{
   font-family:Cinzel,serif;
   font-size:clamp(46px,7vw,92px);
-  letter-spacing:5px;color:var(--gold);
-  animation:mysticTitle 1.8s ease-in-out infinite;
+  letter-spacing:5px;
+  color:var(--gold);
 }
 
-@keyframes mysticTitle{
-  0%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
-  50%{transform:translateY(-18px) scale(1.04);text-shadow:0 0 30px var(--accent),0 0 60px var(--accent2)}
-  100%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
+header p{
+  max-width:800px;
+  margin:25px auto 0;
+  font-size:18px;
+  line-height:1.7;
+  color:#ddd;
 }
 
 section{max-width:1200px;margin:auto;padding:60px 20px}
@@ -59,158 +78,86 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
 .card{
   background:rgba(0,0,0,.82);
-  padding:22px;text-align:center;
+  padding:22px;
+  text-align:center;
   border:2px solid var(--accent);
   box-shadow:0 0 18px rgba(0,255,255,.25);
 }
-.card span{font-size:28px;display:block;margin-bottom:8px}
 
 details{
-  background:rgba(0,0,0,.82);
+  background:rgba(0,0,0,.85);
   border:2px solid var(--accent2);
-  padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 0 22px rgba(122,0,255,.45);
+  padding:20px;
+  box-shadow:0 0 25px rgba(122,0,255,.45);
 }
+
 summary{
-  font-size:20px;
-  font-weight:600;
+  font-size:22px;
   cursor:pointer;
   color:var(--gold);
 }
-summary:hover{color:var(--accent)}
+
+.rules li{margin:10px 0;line-height:1.6}
+.red{color:var(--red)}
+.orange{color:var(--orange)}
+.green{color:var(--green)}
+.info{color:var(--info)}
 </style>
 </head>
 
 <body>
 
-<div class="mc-bg" id="mcBg"></div>
-
 <div class="page">
+
+<div class="top-bar">
+  <div class="top-card" onclick="navigator.clipboard.writeText('DeathDevil.eu')">
+    🌐 <strong>DeathDevil.eu</strong>
+  </div>
+  <a class="top-card" href="https://discord.gg/7w2QeHq9rh" target="_blank">
+    💬 Discord
+  </a>
+</div>
 
 <header>
   <h1>DeathDevil.eu</h1>
-  <p>Deutscher Minecraft Server mit Citybuild, stabiler Wirtschaft & Fairplay</p>
+  <p>
+    Willkommen auf <strong>DeathDevil.eu</strong> – dem deutschen Minecraft-Server
+    für Spieler, die langfristigen Spielspaß, eine faire Wirtschaft und
+    eine aktive Community suchen.<br><br>
+    Egal ob Citybuild, Events oder Handel:  
+    Bei uns zählt Fortschritt durch Spielzeit, nicht durch Echtgeld.
+  </p>
 </header>
-
-<section>
-  <h2>Server-Features</h2>
-  <div class="grid">
-    <div class="card"><span>🏙️</span>Citybuild</div>
-    <div class="card"><span>🏝️</span>Skyblock</div>
-    <div class="card"><span>🎰</span>Casino</div>
-    <div class="card"><span>🎉</span>Events</div>
-  </div>
-</section>
-  
-<section>
-  <h2>👑 Ränge</h2>
-  <div class="card" style="max-width:700px;margin:auto">
-    <p style="text-align:center;font-size:18px;line-height:1.6">
-      Alle Ränge können <strong style="color:var(--accent)">mit Ingame-Geld</strong> erspielt werden:
-      <br><br>
-      <span style="font-size:22px;color:var(--gold)">
-        👑 Premium • Ultra • King
-      </span>
-    </p>
-  </div>
-</section>
-
-<section>
-  <h2>📊 Marktpreise</h2>
-  <div class="grid">
-    <div class="card"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
-    <div class="card"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
-    <div class="card"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
-    <div class="card"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
-    <div class="card"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
-    <div class="card"><span>🌾</span>Weizen<br><strong><span data-item="wheat"></span></strong></div>
-    <div class="card"><span>🧱</span>Stein<br><strong><span data-item="stone"></span></strong></div>
-    <div class="card"><span>🪵</span>Holz<br><strong><span data-item="wood"></span></strong></div>
-  </div>
-</section>
-
-<section>
-  <h2>🌐 Server-IP</h2>
-  <div class="grid">
-    <div class="card" onclick="navigator.clipboard.writeText('DeathDevil.eu')">
-      <span>📋</span>
-      <strong>DeathDevil.eu</strong><br>
-      <small>Klicken zum Kopieren</small>
-    </div>
-  </div>
-</section>
 
 <section>
   <h2>📜 Serverregeln</h2>
   <details open>
-    <summary>📌 Regeln anzeigen</summary>
-    <ul>
-      <li>❌ Kein Griefing</li>
-      <li>❌ Kein Cheaten / Hackclients</li>
-      <li>🤝 Respektvoller Umgang</li>
-      <li>⚖️ Admins haben das letzte Wort</li>
+    <summary>Version 1.0.0 – Regeln anzeigen</summary>
+    <ul class="rules">
+      <li class="red">✘ Diebstahl ist strengstens verboten (Kisten, Trichter, Farms)</li>
+      <li class="red">✘ Griefing ist verboten</li>
+      <li class="red">✘ Beleidigungen, Provokationen & toxisches Verhalten</li>
+      <li class="red">✘ Spamming & CAPS</li>
+      <li class="red">✘ Links ohne Team-Freigabe</li>
+      <li class="red">✘ Hacks, Cheats, X-Ray, Autoklicker, Duplizieren</li>
+      <li class="red">✘ Teaming in No-Team-Modi</li>
+
+      <li class="orange">⚠ Bugusing & Exploits</li>
+      <li class="orange">⚠ Echtgeldhandel, Scamming, Werbung</li>
+
+      <li class="green">✔ Respektvoller Umgang</li>
+      <li class="green">✔ Anweisungen des Teams befolgen</li>
+
+      <li class="info">ℹ Unwissenheit schützt nicht vor Strafe</li>
+      <li class="info">ℹ Regeln können angepasst werden</li>
+
+      <li class="green">★ Mit Betreten akzeptierst du alle Regeln</li>
+      <li class="info">✉ Support: <a href="https://discord.gg/kGGj5vQmKW" target="_blank">Discord</a></li>
     </ul>
   </details>
 </section>
 
-<section>
-  <h2>📘 Server erklärt</h2>
-  <details>
-    <summary>🎒 Backpack</summary>
-    <p>Befehl: <strong>/backpack</strong></p>
-  </details>
-  <details>
-    <summary>🏠 Homes</summary>
-    <p>Befehl: <strong>/sethome</strong> & <strong>/home</strong></p>
-  </details>
-  <details>
-    <summary>🛒 Shop</summary>
-    <p>Befehl: <strong>/shop</strong></p>
-  </details>
-</section>
-
-<section>
-  <h2>💬 Discord</h2>
-  <div class="grid">
-    <a class="card" href="https://discord.gg/7w2QeHq9rh" target="_blank">
-      <span>🔗</span>
-      Discord beitreten
-    </a>
-  </div>
-</section>
-
 </div>
-
-<script>
-const bg=document.getElementById("mcBg");
-for(let i=0;i<14;i++){
-  const b=document.createElement("div");
-  b.className="mc-block";
-  const s=40+Math.random()*60;
-  b.style.width=b.style.height=s+"px";
-  b.style.left=Math.random()*100+"vw";
-  let y=Math.random()*120;
-  bg.appendChild(b);
-  const speed=0.06+Math.random()*0.15;
-  (function anim(){
-    y-=speed;if(y<-20)y=120;
-    b.style.transform=`translateY(${y}vh) rotate(15deg)`;
-    requestAnimationFrame(anim);
-  })();
-}
-
-const prices={
-  diamond:120, emerald:90, gold:45, iron:25, netherite:800,
-  wheat:6, stone:4, wood:8
-};
-
-document.querySelectorAll("[data-item]").forEach(e=>{
-  e.textContent=prices[e.dataset.item]+" €";
-});
-</script>
-
 </body>
 </html>
-
 
