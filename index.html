@@ -15,6 +15,40 @@
   --bg-overlay:rgba(0,0,0,.65);
 }
 
+/* RULES STYLING */
+.rules{
+  list-style:none;
+  padding:0;
+  margin:25px 0 0;
+}
+
+.rules li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:14px 16px;
+  margin-bottom:14px;
+  background:rgba(0,0,0,.6);
+  border-left:4px solid var(--accent);
+  border-radius:6px;
+  line-height:1.5;
+}
+
+.rules li:last-child{
+  margin-bottom:0;
+}
+
+.rules .ban{border-color:#ff4d4d}
+.rules .warn{border-color:#ffae42}
+.rules .ok{border-color:#4dff88}
+.rules .info{border-color:#ffd966}
+
+.rules .icon{
+  font-size:20px;
+  line-height:1;
+  margin-top:2px;
+}
+
 html,body{
   margin:0;
   font-family:Inter,sans-serif;
@@ -169,36 +203,84 @@ summary:hover{color:var(--accent)}
 </section>
 
 <section>
-  <h2>🌐 Server-IP</h2>
-  <div class="grid">
-    <div class="card" onclick="navigator.clipboard.writeText('DeathDevil.eu')">
-      <span>📋</span>
-      <strong>DeathDevil.eu</strong><br>
-      <small>Klicken zum Kopieren</small>
-    </div>
-  </div>
-</section>
-
-<section>
   <h2>📜 Serverregeln</h2>
   <details open>
     <summary>📌 Regeln anzeigen – Version 1.0.0</summary>
-    <ul>
-      <li>❌ Diebstahl (Kisten, Trichter, Farms)</li>
-      <li>❌ Griefing & Verändern fremder Bauwerke</li>
-      <li>❌ Beleidigungen, Provokationen, toxisches Verhalten</li>
-      <li>❌ Spamming & CAPS</li>
-      <li>❌ Links ohne Team-Freigabe</li>
-      <li>❌ Hacks, Cheats, X-Ray, Autoklicker, Duplizieren</li>
-      <li>❌ Teaming in No-Team-Modi</li>
-      <li>⚠ Bugusing & Exploits</li>
-      <li>⚠ Echtgeldhandel, Scamming, Werbung</li>
-      <li>✔ Respektvoller Umgang</li>
-      <li>✔ Team-Anweisungen befolgen</li>
-      <li>ℹ Unwissenheit schützt nicht vor Strafen</li>
-      <li>★ Mit Betreten des Servers akzeptierst du alle Regeln</li>
-      <li>✉ Support: <a href="https://discord.gg/kGGj5vQmKW" target="_blank">Discord</a></li>
-    </ul>
+<ul class="rules">
+
+  <li class="ban">
+    <span class="icon">🚫</span>
+    Diebstahl ist strengstens verboten (Kisten, Trichter, Farms)
+  </li>
+
+  <li class="ban">
+    <span class="icon">💣</span>
+    Griefing & das Verändern fremder Bauwerke ist verboten
+  </li>
+
+  <li class="ban">
+    <span class="icon">🗯️</span>
+    Beleidigungen, Provokationen oder toxisches Verhalten
+  </li>
+
+  <li class="ban">
+    <span class="icon">📢</span>
+    Spamming sowie dauerhaftes Schreiben in CAPS
+  </li>
+
+  <li class="ban">
+    <span class="icon">🔗</span>
+    Links im Chat ohne Team-Freigabe
+  </li>
+
+  <li class="ban">
+    <span class="icon">🛑</span>
+    Hacks, Cheats, X-Ray, Autoklicker oder Duplizieren
+  </li>
+
+  <li class="ban">
+    <span class="icon">👥</span>
+    Teaming in No-Team-Modi
+  </li>
+
+  <li class="warn">
+    <span class="icon">⚠️</span>
+    Bugusing, Exploits oder absichtliches Ausnutzen von Fehlern
+  </li>
+
+  <li class="warn">
+    <span class="icon">💸</span>
+    Echtgeldhandel, Scamming oder Werbung
+  </li>
+
+  <li class="ok">
+    <span class="icon">🤝</span>
+    Respektvoller Umgang mit anderen Spielern
+  </li>
+
+  <li class="ok">
+    <span class="icon">🛡️</span>
+    Anweisungen des Server-Teams sind zu befolgen
+  </li>
+
+  <li class="info">
+    <span class="icon">ℹ️</span>
+    Unwissenheit schützt nicht vor Strafen
+  </li>
+
+  <li class="info">
+    <span class="icon">⭐</span>
+    Mit dem Betreten des Servers akzeptierst du alle Regeln
+  </li>
+
+  <li class="info">
+    <span class="icon">💬</span>
+    Support & Fragen: 
+    <a href="https://discord.gg/kGGj5vQmKW" target="_blank">Discord</a>
+  </li>
+
+</ul>
+
   </details>
 </section>
 
@@ -259,3 +341,4 @@ document.querySelectorAll("[data-item]").forEach(e=>{
 
 </body>
 </html>
+
