@@ -156,15 +156,61 @@ summary:hover{color:var(--accent)}
 
 <section>
   <h2>📊 Marktpreise</h2>
-  <div class="grid">
-    <div class="card"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
-    <div class="card"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
-    <div class="card"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
-    <div class="card"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
-    <div class="card"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
-    <div class="card"><span>🌾</span>Weizen<br><strong><span data-item="wheat"></span></strong></div>
-    <div class="card"><span>🧱</span>Stein<br><strong><span data-item="stone"></span></strong></div>
-    <div class="card"><span>🪵</span>Holz<br><strong><span data-item="wood"></span></strong></div>
+
+  <!-- Suchleiste -->
+  <input id="marketSearch"
+    placeholder="Item suchen..."
+    style="width:100%;padding:10px;margin-bottom:25px;
+    background:rgba(0,0,0,.7);
+    border:2px solid var(--accent);
+    color:#fff;
+    font-family:Inter,sans-serif">
+
+  <div class="grid" id="marketGrid">
+    <div class="card" data-name="diamant">
+      <span>💎</span>Diamant<br>
+      <strong><span data-item="diamond"></span></strong>
+    </div>
+
+    <div class="card" data-name="emerald">
+      <span>🟢</span>Emerald<br>
+      <strong><span data-item="emerald"></span></strong>
+    </div>
+
+    <div class="card" data-name="gold">
+      <span>🪙</span>Gold<br>
+      <strong><span data-item="gold"></span></strong>
+    </div>
+
+    <div class="card" data-name="eisen">
+      <span>⛓️</span>Eisen<br>
+      <strong><span data-item="iron"></span></strong>
+    </div>
+
+    <div class="card" data-name="netherite">
+      <span>🔥</span>Netherite<br>
+      <strong><span data-item="netherite"></span></strong>
+    </div>
+
+    <div class="card" data-name="redstone">
+      <span>🔴</span>Redstone<br>
+      <strong><span data-item="redstone"></span></strong>
+    </div>
+
+    <div class="card" data-name="kohle">
+      <span>⚫</span>Kohle<br>
+      <strong><span data-item="coal"></span></strong>
+    </div>
+
+    <div class="card" data-name="lapislazuli">
+      <span>🔵</span>Lapislazuli<br>
+      <strong><span data-item="lapis"></span></strong>
+    </div>
+
+    <div class="card" data-name="quartz">
+      <span>🤍</span>Quartz<br>
+      <strong><span data-item="quartz"></span></strong>
+    </div>
   </div>
 </section>
 
@@ -220,33 +266,56 @@ summary:hover{color:var(--accent)}
 </div>
 
 <script>
-const bg=document.getElementById("mcBg");
-for(let i=0;i<14;i++){
-  const b=document.createElement("div");
-  b.className="mc-block";
-  const s=40+Math.random()*60;
-  b.style.width=b.style.height=s+"px";
-  b.style.left=Math.random()*100+"vw";
-  let y=Math.random()*120;
+/* HINTERGRUND-BLÖCKE */
+const bg = document.getElementById("mcBg");
+for (let i = 0; i < 14; i++) {
+  const b = document.createElement("div");
+  b.className = "mc-block";
+  const s = 40 + Math.random() * 60;
+  b.style.width = b.style.height = s + "px";
+  b.style.left = Math.random() * 100 + "vw";
+  let y = Math.random() * 120;
   bg.appendChild(b);
-  const speed=0.06+Math.random()*0.15;
-  (function anim(){
-    y-=speed;if(y<-20)y=120;
-    b.style.transform=`translateY(${y}vh) rotate(15deg)`;
+  const speed = 0.06 + Math.random() * 0.15;
+  (function anim() {
+    y -= speed;
+    if (y < -20) y = 120;
+    b.style.transform = `translateY(${y}vh) rotate(15deg)`;
     requestAnimationFrame(anim);
   })();
 }
 
-const prices={
-  diamond:120, emerald:90, gold:45, iron:25, netherite:800,
-  wheat:6, stone:4, wood:8
+/* MARKTPREISE */
+const prices = {
+  diamond: 120,
+  emerald: 90,
+  gold: 45,
+  iron: 25,
+  netherite: 800,
+  redstone: 6,
+  coal: 8,
+  lapis: 10,
+  quartz: 12
 };
-document.querySelectorAll("[data-item]").forEach(e=>{
-  e.textContent=prices[e.dataset.item]+" €";
+
+/* PREISE EINSETZEN */
+document.querySelectorAll("[data-item]").forEach(e => {
+  if (prices[e.dataset.item] !== undefined) {
+    e.textContent = prices[e.dataset.item] + " €";
+  }
+});
+
+/* 🔍 MARKTSUCHE */
+document.getElementById("marketSearch").addEventListener("input", e => {
+  const value = e.target.value.toLowerCase();
+  document.querySelectorAll("#marketGrid .card").forEach(card => {
+    card.style.display = card.dataset.name.includes(value) ? "" : "none";
+  });
 });
 </script>
 
 </body>
 </html>
+
 
 
