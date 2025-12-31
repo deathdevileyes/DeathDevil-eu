@@ -285,25 +285,37 @@ for (let i = 0; i < 14; i++) {
   })();
 }
 
-/* MARKTPREISE */
-const prices = {
-  diamond: 120,
-  emerald: 90,
-  gold: 45,
-  iron: 25,
-  netherite: 800,
-  redstone: 6,
-  coal: 8,
-  lapis: 10,
-  quartz: 12
-};
+/* 🔄 DYNAMISCHE MARKTPREISE AUS JSON */
+fetch("market_prices.json")
+  .then(res => res.json())
+  .then(data => {
+    const items = data.items;
+    const interval = data.update_interval_days;
 
-/* PREISE EINSETZEN */
-document.querySelectorAll("[data-item]").forEach(e => {
-  if (prices[e.dataset.item] !== undefined) {
-    e.textContent = prices[e.dataset.item] + " €";
-  }
-});
+    // stabiler Wochen-Index
+    const periodIndex = Math.floor(
+      Date.now() / (1000 * 60 * 60 * 24 * interval)
+    );
+
+    document.querySelectorAll("[data-item]").forEach(el => {
+      const key = el.dataset.item;
+      if (!items[key]) return;
+
+      const cfg = items[key];
+
+      // reproduzierbarer Zufallswert pro Woche & Item
+      const rnd = Math.abs(Math.sin(periodIndex + key.length)) % 1;
+
+      const price = Math.round(
+        cfg.min + rnd * (cfg.max - cfg.min)
+      );
+
+      el.textContent = price + " €";
+    });
+  })
+  .catch(err => {
+    console.error("Fehler beim Laden der Marktpreise:", err);
+  });
 
 /* 🔍 MARKTSUCHE */
 document.getElementById("marketSearch").addEventListener("input", e => {
@@ -316,6 +328,7 @@ document.getElementById("marketSearch").addEventListener("input", e => {
 
 </body>
 </html>
+
 
 
 
