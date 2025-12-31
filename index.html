@@ -15,40 +15,6 @@
   --bg-overlay:rgba(0,0,0,.65);
 }
 
-/* RULES STYLING */
-.rules{
-  list-style:none;
-  padding:0;
-  margin:25px 0 0;
-}
-
-.rules li{
-  display:flex;
-  align-items:flex-start;
-  gap:12px;
-  padding:14px 16px;
-  margin-bottom:14px;
-  background:rgba(0,0,0,.6);
-  border-left:4px solid var(--accent);
-  border-radius:6px;
-  line-height:1.5;
-}
-
-.rules li:last-child{
-  margin-bottom:0;
-}
-
-.rules .ban{border-color:#ff4d4d}
-.rules .warn{border-color:#ffae42}
-.rules .ok{border-color:#4dff88}
-.rules .info{border-color:#ffd966}
-
-.rules .icon{
-  font-size:20px;
-  line-height:1;
-  margin-top:2px;
-}
-
 html,body{
   margin:0;
   font-family:Inter,sans-serif;
@@ -60,20 +26,8 @@ html,body{
   overflow-x:hidden;
 }
 
-.mc-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
-.mc-block{
-  position:absolute;
-  width:60px;height:60px;opacity:.22;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.18), rgba(0,0,0,.35)),
-    repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,rgba(255,255,255,.08) 2px 4px);
-  border:2px solid rgba(0,0,0,.6);
-  box-shadow:0 0 25px rgba(0,0,0,.8);
-}
-
 .page{position:relative;z-index:1}
 
-/* TOP ICONS */
 .top-bar{
   position:fixed;
   top:18px;
@@ -101,41 +55,34 @@ h1{
   font-family:Cinzel,serif;
   font-size:clamp(46px,7vw,92px);
   letter-spacing:5px;color:var(--gold);
-  animation:mysticTitle 1.8s ease-in-out infinite;
-}
-
-@keyframes mysticTitle{
-  0%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
-  50%{transform:translateY(-18px) scale(1.04);text-shadow:0 0 30px var(--accent),0 0 60px var(--accent2)}
-  100%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
 }
 
 section{max-width:1200px;margin:auto;padding:60px 20px}
 h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35px}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
+}
+
 .card{
   background:rgba(0,0,0,.82);
-  padding:22px;text-align:center;
+  padding:22px;
+  text-align:center;
   border:2px solid var(--accent);
   box-shadow:0 0 18px rgba(0,255,255,.25);
 }
 .card span{font-size:28px;display:block;margin-bottom:8px}
 
-details{
-  background:rgba(0,0,0,.82);
-  border:2px solid var(--accent2);
-  padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 0 22px rgba(122,0,255,.45);
-}
-summary{
-  font-size:20px;
-  font-weight:600;
+.navBtn{
+  background:rgba(0,0,0,.8);
+  border:2px solid var(--accent);
+  color:#fff;
+  font-size:24px;
+  padding:10px 14px;
   cursor:pointer;
-  color:var(--gold);
 }
-summary:hover{color:var(--accent)}
 </style>
 </head>
 
@@ -150,18 +97,13 @@ summary:hover{color:var(--accent)}
   </a>
 </div>
 
-<div class="mc-bg" id="mcBg"></div>
-
 <div class="page">
 
 <header>
   <h1>DeathDevil.eu</h1>
   <p>
-    Willkommen auf <strong>DeathDevil.eu</strong> – deinem deutschen Minecraft-Server
-    mit Fokus auf langfristigen Spielspaß, faire Wirtschaft und eine aktive Community.<br><br>
-    Baue dir im Citybuild dein eigenes Reich auf, handle mit anderen Spielern,
-    nimm an Events teil und steige Schritt für Schritt auf –  
-    <strong>ohne Pay-to-Win</strong>, dafür mit echtem Fortschritt.
+    Deutscher Minecraft-Server mit fairer Wirtschaft, Citybuild & Skyblock.<br>
+    Kein Pay-to-Win – echter Fortschritt.
   </p>
 </header>
 
@@ -171,190 +113,39 @@ summary:hover{color:var(--accent)}
     <div class="card"><span>🏙️</span>Citybuild</div>
     <div class="card"><span>🏝️</span>Skyblock</div>
     <div class="card"><span>🎰</span>Casino</div>
-    <div class="card"><span>🎉</span>Events</div>
-  </div>
-</section>
-
-<section>
-  <h2>👑 Ränge</h2>
-  <div class="card" style="max-width:700px;margin:auto">
-    <p style="text-align:center;font-size:18px;line-height:1.6">
-      Alle Ränge können <strong style="color:var(--accent)">mit Ingame-Geld</strong> erspielt werden:
-      <br><br>
-      <span style="font-size:22px;color:var(--gold)">
-        👑 Premium • Ultra • King
-      </span>
-    </p>
+    <div class="card"><span>🪙</span>Coins System</div>
+    <div class="card">
+      <span>📅</span>
+      Wöchentliche Item-Verlosung<br>
+      <small>Montag & Freitag</small>
+    </div>
   </div>
 </section>
 
 <section>
   <h2>📊 Marktpreise</h2>
-  <div class="grid">
-    <div class="card"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
-    <div class="card"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
-    <div class="card"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
-    <div class="card"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
-    <div class="card"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
-    <div class="card"><span>🌾</span>Weizen<br><strong><span data-item="wheat"></span></strong></div>
-    <div class="card"><span>🧱</span>Stein<br><strong><span data-item="stone"></span></strong></div>
-    <div class="card"><span>🪵</span>Holz<br><strong><span data-item="wood"></span></strong></div>
+
+  <input id="marketSearch" type="text"
+  placeholder="🔍 Item suchen (z.B. Eichenholzstamm)"
+  style="width:100%;padding:12px;margin-bottom:25px;
+  background:rgba(0,0,0,.7);border:2px solid var(--accent);
+  color:#fff">
+
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="navBtn" onclick="scrollMarket(-1)">⬅️</button>
+
+    <div id="marketContainer" class="grid"
+    style="overflow-x:auto;flex-wrap:nowrap"></div>
+
+    <button class="navBtn" onclick="scrollMarket(1)">➡️</button>
   </div>
-</section>
-
-<section>
-  <h2>📜 Serverregeln</h2>
-  <details open>
-    <summary>📌 Regeln anzeigen – Version 1.0.0</summary>
-<ul class="rules">
-
-  <li class="ban">
-    <span class="icon">🚫</span>
-    Diebstahl ist strengstens verboten (Kisten, Trichter, Farms)
-  </li>
-
-  <li class="ban">
-    <span class="icon">💣</span>
-    Griefing & das Verändern fremder Bauwerke ist verboten
-  </li>
-
-  <li class="ban">
-    <span class="icon">🗯️</span>
-    Beleidigungen, Provokationen oder toxisches Verhalten
-  </li>
-
-  <li class="ban">
-    <span class="icon">📢</span>
-    Spamming sowie dauerhaftes Schreiben in CAPS
-  </li>
-
-  <li class="ban">
-    <span class="icon">🔗</span>
-    Links im Chat ohne Team-Freigabe
-  </li>
-
-  <li class="ban">
-    <span class="icon">🛑</span>
-    Hacks, Cheats, X-Ray, Autoklicker oder Duplizieren
-  </li>
-
-  <li class="ban">
-    <span class="icon">👥</span>
-    Teaming in No-Team-Modi
-  </li>
-
-  <li class="warn">
-    <span class="icon">⚠️</span>
-    Bugusing, Exploits oder absichtliches Ausnutzen von Fehlern
-  </li>
-
-  <li class="warn">
-    <span class="icon">💸</span>
-    Echtgeldhandel, Scamming oder Werbung
-  </li>
-
-  <li class="ok">
-    <span class="icon">🤝</span>
-    Respektvoller Umgang mit anderen Spielern
-  </li>
-
-  <li class="ok">
-    <span class="icon">🛡️</span>
-    Anweisungen des Server-Teams sind zu befolgen
-  </li>
-
-  <li class="info">
-    <span class="icon">ℹ️</span>
-    Unwissenheit schützt nicht vor Strafen
-  </li>
-
-  <li class="info">
-    <span class="icon">⭐</span>
-    Mit dem Betreten des Servers akzeptierst du alle Regeln
-  </li>
-
-  <li class="info">
-    <span class="icon">💬</span>
-    Support & Fragen: 
-    <a href="https://discord.gg/kGGj5vQmKW" target="_blank">Discord</a>
-  </li>
-
-</ul>
-
-  </details>
-</section>
-
-<section>
-  <h2>📘 Server erklärt</h2>
-
-  <details>
-    <summary>🎒 Backpack</summary>
-    <p>
-      Öffne dein persönliches Backpack:<br>
-      <strong>/backpack</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🧭 Todespunkt</summary>
-    <p>
-      Kehre zu deinem letzten Todespunkt zurück:<br>
-      <strong>/back</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🏠 Homes</summary>
-    <p>
-      Setze ein Home mit Namen:<br>
-      <strong>/sethome [Name]</strong><br><br>
-      Teleportiere dich zu deinem Home:<br>
-      <strong>/home [Name]</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🧱 PlotGUI</summary>
-    <p>
-      Öffne das Plot-Menü zur Plot-Verwaltung:<br>
-      <strong>/plotgui</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🔐 Türen & Truhen sichern</summary>
-    <p>
-      🔒 Türen sichern:<br>
-      <strong>/lock</strong><br><br>
-
-      🔓 Türen entsichern:<br>
-      <strong>/unlock</strong><br><br>
-
-      📦 Truhen sind <strong>automatisch gesichert</strong>.<br>
-      Öffentlich zugänglich machen:<br>
-      <strong>/unlock</strong><br><br>
-
-      🔐 Wieder sichern:<br>
-      <strong>/lock</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🛒 Shop</summary>
-    <p>
-      Öffne den Server-Shop:<br>
-      <strong>/shop</strong>
-    </p>
-  </details>
-
 </section>
 
 <section>
   <h2>💬 Discord</h2>
   <div class="grid">
     <a class="card" href="https://discord.gg/7w2QeHq9rh" target="_blank">
-      <span>🔗</span>
-      Discord beitreten
+      <span>🔗</span>Discord beitreten
     </a>
   </div>
 </section>
@@ -362,34 +153,44 @@ summary:hover{color:var(--accent)}
 </div>
 
 <script>
-const bg=document.getElementById("mcBg");
-for(let i=0;i<14;i++){
-  const b=document.createElement("div");
-  b.className="mc-block";
-  const s=40+Math.random()*60;
-  b.style.width=b.style.height=s+"px";
-  b.style.left=Math.random()*100+"vw";
-  let y=Math.random()*120;
-  bg.appendChild(b);
-  const speed=0.06+Math.random()*0.15;
-  (function anim(){
-    y-=speed;if(y<-20)y=120;
-    b.style.transform=`translateY(${y}vh) rotate(15deg)`;
-    requestAnimationFrame(anim);
-  })();
-}
+const marketItems=[
+ {icon:"💎",name:"Diamant",price:120},
+ {icon:"🟢",name:"Emerald",price:90},
+ {icon:"🪙",name:"Gold",price:45},
+ {icon:"⛓️",name:"Eisen",price:25},
+ {icon:"🔥",name:"Netherite",price:800},
+ {icon:"🪵",name:"Alle Holzstämme",price:10},
+ {icon:"🔴",name:"Redstone",price:6},
+ {icon:"⚫",name:"Kohle",price:8},
+ {icon:"🏖️",name:"Sand",price:4},
+ {icon:"🧱",name:"Sandsteine",price:6},
+ {icon:"📘",name:"Alle Verzauberungsbücher (1.21.7)",price:"Variabel"},
+ {icon:"🧪",name:"Alle Tränke (1.21.7)",price:"Variabel"}
+];
 
-const prices={
-  diamond:120, emerald:90, gold:45, iron:25, netherite:800,
-  wheat:6, stone:4, wood:8
-};
-document.querySelectorAll("[data-item]").forEach(e=>{
-  e.textContent=prices[e.dataset.item]+" €";
-});
+const container=document.getElementById("marketContainer");
+
+function renderMarket(filter=""){
+ container.innerHTML="";
+ marketItems.filter(i=>i.name.toLowerCase().includes(filter.toLowerCase()))
+ .forEach(i=>{
+  container.innerHTML+=`
+  <div class="card">
+    <span>${i.icon}</span>
+    ${i.name}<br>
+    <strong>${i.price} €</strong>
+  </div>`;
+ });
+}
+renderMarket();
+
+document.getElementById("marketSearch")
+.addEventListener("input",e=>renderMarket(e.target.value));
+
+function scrollMarket(dir){
+ container.scrollBy({left:dir*300,behavior:"smooth"});
+}
 </script>
 
 </body>
 </html>
-
-
-
