@@ -16,24 +16,14 @@
 }
 
 /* RULES STYLING */
-.rules{
-  list-style:none;
-  padding:0;
-  margin:25px 0 0;
-}
-
+.rules{list-style:none;padding:0;margin:25px 0 0}
 .rules li{
-  display:flex;
-  align-items:flex-start;
-  gap:12px;
-  padding:14px 16px;
-  margin-bottom:14px;
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px 16px;margin-bottom:14px;
   background:rgba(0,0,0,.6);
   border-left:4px solid var(--accent);
-  border-radius:6px;
-  line-height:1.5;
+  border-radius:6px;line-height:1.5
 }
-
 .rules li:last-child{margin-bottom:0}
 .rules .ban{border-color:#ff4d4d}
 .rules .warn{border-color:#ffae42}
@@ -42,9 +32,7 @@
 .rules .icon{font-size:20px;margin-top:2px}
 
 html,body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  color:#fff;
+  margin:0;font-family:Inter,sans-serif;color:#fff;
   background:
     radial-gradient(circle at top, rgba(0,255,255,.08), transparent 60%),
     linear-gradient(var(--bg-overlay),var(--bg-overlay)),
@@ -54,8 +42,7 @@ html,body{
 
 .mc-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
 .mc-block{
-  position:absolute;
-  width:60px;height:60px;opacity:.22;
+  position:absolute;width:60px;height:60px;opacity:.22;
   background:
     linear-gradient(135deg, rgba(255,255,255,.18), rgba(0,0,0,.35)),
     repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,rgba(255,255,255,.08) 2px 4px);
@@ -67,21 +54,15 @@ html,body{
 
 /* TOP ICONS */
 .top-bar{
-  position:fixed;
-  top:18px;
-  left:18px;
-  right:18px;
-  display:flex;
-  justify-content:space-between;
-  z-index:10;
+  position:fixed;top:18px;left:18px;right:18px;
+  display:flex;justify-content:space-between;z-index:10;
 }
 .top-item{
   background:rgba(0,0,0,.8);
   border:2px solid var(--accent);
   padding:10px 16px;
   box-shadow:0 0 20px rgba(0,255,255,.5);
-  cursor:pointer;
-  transition:.25s;
+  cursor:pointer;transition:.25s;
 }
 .top-item:hover{
   transform:scale(1.08);
@@ -114,21 +95,6 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
 }
 .card span{font-size:28px;display:block;margin-bottom:8px}
 
-details{
-  background:rgba(0,0,0,.82);
-  border:2px solid var(--accent2);
-  padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 0 22px rgba(122,0,255,.45);
-}
-summary{
-  font-size:20px;
-  font-weight:600;
-  cursor:pointer;
-  color:var(--gold);
-}
-summary:hover{color:var(--accent)}
-
 .navBtn{
   background:rgba(0,0,0,.8);
   border:2px solid var(--accent);
@@ -159,7 +125,8 @@ summary:hover{color:var(--accent)}
   <p>
     Willkommen auf <strong>DeathDevil.eu</strong> – deinem deutschen Minecraft-Server
     mit Fokus auf langfristigen Spielspaß, faire Wirtschaft und eine aktive Community.<br><br>
-    <strong>Ohne Pay-to-Win</strong>, dafür mit echtem Fortschritt.
+    Baue dir im Citybuild dein eigenes Reich auf, handle mit anderen Spielern
+    und steige Schritt für Schritt auf – <strong>ohne Pay-to-Win</strong>.
   </p>
 </header>
 
@@ -183,31 +150,53 @@ summary:hover{color:var(--accent)}
 
   <div style="display:flex;align-items:center;gap:12px">
     <button class="navBtn" onclick="scrollMarket(-1)">⬅</button>
-
-    <div id="marketContainer" class="grid"
-    style="overflow-x:auto;flex-wrap:nowrap"></div>
-
+    <div id="marketContainer" class="grid" style="overflow-x:auto;flex-wrap:nowrap"></div>
     <button class="navBtn" onclick="scrollMarket(1)">➡</button>
   </div>
 </section>
 
-<!-- REST DER SEITE BLEIBT UNVERÄNDERT -->
+</div>
 
 <script>
 const bg=document.getElementById("mcBg");
 for(let i=0;i<14;i++){
   const b=document.createElement("div");
   b.className="mc-block";
+  const s=40+Math.random()*60;
+  b.style.width=b.style.height=s+"px";
   b.style.left=Math.random()*100+"vw";
   let y=Math.random()*120;
   bg.appendChild(b);
   const speed=0.06+Math.random()*0.15;
   (function anim(){
     y-=speed;if(y<-20)y=120;
-    b.style.transform=`translateY(${y}vh)`;
+    b.style.transform=`translateY(${y}vh) rotate(15deg)`;
     requestAnimationFrame(anim);
   })();
 }
 
 const marketItems=[
- "Diamant","Emerald","Gold","Eisen","Nethe
+ "Diamant","Emerald","Gold","Eisen","Netherite",
+ "Alle Holzstämme","Redstone","Kohle","Sand","Sandsteine",
+ "Alle Verzauberungsbücher 1.21.7","Alle Tränke 1.21.7"
+];
+
+const container=document.getElementById("marketContainer");
+function renderMarket(filter=""){
+  container.innerHTML="";
+  marketItems.filter(i=>i.toLowerCase().includes(filter.toLowerCase()))
+  .forEach(i=>{
+    container.innerHTML+=`<div class="card">${i}</div>`;
+  });
+}
+renderMarket();
+document.getElementById("marketSearch")
+.addEventListener("input",e=>renderMarket(e.target.value));
+
+function scrollMarket(d){
+  container.scrollBy({left:d*300,behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
