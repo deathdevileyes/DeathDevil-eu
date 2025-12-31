@@ -15,24 +15,10 @@
   --bg-overlay:rgba(0,0,0,.65);
 }
 
-/* RULES STYLING */
-.rules{list-style:none;padding:0;margin:25px 0 0}
-.rules li{
-  display:flex;align-items:flex-start;gap:12px;
-  padding:14px 16px;margin-bottom:14px;
-  background:rgba(0,0,0,.6);
-  border-left:4px solid var(--accent);
-  border-radius:6px;line-height:1.5
-}
-.rules li:last-child{margin-bottom:0}
-.rules .ban{border-color:#ff4d4d}
-.rules .warn{border-color:#ffae42}
-.rules .ok{border-color:#4dff88}
-.rules .info{border-color:#ffd966}
-.rules .icon{font-size:20px;margin-top:2px}
-
 html,body{
-  margin:0;font-family:Inter,sans-serif;color:#fff;
+  margin:0;
+  font-family:Inter,sans-serif;
+  color:#fff;
   background:
     radial-gradient(circle at top, rgba(0,255,255,.08), transparent 60%),
     linear-gradient(var(--bg-overlay),var(--bg-overlay)),
@@ -42,7 +28,8 @@ html,body{
 
 .mc-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
 .mc-block{
-  position:absolute;width:60px;height:60px;opacity:.22;
+  position:absolute;
+  width:60px;height:60px;opacity:.22;
   background:
     linear-gradient(135deg, rgba(255,255,255,.18), rgba(0,0,0,.35)),
     repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,rgba(255,255,255,.08) 2px 4px);
@@ -54,15 +41,21 @@ html,body{
 
 /* TOP ICONS */
 .top-bar{
-  position:fixed;top:18px;left:18px;right:18px;
-  display:flex;justify-content:space-between;z-index:10;
+  position:fixed;
+  top:18px;
+  left:18px;
+  right:18px;
+  display:flex;
+  justify-content:space-between;
+  z-index:10;
 }
 .top-item{
   background:rgba(0,0,0,.8);
   border:2px solid var(--accent);
   padding:10px 16px;
   box-shadow:0 0 20px rgba(0,255,255,.5);
-  cursor:pointer;transition:.25s;
+  cursor:pointer;
+  transition:.25s;
 }
 .top-item:hover{
   transform:scale(1.08);
@@ -95,14 +88,20 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
 }
 .card span{font-size:28px;display:block;margin-bottom:8px}
 
-.navBtn{
-  background:rgba(0,0,0,.8);
-  border:2px solid var(--accent);
-  color:#fff;
-  font-size:22px;
-  padding:10px 14px;
-  cursor:pointer;
+details{
+  background:rgba(0,0,0,.82);
+  border:2px solid var(--accent2);
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 0 22px rgba(122,0,255,.45);
 }
+summary{
+  font-size:20px;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--gold);
+}
+summary:hover{color:var(--accent)}
 </style>
 </head>
 
@@ -118,6 +117,7 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
 </div>
 
 <div class="mc-bg" id="mcBg"></div>
+
 <div class="page">
 
 <header>
@@ -125,8 +125,9 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
   <p>
     Willkommen auf <strong>DeathDevil.eu</strong> – deinem deutschen Minecraft-Server
     mit Fokus auf langfristigen Spielspaß, faire Wirtschaft und eine aktive Community.<br><br>
-    Baue dir im Citybuild dein eigenes Reich auf, handle mit anderen Spielern
-    und steige Schritt für Schritt auf – <strong>ohne Pay-to-Win</strong>.
+    Baue dir im Citybuild dein eigenes Reich auf, handle mit anderen Spielern,
+    nimm an Events teil und steige Schritt für Schritt auf –  
+    <strong>ohne Pay-to-Win</strong>, dafür mit echtem Fortschritt.
   </p>
 </header>
 
@@ -136,22 +137,83 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
     <div class="card"><span>🏙️</span>Citybuild</div>
     <div class="card"><span>🏝️</span>Skyblock</div>
     <div class="card"><span>🎰</span>Casino</div>
-    <div class="card"><span>🪙</span>Coins System</div>
-    <div class="card"><span>📅</span>Wöchentliche Item Verlosung<br>Montag & Freitag</div>
+    <div class="card"><span>🎉</span>Events</div>
+  </div>
+</section>
+
+<section>
+  <h2>👑 Ränge</h2>
+  <div class="card" style="max-width:700px;margin:auto">
+    <p style="text-align:center;font-size:18px;line-height:1.6">
+      Alle Ränge können <strong style="color:var(--accent)">mit Ingame-Geld</strong> erspielt werden:
+      <br><br>
+      <span style="font-size:22px;color:var(--gold)">
+        👑 Premium • Ultra • King
+      </span>
+    </p>
   </div>
 </section>
 
 <section>
   <h2>📊 Marktpreise</h2>
+  <div class="grid">
+    <div class="card"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
+    <div class="card"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
+    <div class="card"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
+    <div class="card"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
+    <div class="card"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
+    <div class="card"><span>🌾</span>Weizen<br><strong><span data-item="wheat"></span></strong></div>
+    <div class="card"><span>🧱</span>Stein<br><strong><span data-item="stone"></span></strong></div>
+    <div class="card"><span>🪵</span>Holz<br><strong><span data-item="wood"></span></strong></div>
+  </div>
+</section>
 
-  <input id="marketSearch" placeholder="Item suchen..."
-  style="width:100%;padding:10px;margin-bottom:20px;
-  background:rgba(0,0,0,.7);border:2px solid var(--accent);color:#fff">
+<section>
+  <h2>📜 Serverregeln</h2>
+  <details open>
+    <summary>📌 Regeln anzeigen – Version 1.0.0</summary>
+    <ul>
+      <li>❌ Diebstahl (Kisten, Trichter, Farms)</li>
+      <li>❌ Griefing & Verändern fremder Bauwerke</li>
+      <li>❌ Beleidigungen, Provokationen, toxisches Verhalten</li>
+      <li>❌ Spamming & CAPS</li>
+      <li>❌ Links ohne Team-Freigabe</li>
+      <li>❌ Hacks, Cheats, X-Ray, Autoklicker, Duplizieren</li>
+      <li>❌ Teaming in No-Team-Modi</li>
+      <li>⚠ Bugusing & Exploits</li>
+      <li>⚠ Echtgeldhandel, Scamming, Werbung</li>
+      <li>✔ Respektvoller Umgang</li>
+      <li>✔ Team-Anweisungen befolgen</li>
+      <li>ℹ Unwissenheit schützt nicht vor Strafen</li>
+      <li>★ Mit Betreten des Servers akzeptierst du alle Regeln</li>
+      <li>✉ Support: <a href="https://discord.gg/kGGj5vQmKW" target="_blank">Discord</a></li>
+    </ul>
+  </details>
+</section>
 
-  <div style="display:flex;align-items:center;gap:12px">
-    <button class="navBtn" onclick="scrollMarket(-1)">⬅</button>
-    <div id="marketContainer" class="grid" style="overflow-x:auto;flex-wrap:nowrap"></div>
-    <button class="navBtn" onclick="scrollMarket(1)">➡</button>
+<section>
+  <h2>📘 Server erklärt</h2>
+  <details>
+    <summary>🎒 Backpack</summary>
+    <p>Befehl: <strong>/backpack</strong></p>
+  </details>
+  <details>
+    <summary>🏠 Homes</summary>
+    <p>Befehl: <strong>/sethome</strong> & <strong>/home</strong></p>
+  </details>
+  <details>
+    <summary>🛒 Shop</summary>
+    <p>Befehl: <strong>/shop</strong></p>
+  </details>
+</section>
+
+<section>
+  <h2>💬 Discord</h2>
+  <div class="grid">
+    <a class="card" href="https://discord.gg/7w2QeHq9rh" target="_blank">
+      <span>🔗</span>
+      Discord beitreten
+    </a>
   </div>
 </section>
 
@@ -175,28 +237,15 @@ for(let i=0;i<14;i++){
   })();
 }
 
-const marketItems=[
- "Diamant","Emerald","Gold","Eisen","Netherite",
- "Alle Holzstämme","Redstone","Kohle","Sand","Sandsteine",
- "Alle Verzauberungsbücher 1.21.7","Alle Tränke 1.21.7"
-];
-
-const container=document.getElementById("marketContainer");
-function renderMarket(filter=""){
-  container.innerHTML="";
-  marketItems.filter(i=>i.toLowerCase().includes(filter.toLowerCase()))
-  .forEach(i=>{
-    container.innerHTML+=`<div class="card">${i}</div>`;
-  });
-}
-renderMarket();
-document.getElementById("marketSearch")
-.addEventListener("input",e=>renderMarket(e.target.value));
-
-function scrollMarket(d){
-  container.scrollBy({left:d*300,behavior:"smooth"});
-}
+const prices={
+  diamond:120, emerald:90, gold:45, iron:25, netherite:800,
+  wheat:6, stone:4, wood:8
+};
+document.querySelectorAll("[data-item]").forEach(e=>{
+  e.textContent=prices[e.dataset.item]+" €";
+});
 </script>
 
 </body>
 </html>
+
