@@ -8,6 +8,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+.market-wrapper{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.market-scroll{
+  display:grid;
+  grid-auto-flow:column;
+  grid-template-rows:repeat(2, auto);
+  gap:22px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+}
+
+.market-scroll::-webkit-scrollbar{
+  display:none;
+}
+
+.market-btn{
+  background:rgba(0,0,0,.8);
+  border:2px solid var(--accent);
+  color:#fff;
+  font-size:22px;
+  padding:10px 14px;
+  cursor:pointer;
+}
+
 :root{
   --accent:#00ffff;
   --accent2:#7a00ff;
@@ -163,54 +191,42 @@ summary:hover{color:var(--accent)}
     style="width:100%;padding:10px;margin-bottom:25px;
     background:rgba(0,0,0,.7);
     border:2px solid var(--accent);
-    color:#fff;
-    font-family:Inter,sans-serif">
+    color:#fff">
 
-  <div class="grid" id="marketGrid">
-    <div class="card" data-name="diamant">
-      <span>💎</span>Diamant<br>
-      <strong><span data-item="diamond"></span></strong>
+  <div class="market-wrapper">
+    <button class="market-btn" onclick="scrollMarket(-1)">⬅</button>
+
+    <div class="market-scroll" id="marketGrid">
+
+      <!-- Erze -->
+      <div class="card" data-name="diamant"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
+      <div class="card" data-name="emerald"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
+      <div class="card" data-name="gold"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
+      <div class="card" data-name="eisen"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
+      <div class="card" data-name="netherite"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
+      <div class="card" data-name="redstone"><span>🔴</span>Redstone<br><strong><span data-item="redstone"></span></strong></div>
+      <div class="card" data-name="kohle"><span>⚫</span>Kohle<br><strong><span data-item="coal"></span></strong></div>
+      <div class="card" data-name="lapislazuli"><span>🔵</span>Lapislazuli<br><strong><span data-item="lapis"></span></strong></div>
+      <div class="card" data-name="quartz"><span>🤍</span>Quartz<br><strong><span data-item="quartz"></span></strong></div>
+
+      <!-- Sand -->
+      <div class="card" data-name="sand"><span>🏖️</span>Sand</div>
+      <div class="card" data-name="sandstein"><span>🧱</span>Sandstein</div>
+
+      <!-- Holzstämme 1.21.7 -->
+      <div class="card" data-name="eichenholzstamm"><span>🪵</span>Eichenholzstamm</div>
+      <div class="card" data-name="fichtenholzstamm"><span>🪵</span>Fichtenholzstamm</div>
+      <div class="card" data-name="birkenholzstamm"><span>🪵</span>Birkenholzstamm</div>
+      <div class="card" data-name="tropenholzstamm"><span>🪵</span>Tropenholzstamm</div>
+      <div class="card" data-name="akazienholzstamm"><span>🪵</span>Akazienholzstamm</div>
+      <div class="card" data-name="schwarzeichenholzstamm"><span>🪵</span>Schwarzeichenholzstamm</div>
+      <div class="card" data-name="mangrovenholzstamm"><span>🪵</span>Mangrovenholzstamm</div>
+      <div class="card" data-name="kirschholzstamm"><span>🪵</span>Kirschholzstamm</div>
+      <div class="card" data-name="bambusstamm"><span>🪵</span>Bambusstamm</div>
+
     </div>
 
-    <div class="card" data-name="emerald">
-      <span>🟢</span>Emerald<br>
-      <strong><span data-item="emerald"></span></strong>
-    </div>
-
-    <div class="card" data-name="gold">
-      <span>🪙</span>Gold<br>
-      <strong><span data-item="gold"></span></strong>
-    </div>
-
-    <div class="card" data-name="eisen">
-      <span>⛓️</span>Eisen<br>
-      <strong><span data-item="iron"></span></strong>
-    </div>
-
-    <div class="card" data-name="netherite">
-      <span>🔥</span>Netherite<br>
-      <strong><span data-item="netherite"></span></strong>
-    </div>
-
-    <div class="card" data-name="redstone">
-      <span>🔴</span>Redstone<br>
-      <strong><span data-item="redstone"></span></strong>
-    </div>
-
-    <div class="card" data-name="kohle">
-      <span>⚫</span>Kohle<br>
-      <strong><span data-item="coal"></span></strong>
-    </div>
-
-    <div class="card" data-name="lapislazuli">
-      <span>🔵</span>Lapislazuli<br>
-      <strong><span data-item="lapis"></span></strong>
-    </div>
-
-    <div class="card" data-name="quartz">
-      <span>🤍</span>Quartz<br>
-      <strong><span data-item="quartz"></span></strong>
-    </div>
+    <button class="market-btn" onclick="scrollMarket(1)">➡</button>
   </div>
 </section>
 
@@ -324,10 +340,20 @@ document.getElementById("marketSearch").addEventListener("input", e => {
     card.style.display = card.dataset.name.includes(value) ? "" : "none";
   });
 });
+
+/* ⬅➡ MARKT SCROLL (PFEILE) */
+function scrollMarket(dir){
+  document.getElementById("marketGrid")
+    .scrollBy({ left: dir * 320, behavior: "smooth" });
+}
 </script>
 
 </body>
 </html>
+
+</body>
+</html>
+
 
 
 
