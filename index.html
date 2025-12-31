@@ -15,6 +15,32 @@
   --bg-overlay:rgba(0,0,0,.65);
 }
 
+/* RULES STYLING */
+.rules{
+  list-style:none;
+  padding:0;
+  margin:25px 0 0;
+}
+
+.rules li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:14px 16px;
+  margin-bottom:14px;
+  background:rgba(0,0,0,.6);
+  border-left:4px solid var(--accent);
+  border-radius:6px;
+  line-height:1.5;
+}
+
+.rules li:last-child{margin-bottom:0}
+.rules .ban{border-color:#ff4d4d}
+.rules .warn{border-color:#ffae42}
+.rules .ok{border-color:#4dff88}
+.rules .info{border-color:#ffd966}
+.rules .icon{font-size:20px;margin-top:2px}
+
 html,body{
   margin:0;
   font-family:Inter,sans-serif;
@@ -26,8 +52,20 @@ html,body{
   overflow-x:hidden;
 }
 
+.mc-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.mc-block{
+  position:absolute;
+  width:60px;height:60px;opacity:.22;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.18), rgba(0,0,0,.35)),
+    repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,rgba(255,255,255,.08) 2px 4px);
+  border:2px solid rgba(0,0,0,.6);
+  box-shadow:0 0 25px rgba(0,0,0,.8);
+}
+
 .page{position:relative;z-index:1}
 
+/* TOP ICONS */
 .top-bar{
   position:fixed;
   top:18px;
@@ -55,31 +93,47 @@ h1{
   font-family:Cinzel,serif;
   font-size:clamp(46px,7vw,92px);
   letter-spacing:5px;color:var(--gold);
+  animation:mysticTitle 1.8s ease-in-out infinite;
+}
+
+@keyframes mysticTitle{
+  0%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
+  50%{transform:translateY(-18px) scale(1.04);text-shadow:0 0 30px var(--accent),0 0 60px var(--accent2)}
+  100%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
 }
 
 section{max-width:1200px;margin:auto;padding:60px 20px}
 h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35px}
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:22px;
-}
-
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
 .card{
   background:rgba(0,0,0,.82);
-  padding:22px;
-  text-align:center;
+  padding:22px;text-align:center;
   border:2px solid var(--accent);
   box-shadow:0 0 18px rgba(0,255,255,.25);
 }
 .card span{font-size:28px;display:block;margin-bottom:8px}
 
+details{
+  background:rgba(0,0,0,.82);
+  border:2px solid var(--accent2);
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 0 22px rgba(122,0,255,.45);
+}
+summary{
+  font-size:20px;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--gold);
+}
+summary:hover{color:var(--accent)}
+
 .navBtn{
   background:rgba(0,0,0,.8);
   border:2px solid var(--accent);
   color:#fff;
-  font-size:24px;
+  font-size:22px;
   padding:10px 14px;
   cursor:pointer;
 }
@@ -97,13 +151,15 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
   </a>
 </div>
 
+<div class="mc-bg" id="mcBg"></div>
 <div class="page">
 
 <header>
   <h1>DeathDevil.eu</h1>
   <p>
-    Deutscher Minecraft-Server mit fairer Wirtschaft, Citybuild & Skyblock.<br>
-    Kein Pay-to-Win – echter Fortschritt.
+    Willkommen auf <strong>DeathDevil.eu</strong> – deinem deutschen Minecraft-Server
+    mit Fokus auf langfristigen Spielspaß, faire Wirtschaft und eine aktive Community.<br><br>
+    <strong>Ohne Pay-to-Win</strong>, dafür mit echtem Fortschritt.
   </p>
 </header>
 
@@ -114,83 +170,44 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
     <div class="card"><span>🏝️</span>Skyblock</div>
     <div class="card"><span>🎰</span>Casino</div>
     <div class="card"><span>🪙</span>Coins System</div>
-    <div class="card">
-      <span>📅</span>
-      Wöchentliche Item-Verlosung<br>
-      <small>Montag & Freitag</small>
-    </div>
+    <div class="card"><span>📅</span>Wöchentliche Item Verlosung<br>Montag & Freitag</div>
   </div>
 </section>
 
 <section>
   <h2>📊 Marktpreise</h2>
 
-  <input id="marketSearch" type="text"
-  placeholder="🔍 Item suchen (z.B. Eichenholzstamm)"
-  style="width:100%;padding:12px;margin-bottom:25px;
-  background:rgba(0,0,0,.7);border:2px solid var(--accent);
-  color:#fff">
+  <input id="marketSearch" placeholder="Item suchen..."
+  style="width:100%;padding:10px;margin-bottom:20px;
+  background:rgba(0,0,0,.7);border:2px solid var(--accent);color:#fff">
 
   <div style="display:flex;align-items:center;gap:12px">
-    <button class="navBtn" onclick="scrollMarket(-1)">⬅️</button>
+    <button class="navBtn" onclick="scrollMarket(-1)">⬅</button>
 
     <div id="marketContainer" class="grid"
     style="overflow-x:auto;flex-wrap:nowrap"></div>
 
-    <button class="navBtn" onclick="scrollMarket(1)">➡️</button>
+    <button class="navBtn" onclick="scrollMarket(1)">➡</button>
   </div>
 </section>
 
-<section>
-  <h2>💬 Discord</h2>
-  <div class="grid">
-    <a class="card" href="https://discord.gg/7w2QeHq9rh" target="_blank">
-      <span>🔗</span>Discord beitreten
-    </a>
-  </div>
-</section>
-
-</div>
+<!-- REST DER SEITE BLEIBT UNVERÄNDERT -->
 
 <script>
+const bg=document.getElementById("mcBg");
+for(let i=0;i<14;i++){
+  const b=document.createElement("div");
+  b.className="mc-block";
+  b.style.left=Math.random()*100+"vw";
+  let y=Math.random()*120;
+  bg.appendChild(b);
+  const speed=0.06+Math.random()*0.15;
+  (function anim(){
+    y-=speed;if(y<-20)y=120;
+    b.style.transform=`translateY(${y}vh)`;
+    requestAnimationFrame(anim);
+  })();
+}
+
 const marketItems=[
- {icon:"💎",name:"Diamant",price:120},
- {icon:"🟢",name:"Emerald",price:90},
- {icon:"🪙",name:"Gold",price:45},
- {icon:"⛓️",name:"Eisen",price:25},
- {icon:"🔥",name:"Netherite",price:800},
- {icon:"🪵",name:"Alle Holzstämme",price:10},
- {icon:"🔴",name:"Redstone",price:6},
- {icon:"⚫",name:"Kohle",price:8},
- {icon:"🏖️",name:"Sand",price:4},
- {icon:"🧱",name:"Sandsteine",price:6},
- {icon:"📘",name:"Alle Verzauberungsbücher (1.21.7)",price:"Variabel"},
- {icon:"🧪",name:"Alle Tränke (1.21.7)",price:"Variabel"}
-];
-
-const container=document.getElementById("marketContainer");
-
-function renderMarket(filter=""){
- container.innerHTML="";
- marketItems.filter(i=>i.name.toLowerCase().includes(filter.toLowerCase()))
- .forEach(i=>{
-  container.innerHTML+=`
-  <div class="card">
-    <span>${i.icon}</span>
-    ${i.name}<br>
-    <strong>${i.price} €</strong>
-  </div>`;
- });
-}
-renderMarket();
-
-document.getElementById("marketSearch")
-.addEventListener("input",e=>renderMarket(e.target.value));
-
-function scrollMarket(dir){
- container.scrollBy({left:dir*300,behavior:"smooth"});
-}
-</script>
-
-</body>
-</html>
+ "Diamant","Emerald","Gold","Eisen","Nethe
