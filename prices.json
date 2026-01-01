@@ -30,6 +30,74 @@
       "base": 2200,
       "min": 1900,
       "max": 2600
+    },
+
+    "sand": {
+      "name": "Sand",
+      "base": 4,
+      "min": 2,
+      "max": 7
+    },
+    "sandstone": {
+      "name": "Sandstein",
+      "base": 6,
+      "min": 4,
+      "max": 10
+    },
+
+    "oak_log": {
+      "name": "Eichenholzstamm",
+      "base": 6,
+      "min": 4,
+      "max": 9
+    },
+    "spruce_log": {
+      "name": "Fichtenholzstamm",
+      "base": 6,
+      "min": 4,
+      "max": 9
+    },
+    "birch_log": {
+      "name": "Birkenholzstamm",
+      "base": 6,
+      "min": 4,
+      "max": 9
+    },
+    "jungle_log": {
+      "name": "Tropenholzstamm",
+      "base": 7,
+      "min": 5,
+      "max": 11
+    },
+    "acacia_log": {
+      "name": "Akazienholzstamm",
+      "base": 7,
+      "min": 5,
+      "max": 11
+    },
+    "dark_oak_log": {
+      "name": "Schwarzeichenholzstamm",
+      "base": 8,
+      "min": 6,
+      "max": 12
+    },
+    "mangrove_log": {
+      "name": "Mangrovenholzstamm",
+      "base": 9,
+      "min": 7,
+      "max": 14
+    },
+    "cherry_log": {
+      "name": "Kirschholzstamm",
+      "base": 10,
+      "min": 8,
+      "max": 15
+    },
+    "bamboo_block": {
+      "name": "Bambusblock",
+      "base": 5,
+      "min": 3,
+      "max": 8
     }
   }
 }
