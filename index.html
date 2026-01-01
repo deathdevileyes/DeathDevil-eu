@@ -8,39 +8,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-.market-wrapper{
-  display:flex;
-  align-items:center;
-  gap:12px;
+:root{
+  --accent:#00ffff;
+  --accent2:#7a00ff;
+  --gold:#ffd700;
+  --bg-overlay:rgba(0,0,0,.65);
 }
 
+.market-wrapper{display:flex;align-items:center;gap:12px}
 .market-scroll{
   display:grid;
   grid-auto-flow:column;
-  grid-template-rows:repeat(2, auto);
+  grid-template-rows:repeat(2,auto);
   gap:22px;
   overflow-x:auto;
-  scroll-behavior:smooth;
+  scroll-behavior:smooth
 }
-
-.market-scroll::-webkit-scrollbar{
-  display:none;
-}
-
+.market-scroll::-webkit-scrollbar{display:none}
 .market-btn{
   background:rgba(0,0,0,.8);
   border:2px solid var(--accent);
   color:#fff;
   font-size:22px;
   padding:10px 14px;
-  cursor:pointer;
-}
-
-:root{
-  --accent:#00ffff;
-  --accent2:#7a00ff;
-  --gold:#ffd700;
-  --bg-overlay:rgba(0,0,0,.65);
+  cursor:pointer
 }
 
 html,body{
@@ -66,36 +57,24 @@ html,body{
 }
 
 .page{position:relative;z-index:1}
-
-/* TOP ICONS */
-.top-bar{
-  position:fixed;
-  top:18px;
-  left:18px;
-  right:18px;
-  display:flex;
-  justify-content:space-between;
-  z-index:10;
-}
+.top-bar{position:fixed;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;z-index:10}
 .top-item{
   background:rgba(0,0,0,.8);
   border:2px solid var(--accent);
   padding:10px 16px;
   box-shadow:0 0 20px rgba(0,255,255,.5);
   cursor:pointer;
-  transition:.25s;
+  transition:.25s
 }
-.top-item:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 35px rgba(0,255,255,.9);
-}
+.top-item:hover{transform:scale(1.08);box-shadow:0 0 35px rgba(0,255,255,.9)}
 
 header{text-align:center;padding:130px 20px 80px}
 h1{
   font-family:Cinzel,serif;
   font-size:clamp(46px,7vw,92px);
-  letter-spacing:5px;color:var(--gold);
-  animation:mysticTitle 1.8s ease-in-out infinite;
+  letter-spacing:5px;
+  color:var(--gold);
+  animation:mysticTitle 1.8s ease-in-out infinite
 }
 
 @keyframes mysticTitle{
@@ -106,42 +85,23 @@ h1{
 
 section{max-width:1200px;margin:auto;padding:60px 20px}
 h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35px}
-
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
 .card{
   background:rgba(0,0,0,.82);
-  padding:22px;text-align:center;
+  padding:22px;
+  text-align:center;
   border:2px solid var(--accent);
-  box-shadow:0 0 18px rgba(0,255,255,.25);
+  box-shadow:0 0 18px rgba(0,255,255,.25)
 }
 .card span{font-size:28px;display:block;margin-bottom:8px}
-
-details{
-  background:rgba(0,0,0,.82);
-  border:2px solid var(--accent2);
-  padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 0 22px rgba(122,0,255,.45);
-}
-summary{
-  font-size:20px;
-  font-weight:600;
-  cursor:pointer;
-  color:var(--gold);
-}
-summary:hover{color:var(--accent)}
 </style>
 </head>
 
 <body>
 
 <div class="top-bar">
-  <div class="top-item" onclick="navigator.clipboard.writeText('DeathDevil.eu')">
-    🌐 <strong>DeathDevil.eu</strong>
-  </div>
-  <a class="top-item" href="https://discord.gg/7w2QeHq9rh" target="_blank">
-    💬 Discord
-  </a>
+  <div class="top-item" onclick="navigator.clipboard.writeText('DeathDevil.eu')">🌐 <strong>DeathDevil.eu</strong></div>
+  <a class="top-item" href="https://discord.gg/7w2QeHq9rh" target="_blank">💬 Discord</a>
 </div>
 
 <div class="mc-bg" id="mcBg"></div>
@@ -149,212 +109,89 @@ summary:hover{color:var(--accent)}
 <div class="page">
 
 <header>
-  <h1>DeathDevil.eu</h1>
-  <p>
-    Willkommen auf <strong>DeathDevil.eu</strong> – deinem deutschen Minecraft-Server
-    mit Fokus auf langfristigen Spielspaß, faire Wirtschaft und eine aktive Community.<br><br>
-    Baue dir im Citybuild dein eigenes Reich auf, handle mit anderen Spielern,
-    nimm an Events teil und steige Schritt für Schritt auf –  
-    <strong>ohne Pay-to-Win</strong>, dafür mit echtem Fortschritt.
-  </p>
+<h1>DeathDevil.eu</h1>
+<p>Willkommen auf <strong>DeathDevil.eu</strong> – deinem deutschen Minecraft-Server.</p>
 </header>
 
 <section>
-  <h2>Server-Features</h2>
-  <div class="grid">
-    <div class="card"><span>🏙️</span>Citybuild</div>
-    <div class="card"><span>🏝️</span>Skyblock</div>
-    <div class="card"><span>🎰</span>Casino</div>
-    <div class="card"><span>📅</span>Wöchentliche Item-Verlosung (Discord · Mo & Fr)</div>
-  </div>
-</section>
+<h2>📊 Marktpreise</h2>
 
-<section>
-  <h2>👑 Ränge</h2>
-  <div class="card" style="max-width:700px;margin:auto">
-    <p style="text-align:center;font-size:18px;line-height:1.6">
-      Alle Ränge können <strong style="color:var(--accent)">mit Ingame-Geld</strong> erspielt werden:
-      <br><br>
-      <span style="font-size:22px;color:var(--gold)">
-        👑 Premium • Ultra • King
-      </span>
-    </p>
-  </div>
-</section>
+<input id="marketSearch" placeholder="Item suchen..."
+style="width:100%;padding:10px;margin-bottom:25px;background:rgba(0,0,0,.7);border:2px solid var(--accent);color:#fff">
 
-<section>
-  <h2>📊 Marktpreise</h2>
+<div class="market-wrapper">
+<button class="market-btn" onclick="scrollMarket(-1)">⬅</button>
 
-  <!-- Suchleiste -->
-  <input id="marketSearch"
-    placeholder="Item suchen..."
-    style="width:100%;padding:10px;margin-bottom:25px;
-    background:rgba(0,0,0,.7);
-    border:2px solid var(--accent);
-    color:#fff">
+<div class="market-scroll" id="marketGrid">
 
-  <div class="market-wrapper">
-    <button class="market-btn" onclick="scrollMarket(-1)">⬅</button>
+<div class="card" data-name="diamant"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
+<div class="card" data-name="emerald"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
+<div class="card" data-name="gold"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
+<div class="card" data-name="eisen"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
+<div class="card" data-name="netherite"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
 
-    <div class="market-scroll" id="marketGrid">
+<div class="card" data-name="sand"><span>🏖️</span>Sand</div>
+<div class="card" data-name="sandstein"><span>🧱</span>Sandstein</div>
 
-      <!-- Erze -->
-      <div class="card" data-name="diamant"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
-      <div class="card" data-name="emerald"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
-      <div class="card" data-name="gold"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
-      <div class="card" data-name="eisen"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
-      <div class="card" data-name="netherite"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
-      <div class="card" data-name="redstone"><span>🔴</span>Redstone<br><strong><span data-item="redstone"></span></strong></div>
-      <div class="card" data-name="kohle"><span>⚫</span>Kohle<br><strong><span data-item="coal"></span></strong></div>
-      <div class="card" data-name="lapislazuli"><span>🔵</span>Lapislazuli<br><strong><span data-item="lapis"></span></strong></div>
-      <div class="card" data-name="quartz"><span>🤍</span>Quartz<br><strong><span data-item="quartz"></span></strong></div>
+<div class="card" data-name="eichenholzstamm"><span>🌳</span>Eichenholzstamm</div>
+<div class="card" data-name="fichtenholzstamm"><span>🌲</span>Fichtenholzstamm</div>
+<div class="card" data-name="birkenholzstamm"><span>🌿</span>Birkenholzstamm</div>
+<div class="card" data-name="tropenholzstamm"><span>🌴</span>Tropenholzstamm</div>
+<div class="card" data-name="akazienholzstamm"><span>🌵</span>Akazienholzstamm</div>
+<div class="card" data-name="schwarzeichenholzstamm"><span>🌑</span>Schwarzeichenholzstamm</div>
+<div class="card" data-name="mangrovenholzstamm"><span>🌊</span>Mangrovenholzstamm</div>
+<div class="card" data-name="kirschholzstamm"><span>🌸</span>Kirschholzstamm</div>
+<div class="card" data-name="bambusstamm"><span>🎋</span>Bambusstamm</div>
 
-      <!-- Sand -->
-      <div class="card" data-name="sand"><span>🏖️</span>Sand</div>
-      <div class="card" data-name="sandstein"><span>🧱</span>Sandstein</div>
+</div>
 
-      <!-- Holzstämme 1.21.7 -->
-      <div class="card" data-name="eichenholzstamm"><span>🪵</span>Eichenholzstamm</div>
-      <div class="card" data-name="fichtenholzstamm"><span>🪵</span>Fichtenholzstamm</div>
-      <div class="card" data-name="birkenholzstamm"><span>🪵</span>Birkenholzstamm</div>
-      <div class="card" data-name="tropenholzstamm"><span>🪵</span>Tropenholzstamm</div>
-      <div class="card" data-name="akazienholzstamm"><span>🪵</span>Akazienholzstamm</div>
-      <div class="card" data-name="schwarzeichenholzstamm"><span>🪵</span>Schwarzeichenholzstamm</div>
-      <div class="card" data-name="mangrovenholzstamm"><span>🪵</span>Mangrovenholzstamm</div>
-      <div class="card" data-name="kirschholzstamm"><span>🪵</span>Kirschholzstamm</div>
-      <div class="card" data-name="bambusstamm"><span>🪵</span>Bambusstamm</div>
-
-    </div>
-
-    <button class="market-btn" onclick="scrollMarket(1)">➡</button>
-  </div>
-</section>
-
-<section>
-  <h2>📜 Serverregeln</h2>
-  <details open>
-    <summary>📌 Regeln anzeigen – Version 1.0.0</summary>
-    <ul>
-      <li>❌ Diebstahl (Kisten, Trichter, Farms)</li>
-      <li>❌ Griefing & Verändern fremder Bauwerke</li>
-      <li>❌ Beleidigungen, Provokationen, toxisches Verhalten</li>
-      <li>❌ Spamming & CAPS</li>
-      <li>❌ Links ohne Team-Freigabe</li>
-      <li>❌ Hacks, Cheats, X-Ray, Autoklicker, Duplizieren</li>
-      <li>❌ Teaming in No-Team-Modi</li>
-      <li>⚠ Bugusing & Exploits</li>
-      <li>⚠ Echtgeldhandel, Scamming, Werbung</li>
-      <li>✔ Respektvoller Umgang</li>
-      <li>✔ Team-Anweisungen befolgen</li>
-      <li>ℹ Unwissenheit schützt nicht vor Strafen</li>
-      <li>★ Mit Betreten des Servers akzeptierst du alle Regeln</li>
-      <li>✉ Support: <a href="https://discord.gg/kGGj5vQmKW" target="_blank">Discord</a></li>
-    </ul>
-  </details>
-</section>
-
-<section>
-  <h2>📘 Server erklärt</h2>
-  <details>
-    <summary>🎒 Backpack</summary>
-    <p>Befehl: <strong>/backpack</strong></p>
-  </details>
-  <details>
-    <summary>🏠 Homes</summary>
-    <p>Befehl: <strong>/sethome</strong> & <strong>/home</strong></p>
-  </details>
-  <details>
-    <summary>🛒 Shop</summary>
-    <p>Befehl: <strong>/shop</strong></p>
-  </details>
-</section>
-
-<section>
-  <h2>💬 Discord</h2>
-  <div class="grid">
-    <a class="card" href="https://discord.gg/7w2QeHq9rh" target="_blank">
-      <span>🔗</span>
-      Discord beitreten
-    </a>
-  </div>
+<button class="market-btn" onclick="scrollMarket(1)">➡</button>
+</div>
 </section>
 
 </div>
 
 <script>
-/* HINTERGRUND-BLÖCKE */
-const bg = document.getElementById("mcBg");
-for (let i = 0; i < 14; i++) {
-  const b = document.createElement("div");
-  b.className = "mc-block";
-  const s = 40 + Math.random() * 60;
-  b.style.width = b.style.height = s + "px";
-  b.style.left = Math.random() * 100 + "vw";
-  let y = Math.random() * 120;
+const bg=document.getElementById("mcBg");
+for(let i=0;i<14;i++){
+  const b=document.createElement("div");
+  b.className="mc-block";
+  const s=40+Math.random()*60;
+  b.style.width=b.style.height=s+"px";
+  b.style.left=Math.random()*100+"vw";
+  let y=Math.random()*120;
   bg.appendChild(b);
-  const speed = 0.06 + Math.random() * 0.15;
-  (function anim() {
-    y -= speed;
-    if (y < -20) y = 120;
-    b.style.transform = `translateY(${y}vh) rotate(15deg)`;
+  const speed=0.06+Math.random()*0.15;
+  (function anim(){
+    y-=speed;if(y<-20)y=120;
+    b.style.transform=`translateY(${y}vh) rotate(15deg)`;
     requestAnimationFrame(anim);
   })();
 }
 
-/* 🔄 DYNAMISCHE MARKTPREISE AUS JSON */
 fetch("market_prices.json")
-  .then(res => res.json())
-  .then(data => {
-    const items = data.items;
-    const interval = data.update_interval_days;
-
-    // stabiler Wochen-Index
-    const periodIndex = Math.floor(
-      Date.now() / (1000 * 60 * 60 * 24 * interval)
-    );
-
-    document.querySelectorAll("[data-item]").forEach(el => {
-      const key = el.dataset.item;
-      if (!items[key]) return;
-
-      const cfg = items[key];
-
-      // reproduzierbarer Zufallswert pro Woche & Item
-      const rnd = Math.abs(Math.sin(periodIndex + key.length)) % 1;
-
-      const price = Math.round(
-        cfg.min + rnd * (cfg.max - cfg.min)
-      );
-
-      el.textContent = price + " €";
-    });
-  })
-  .catch(err => {
-    console.error("Fehler beim Laden der Marktpreise:", err);
-  });
-
-/* 🔍 MARKTSUCHE */
-document.getElementById("marketSearch").addEventListener("input", e => {
-  const value = e.target.value.toLowerCase();
-  document.querySelectorAll("#marketGrid .card").forEach(card => {
-    card.style.display = card.dataset.name.includes(value) ? "" : "none";
+.then(r=>r.json())
+.then(data=>{
+  const p=Math.floor(Date.now()/(1000*60*60*24*data.update_interval_days));
+  document.querySelectorAll("[data-item]").forEach(el=>{
+    const i=data.items[el.dataset.item];
+    if(!i){el.textContent="—";return;}
+    const rnd=Math.abs(Math.sin(p+el.dataset.item.length))%1;
+    el.textContent=Math.round(i.min+rnd*(i.max-i.min))+" €";
   });
 });
 
-/* ⬅➡ MARKT SCROLL (PFEILE) */
-function scrollMarket(dir){
-  document.getElementById("marketGrid")
-    .scrollBy({ left: dir * 320, behavior: "smooth" });
+document.getElementById("marketSearch").addEventListener("input",e=>{
+  const v=e.target.value.toLowerCase();
+  document.querySelectorAll("#marketGrid .card").forEach(c=>{
+    c.style.display=c.dataset.name.includes(v)?"":"none";
+  });
+});
+
+function scrollMarket(d){
+  document.getElementById("marketGrid").scrollBy({left:d*320,behavior:"smooth"});
 }
 </script>
 
 </body>
 </html>
-
-</body>
-</html>
-
-
-
-
-
