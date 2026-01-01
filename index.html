@@ -57,7 +57,15 @@ html,body{
 }
 
 .page{position:relative;z-index:1}
-.top-bar{position:fixed;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;z-index:10}
+
+/* TOP BAR */
+.top-bar{
+  position:fixed;
+  top:18px;left:18px;right:18px;
+  display:flex;
+  justify-content:space-between;
+  z-index:10
+}
 .top-item{
   background:rgba(0,0,0,.8);
   border:2px solid var(--accent);
@@ -66,7 +74,10 @@ html,body{
   cursor:pointer;
   transition:.25s
 }
-.top-item:hover{transform:scale(1.08);box-shadow:0 0 35px rgba(0,255,255,.9)}
+.top-item:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 35px rgba(0,255,255,.9)
+}
 
 header{text-align:center;padding:130px 20px 80px}
 h1{
@@ -94,6 +105,16 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
   box-shadow:0 0 18px rgba(0,255,255,.25)
 }
 .card span{font-size:28px;display:block;margin-bottom:8px}
+
+details{
+  background:rgba(0,0,0,.82);
+  border:2px solid var(--accent2);
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 0 22px rgba(122,0,255,.45)
+}
+summary{font-size:20px;font-weight:600;cursor:pointer;color:var(--gold)}
+summary:hover{color:var(--accent)}
 </style>
 </head>
 
@@ -109,43 +130,101 @@ h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35
 <div class="page">
 
 <header>
-<h1>DeathDevil.eu</h1>
-<p>Willkommen auf <strong>DeathDevil.eu</strong> – deinem deutschen Minecraft-Server.</p>
+  <h1>DeathDevil.eu</h1>
+  <p>
+    Willkommen auf <strong>DeathDevil.eu</strong> – deinem deutschen Minecraft-Server
+    mit Fokus auf langfristigen Spielspaß, faire Wirtschaft und eine aktive Community.<br><br>
+    Baue dir im Citybuild dein eigenes Reich auf, handle mit anderen Spielern
+    und steige Schritt für Schritt auf – <strong>ohne Pay-to-Win</strong>.
+  </p>
 </header>
 
+<!-- Server-Features -->
 <section>
-<h2>📊 Marktpreise</h2>
+  <h2>Server-Features</h2>
+  <div class="grid">
+    <div class="card"><span>🏙️</span>Citybuild</div>
+    <div class="card"><span>🏝️</span>Skyblock</div>
+    <div class="card"><span>🎰</span>Casino</div>
+    <div class="card"><span>📅</span>Wöchentliche Item-Verlosung<br>Discord · Mo & Fr</div>
+  </div>
+</section>
 
-<input id="marketSearch" placeholder="Item suchen..."
-style="width:100%;padding:10px;margin-bottom:25px;background:rgba(0,0,0,.7);border:2px solid var(--accent);color:#fff">
+<!-- Ränge -->
+<section>
+  <h2>👑 Ränge</h2>
+  <div class="card" style="max-width:700px;margin:auto">
+    <p style="font-size:18px;line-height:1.6">
+      Alle Ränge sind <strong style="color:var(--accent)">Ingame erspielbar</strong><br><br>
+      <span style="font-size:22px;color:var(--gold)">👑 Premium • Ultra • King</span>
+    </p>
+  </div>
+</section>
 
-<div class="market-wrapper">
-<button class="market-btn" onclick="scrollMarket(-1)">⬅</button>
+<!-- MARKTPREISE -->
+<section>
+  <h2>📊 Marktpreise</h2>
 
-<div class="market-scroll" id="marketGrid">
+  <input id="marketSearch" placeholder="Item suchen..."
+  style="width:100%;padding:10px;margin-bottom:25px;background:rgba(0,0,0,.7);border:2px solid var(--accent);color:#fff">
 
-<div class="card" data-name="diamant"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
-<div class="card" data-name="emerald"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
-<div class="card" data-name="gold"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
-<div class="card" data-name="eisen"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
-<div class="card" data-name="netherite"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
+  <div class="market-wrapper">
+    <button class="market-btn" onclick="scrollMarket(-1)">⬅</button>
 
-<div class="card" data-name="sand"><span>🏖️</span>Sand</div>
-<div class="card" data-name="sandstein"><span>🧱</span>Sandstein</div>
+    <div class="market-scroll" id="marketGrid">
 
-<div class="card" data-name="eichenholzstamm"><span>🌳</span>Eichenholzstamm</div>
-<div class="card" data-name="fichtenholzstamm"><span>🌲</span>Fichtenholzstamm</div>
-<div class="card" data-name="birkenholzstamm"><span>🌿</span>Birkenholzstamm</div>
-<div class="card" data-name="tropenholzstamm"><span>🌴</span>Tropenholzstamm</div>
-<div class="card" data-name="akazienholzstamm"><span>🌵</span>Akazienholzstamm</div>
-<div class="card" data-name="schwarzeichenholzstamm"><span>🌑</span>Schwarzeichenholzstamm</div>
-<div class="card" data-name="mangrovenholzstamm"><span>🌊</span>Mangrovenholzstamm</div>
-<div class="card" data-name="kirschholzstamm"><span>🌸</span>Kirschholzstamm</div>
-<div class="card" data-name="bambusstamm"><span>🎋</span>Bambusstamm</div>
+      <div class="card" data-name="diamant"><span>💎</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
+      <div class="card" data-name="emerald"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
+      <div class="card" data-name="gold"><span>🪙</span>Gold<br><strong><span data-item="gold"></span></strong></div>
+      <div class="card" data-name="eisen"><span>⛓️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
+      <div class="card" data-name="netherite"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
 
-</div>
+      <div class="card" data-name="sand"><span>🏖️</span>Sand</div>
+      <div class="card" data-name="sandstein"><span>🧱</span>Sandstein</div>
 
-<button class="market-btn" onclick="scrollMarket(1)">➡</button>
+      <div class="card" data-name="eichenholzstamm"><span>🌳</span>Eichenholzstamm</div>
+      <div class="card" data-name="fichtenholzstamm"><span>🌲</span>Fichtenholzstamm</div>
+      <div class="card" data-name="birkenholzstamm"><span>🌿</span>Birkenholzstamm</div>
+      <div class="card" data-name="tropenholzstamm"><span>🌴</span>Tropenholzstamm</div>
+      <div class="card" data-name="akazienholzstamm"><span>🌵</span>Akazienholzstamm</div>
+      <div class="card" data-name="schwarzeichenholzstamm"><span>🌑</span>Schwarzeichenholzstamm</div>
+      <div class="card" data-name="mangrovenholzstamm"><span>🌊</span>Mangrovenholzstamm</div>
+      <div class="card" data-name="kirschholzstamm"><span>🌸</span>Kirschholzstamm</div>
+      <div class="card" data-name="bambusstamm"><span>🎋</span>Bambusstamm</div>
+
+    </div>
+
+    <button class="market-btn" onclick="scrollMarket(1)">➡</button>
+  </div>
+</section>
+
+<!-- REGELN -->
+<section>
+<h2>📜 Serverregeln</h2>
+<details open>
+<summary>📌 Regeln anzeigen</summary>
+<ul>
+<li>🚫 Diebstahl & Griefing verboten</li>
+<li>🚫 Hacks, Cheats, Duplizieren</li>
+<li>⚠ Bugusing & Echtgeldhandel</li>
+<li>✔ Respekt & Team-Anweisungen</li>
+</ul>
+</details>
+</section>
+
+<!-- ERKLÄRT -->
+<section>
+<h2>📘 Server erklärt</h2>
+<details><summary>🎒 Backpack</summary><p>/backpack</p></details>
+<details><summary>🏠 Homes</summary><p>/sethome /home</p></details>
+<details><summary>🛒 Shop</summary><p>/shop</p></details>
+</section>
+
+<!-- DISCORD -->
+<section>
+<h2>💬 Discord</h2>
+<div class="grid">
+<a class="card" href="https://discord.gg/7w2QeHq9rh" target="_blank"><span>🔗</span>Discord beitreten</a>
 </div>
 </section>
 
@@ -171,10 +250,10 @@ for(let i=0;i<14;i++){
 
 fetch("market_prices.json")
 .then(r=>r.json())
-.then(data=>{
-  const p=Math.floor(Date.now()/(1000*60*60*24*data.update_interval_days));
+.then(d=>{
+  const p=Math.floor(Date.now()/(1000*60*60*24*d.update_interval_days));
   document.querySelectorAll("[data-item]").forEach(el=>{
-    const i=data.items[el.dataset.item];
+    const i=d.items[el.dataset.item];
     if(!i){el.textContent="—";return;}
     const rnd=Math.abs(Math.sin(p+el.dataset.item.length))%1;
     el.textContent=Math.round(i.min+rnd*(i.max-i.min))+" €";
