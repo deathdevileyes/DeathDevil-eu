@@ -2,100 +2,68 @@
   "update_interval_days": 7,
   "items": {
     "diamond": {
-      "name": "Diamant",
-      "base": 100,
       "min": 85,
       "max": 130
     },
     "emerald": {
-      "name": "Emerald",
-      "base": 120,
       "min": 95,
       "max": 150
     },
     "iron": {
-      "name": "Eisenbarren",
-      "base": 15,
       "min": 10,
       "max": 22
     },
     "gold": {
-      "name": "Goldbarren",
-      "base": 22,
       "min": 16,
       "max": 32
     },
     "netherite": {
-      "name": "Netherite-Barren",
-      "base": 2200,
       "min": 1900,
       "max": 2600
     },
 
     "sand": {
-      "name": "Sand",
-      "base": 4,
       "min": 2,
       "max": 7
     },
-    "sandstone": {
-      "name": "Sandstein",
-      "base": 6,
+    "sandstein": {
       "min": 4,
       "max": 10
     },
 
-    "oak_log": {
-      "name": "Eichenholzstamm",
-      "base": 6,
+    "eichenholzstamm": {
       "min": 4,
       "max": 9
     },
-    "spruce_log": {
-      "name": "Fichtenholzstamm",
-      "base": 6,
+    "fichtenholzstamm": {
       "min": 4,
       "max": 9
     },
-    "birch_log": {
-      "name": "Birkenholzstamm",
-      "base": 6,
+    "birkenholzstamm": {
       "min": 4,
       "max": 9
     },
-    "jungle_log": {
-      "name": "Tropenholzstamm",
-      "base": 7,
+    "tropenholzstamm": {
       "min": 5,
       "max": 11
     },
-    "acacia_log": {
-      "name": "Akazienholzstamm",
-      "base": 7,
+    "akazienholzstamm": {
       "min": 5,
       "max": 11
     },
-    "dark_oak_log": {
-      "name": "Schwarzeichenholzstamm",
-      "base": 8,
+    "schwarzeichenholzstamm": {
       "min": 6,
       "max": 12
     },
-    "mangrove_log": {
-      "name": "Mangrovenholzstamm",
-      "base": 9,
+    "mangrovenholzstamm": {
       "min": 7,
       "max": 14
     },
-    "cherry_log": {
-      "name": "Kirschholzstamm",
-      "base": 10,
+    "kirschholzstamm": {
       "min": 8,
       "max": 15
     },
-    "bamboo_block": {
-      "name": "Bambusblock",
-      "base": 5,
+    "bambusstamm": {
       "min": 3,
       "max": 8
     }
