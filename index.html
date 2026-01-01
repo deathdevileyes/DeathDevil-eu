@@ -297,47 +297,82 @@ summary:hover{color:var(--accent)}
 </div>
 
 <script>
-const bg=document.getElementById("mcBg");
-for(let i=0;i<14;i++){
-  const b=document.createElement("div");
-  b.className="mc-block";
-  const s=40+Math.random()*60;
-  b.style.width=b.style.height=s+"px";
-  b.style.left=Math.random()*100+"vw";
-  let y=Math.random()*120;
-  bg.appendChild(b);
-  const speed=0.06+Math.random()*0.15;
-  (function anim(){
-    y-=speed;if(y<-20)y=120;
-    b.style.transform=`translateY(${y}vh) rotate(15deg)`;
-    requestAnimationFrame(anim);
-  })();
-}
+document.addEventListener("DOMContentLoaded", () => {
 
-fetch("market_prices.json")
-.then(r=>r.json())
-.then(d=>{
-  const p=Math.floor(Date.now()/(1000*60*60*24*d.update_interval_days));
-  document.querySelectorAll("[data-item]").forEach(el=>{
-    const i=d.items[el.dataset.item];
-    if(!i){el.textContent="—";return;}
-    const rnd=Math.abs(Math.sin(p+el.dataset.item.length))%1;
-    el.textContent=Math.round(i.min+rnd*(i.max-i.min))+" €";
-  });
+  /* 🌌 HINTERGRUND-BLÖCKE */
+  const bg = document.getElementById("mcBg");
+  if (bg) {
+    for (let i = 0; i < 14; i++) {
+      const b = document.createElement("div");
+      b.className = "mc-block";
+      const s = 40 + Math.random() * 60;
+      b.style.width = b.style.height = s + "px";
+      b.style.left = Math.random() * 100 + "vw";
+      let y = Math.random() * 120;
+      bg.appendChild(b);
+      const speed = 0.06 + Math.random() * 0.15;
+      (function anim() {
+        y -= speed;
+        if (y < -20) y = 120;
+        b.style.transform = `translateY(${y}vh) rotate(15deg)`;
+        requestAnimationFrame(anim);
+      })();
+    }
+  }
+
+  /* 🔄 MARKTPREISE (JSON) */
+  fetch("market_prices.json")
+    .then(res => {
+      if (!res.ok) throw new Error("JSON nicht gefunden");
+      return res.json();
+    })
+    .then(data => {
+      const items = data.items;
+      const interval = data.update_interval_days;
+
+      const periodIndex = Math.floor(
+        Date.now() / (1000 * 60 * 60 * 24 * interval)
+      );
+
+      document.querySelectorAll("[data-item]").forEach(el => {
+        const key = el.dataset.item;
+        const cfg = items[key];
+
+        if (!cfg) {
+          el.textContent = "";
+          return;
+        }
+
+        const rnd = Math.abs(Math.sin(periodIndex + key.length)) % 1;
+        const price = Math.round(
+          cfg.min + rnd * (cfg.max - cfg.min)
+        );
+
+        el.textContent = price + " €";
+      });
+    })
+    .catch(err => {
+      console.error("Marktpreise Fehler:", err);
+    });
+
+  /* 🔍 MARKTSUCHE */
+  const search = document.getElementById("marketSearch");
+  if (search) {
+    search.addEventListener("input", e => {
+      const value = e.target.value.toLowerCase();
+      document.querySelectorAll("#marketGrid .card").forEach(card => {
+        card.style.display = card.dataset.name.includes(value) ? "" : "none";
+      });
+    });
+  }
+
 });
 
-document.getElementById("marketSearch").addEventListener("input",e=>{
-  const v=e.target.value.toLowerCase();
-  document.querySelectorAll("#marketGrid .card").forEach(c=>{
-    c.style.display=c.dataset.name.includes(v)?"":"none";
-  });
-});
-
-function scrollMarket(d){
-  document.getElementById("marketGrid").scrollBy({left:d*320,behavior:"smooth"});
+/* ⬅➡ MARKT SCROLL */
+function scrollMarket(dir){
+  document.getElementById("marketGrid")
+    ?.scrollBy({ left: dir * 320, behavior: "smooth" });
 }
 </script>
-
 </body>
 </html>
-
