@@ -163,7 +163,7 @@ summary:hover{color:var(--accent)}
 
 <!-- MARKTPREISE -->
 <section>
-  <h2>📊 Marktpreise</h2>
+  <h2>📊 Ideale Marktpreise</h2>
 
   <input id="marketSearch" placeholder="Item suchen..."
   style="width:100%;padding:10px;margin-bottom:25px;background:rgba(0,0,0,.7);border:2px solid var(--accent);color:#fff">
@@ -299,24 +299,62 @@ summary:hover{color:var(--accent)}
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  const testPrices = {
-    diamond: 111,
-    emerald: 123,
-    iron: 17,
-    gold: 27,
-    netherite: 2222
+  /* 💰 IDEALE MARKTPREISE */
+  const idealPrices = {
+    diamond:   { menge: 16, preis: 120 },
+    emerald:   { menge: 16, preis: 140 },
+    iron:      { menge: 64, preis: 25 },
+    gold:      { menge: 32, preis: 45 },
+    netherite: { menge: 1,  preis: 2300 },
+
+    sand:      { menge: 64, preis: 6 },
+    sandstein: { menge: 64, preis: 10 },
+
+    eichenholzstamm:        { menge: 64, preis: 8 },
+    fichtenholzstamm:       { menge: 64, preis: 8 },
+    birkenholzstamm:        { menge: 64, preis: 8 },
+    tropenholzstamm:        { menge: 64, preis: 9 },
+    akazienholzstamm:       { menge: 64, preis: 9 },
+    schwarzeichenholzstamm: { menge: 64, preis: 11 },
+    mangrovenholzstamm:     { menge: 64, preis: 12 },
+    kirschholzstamm:        { menge: 64, preis: 14 },
+    bambusstamm:            { menge: 64, preis: 7 }
   };
 
+  /* PREISE EINSETZEN */
   document.querySelectorAll("[data-item]").forEach(el => {
     const key = el.dataset.item;
-    if (testPrices[key]) {
-      el.textContent = testPrices[key] + " €";
-    }
+    const cfg = idealPrices[key];
+    if (!cfg) return;
+
+    el.innerHTML = `
+      <small>${cfg.menge} Stück</small><br>
+      <strong>${cfg.preis} €</strong>
+    `;
   });
 
+  /* 🔍 MARKTSUCHE */
+  const search = document.getElementById("marketSearch");
+  if (search) {
+    search.addEventListener("input", e => {
+      const value = e.target.value.toLowerCase();
+      document.querySelectorAll("#marketGrid .card").forEach(card => {
+        card.style.display = card.dataset.name.includes(value) ? "" : "none";
+      });
+    });
+  }
+
 });
+
+/* ⬅➡ SCROLL */
+function scrollMarket(dir){
+  document.getElementById("marketGrid")
+    ?.scrollBy({ left: dir * 320, behavior: "smooth" });
+}
 </script>
+
 
 </body>
 </html>
+
 
