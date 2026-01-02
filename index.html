@@ -8,119 +8,168 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --accent:#00ffff;
-  --accent2:#7a00ff;
-  --gold:#ffd700;
-  --bg-overlay:rgba(0,0,0,.65);
+:root {
+    --primary-bg: #121212;
+    --secondary-bg: #1e1e1e;
+    --accent: #00ffff;
+    --accent2: #7a00ff;
+    --gold: #ffd700;
+    --text-color: #ffffff;
 }
 
-.market-wrapper{display:flex;align-items:center;gap:12px}
-.market-scroll{
-  display:grid;
-  grid-auto-flow:column;
-  grid-template-rows:repeat(2,auto);
-  gap:22px;
-  overflow-x:auto;
-  scroll-behavior:smooth
-}
-.market-scroll::-webkit-scrollbar{display:none}
-.market-btn{
-  background:rgba(0,0,0,.8);
-  border:2px solid var(--accent);
-  color:#fff;
-  font-size:22px;
-  padding:10px 14px;
-  cursor:pointer
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background: radial-gradient(circle at top, rgba(0, 255, 255, 0.1), transparent 60%), 
+                linear-gradient(var(--primary-bg), var(--primary-bg)), 
+                url("background.png") center/cover fixed;
+    overflow-x: hidden;
 }
 
-html,body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  color:#fff;
-  background:
-    radial-gradient(circle at top, rgba(0,255,255,.08), transparent 60%),
-    linear-gradient(var(--bg-overlay),var(--bg-overlay)),
-    url("background.png") center/cover fixed;
-  overflow-x:hidden;
+.page {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
 }
-
-.mc-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
-.mc-block{
-  position:absolute;
-  width:60px;height:60px;opacity:.22;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.18), rgba(0,0,0,.35)),
-    repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,rgba(255,255,255,.08) 2px 4px);
-  border:2px solid rgba(0,0,0,.6);
-  box-shadow:0 0 25px rgba(0,0,0,.8);
-  animation: rain 5s infinite linear; /* Animation für fallende Würfel */
-}
-
-@keyframes rain {
-  0% { transform: translateY(-100px); opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
-}
-
-.page{position:relative;z-index:1}
 
 /* TOP BAR */
-.top-bar{
-  position:fixed;
-  top:18px;left:18px;right:18px;
-  display:flex;
-  justify-content:space-between;
-  z-index:10
-}
-.top-item{
-  background:rgba(0,0,0,.8);
-  border:2px solid var(--accent);
-  padding:10px 16px;
-  box-shadow:0 0 20px rgba(0,255,255,.5);
-  cursor:pointer;
-  transition:.25s
-}
-.top-item:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 35px rgba(0,255,255,.9)
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--secondary-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
 }
 
-header{text-align:center;padding:130px 20px 80px}
-h1{
-  font-family:Cinzel,serif;
-  font-size:clamp(46px,7vw,92px);
-  letter-spacing:5px;
-  color:var(--gold);
-  animation:mysticTitle 1.8s ease-in-out infinite
+.top-item {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--accent);
+    padding: 10px 16px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    cursor: pointer;
+    transition: 0.25s;
 }
 
-@keyframes mysticTitle{
-  0%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
-  50%{transform:translateY(-18px) scale(1.04);text-shadow:0 0 30px var(--accent),0 0 60px var(--accent2)}
-  100%{transform:translateY(0);text-shadow:0 0 10px var(--gold)}
+.top-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.9);
 }
 
-section{max-width:1200px;margin:auto;padding:60px 20px}
-h2{font-family:Cinzel,serif;color:var(--gold);text-align:center;margin-bottom:35px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
-.card{
-  background:rgba(0,0,0,.82);
-  padding:22px;
-  text-align:center;
-  border:2px solid var(--accent);
-  box-shadow:0 0 18px rgba(0,255,255,.25)
+header {
+    text-align: center;
+    padding: 130px 20px 80px;
 }
-.card span{font-size:28px;display:block;margin-bottom:8px}
 
-details{
-  background:rgba(0,0,0,.82);
-  border:2px solid var(--accent2);
-  padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 0 22px rgba(122,0,255,.45)
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(46px, 7vw, 92px);
+    letter-spacing: 5px;
+    color: var(--gold);
+    animation: mysticTitle 1.8s ease-in-out infinite;
 }
-summary{font-size:20px;font-weight:600;cursor:pointer;color:var(--gold)}
-summary:hover{color:var(--accent)}
+
+@keyframes mysticTitle {
+    0% { transform: translateY(0); text-shadow: 0 0 10px var(--gold); }
+    50% { transform: translateY(-18px) scale(1.04); text-shadow: 0 0 30px var(--accent), 0 0 60px var(--accent2); }
+    100% { transform: translateY(0); text-shadow: 0 0 10px var(--gold); }
+}
+
+section {
+    margin: 60px 0;
+    padding: 40px;
+    background: var(--secondary-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.82);
+    padding: 22px;
+    text-align: center;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.25);
+    border-radius: 8px;
+}
+
+.card span {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+details {
+    background: rgba(0, 0, 0, 0.82);
+    border: 2px solid var(--accent2);
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 0 22px rgba(122, 0, 255, 0.45);
+    border-radius: 8px;
+}
+
+summary {
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--gold);
+}
+
+summary:hover {
+    color: var(--accent);
+}
+
+.market-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.market-scroll {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, auto);
+    gap: 22px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.market-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.market-btn {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--accent);
+    color: #fff;
+    font-size: 22px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.market-btn:hover {
+    background: var(--accent);
+}
 </style>
 </head>
 
@@ -130,13 +179,6 @@ summary:hover{color:var(--accent)}
   <div class="top-item" onclick="navigator.clipboard.writeText('DeathDevil.eu')">🌐 <strong>DeathDevil.eu</strong></div>
   <a class="top-item" href="https://discord.gg/7w2QeHq9rh" target="_blank">💬 Discord</a>
 </div>
-
-<div class="mc-bg" id="mcBg"></div>
-<!-- hinzugefügt: Animierte Würfel im Hintergrund -->
-<div class="mc-block" style="top: 0; left: 10%; animation-delay: 0s;"></div>
-<div class="mc-block" style="top: 0; left: 30%; animation-delay: 1s;"></div>
-<div class="mc-block" style="top: 0; left: 50%; animation-delay: 2s;"></div>
-<div class="mc-block" style="top: 0; left: 70%; animation-delay: 3s;"></div>
 
 <div class="page">
 
@@ -369,63 +411,53 @@ summary:hover{color:var(--accent)}
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
   /* 💰 IDEALE MARKTPREISE */
-const idealPrices = {
-  diamond:{menge:16,preis:120},
-  emerald:{menge:16,preis:140},
-  iron:{menge:64,preis:25},
-  gold:{menge:32,preis:45},
-  netherite:{menge:1,preis:2300},
-
-  sand:{menge:64,preis:6},
-  sandstein:{menge:64,preis:10},
-  glowstone:{menge:32,preis:30},
-  redstonelampe:{menge:16,preis:55},
-
-  eichenholzstamm:{menge:64,preis:8},
-  fichtenholzstamm:{menge:64,preis:8},
-  birkenholzstamm:{menge:64,preis:8},
-  tropenholzstamm:{menge:64,preis:9},
-  akazienholzstamm:{menge:64,preis:9},
-  schwarzeichenholzstamm:{menge:64,preis:11},
-  mangrovenholzstamm:{menge:64,preis:12},
-  kirschholzstamm:{menge:64,preis:14},
-  bambusstamm:{menge:64,preis:7},
-
-  zaubertisch:{menge:1,preis:120},
-  braustand:{menge:1,preis:95},
-  buecherregal:{menge:16,preis:90},
-  endertruhe:{menge:1,preis:180},
-  webstuhl:{menge:1,preis:45},
-  glocke:{menge:1,preis:220},
-
-  goldapfel:{menge:1,preis:80},
-  verzaubertergoldapfel:{menge:1,preis:2500},
-  totem:{menge:1,preis:450},
-
-  rossleder:{menge:1,preis:60},
-  rosseisen:{menge:1,preis:140},
-  rossgold:{menge:1,preis:220},
-  rossdiamant:{menge:1,preis:420},
-
-  sculksensor:{menge:1,preis:90},
-  sculkschreier:{menge:1,preis:160},
-  kalibriertersculksensor:{menge:1,preis:220},
-
-  schleim:{menge:32,preis:40},
-  schleimblock:{menge:16,preis:75},
-  honigblock:{menge:16,preis:70},
-
-  kolben:{menge:16,preis:35},
-  klebrigkolben:{menge:16,preis:55},
-  werfer:{menge:16,preis:30},
-  spender:{menge:16,preis:45},
-
-  amethystscherbe:{menge:32,preis:85},
-  seelaterne:{menge:16,preis:120},
-  elytra:{menge:1,preis:1800}
-};
+  const idealPrices = {
+    diamond: { menge: 16, preis: 120 },
+    emerald: { menge: 16, preis: 140 },
+    iron: { menge: 64, preis: 25 },
+    gold: { menge: 32, preis: 45 },
+    netherite: { menge: 1, preis: 2300 },
+    sand: { menge: 64, preis: 6 },
+    sandstein: { menge: 64, preis: 10 },
+    glowstone: { menge: 32, preis: 30 },
+    redstonelampe: { menge: 16, preis: 55 },
+    eichenholzstamm: { menge: 64, preis: 8 },
+    fichtenholzstamm: { menge: 64, preis: 8 },
+    birkenholzstamm: { menge: 64, preis: 8 },
+    tropenholzstamm: { menge: 64, preis: 9 },
+    akazienholzstamm: { menge: 64, preis: 9 },
+    schwarzeichenholzstamm: { menge: 64, preis: 11 },
+    mangrovenholzstamm: { menge: 64, preis: 12 },
+    kirschholzstamm: { menge: 64, preis: 14 },
+    bambusstamm: { menge: 64, preis: 7 },
+    zaubertisch: { menge: 1, preis: 120 },
+    braustand: { menge: 1, preis: 95 },
+    buecherregal: { menge: 16, preis: 90 },
+    endertruhe: { menge: 1, preis: 180 },
+    webstuhl: { menge: 1, preis: 45 },
+    glocke: { menge: 1, preis: 220 },
+    goldapfel: { menge: 1, preis: 80 },
+    verzaubertergoldapfel: { menge: 1, preis: 2500 },
+    totem: { menge: 1, preis: 450 },
+    rossleder: { menge: 1, preis: 60 },
+    rosseisen: { menge: 1, preis: 140 },
+    rossgold: { menge: 1, preis: 220 },
+    rossdiamant: { menge: 1, preis: 420 },
+    sculksensor: { menge: 1, preis: 90 },
+    sculkschreier: { menge: 1, preis: 160 },
+    kalibriertersculksensor: { menge: 1, preis: 220 },
+    schleim: { menge: 32, preis: 40 },
+    schleimblock: { menge: 16, preis: 75 },
+    honigblock: { menge: 16, preis: 70 },
+    kolben: { menge: 16, preis: 35 },
+    klebrigkolben: { menge: 16, preis: 55 },
+    werfer: { menge: 16, preis: 30 },
+    spender: { menge: 16, preis: 45 },
+    amethystscherbe: { menge: 32, preis: 85 },
+    seelaterne: { menge: 16, preis: 120 },
+    elytra: { menge: 1, preis: 1800 }
+  };
 
   /* PREISE EINSETZEN */
   document.querySelectorAll("[data-item]").forEach(el => {
@@ -449,11 +481,10 @@ const idealPrices = {
       });
     });
   }
-
 });
 
 /* ⬅➡ SCROLL */
-function scrollMarket(dir){
+function scrollMarket(dir) {
   document.getElementById("marketGrid")
     ?.scrollBy({ left: dir * 320, behavior: "smooth" });
 }
