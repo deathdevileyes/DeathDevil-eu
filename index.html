@@ -8,169 +8,154 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --primary-bg: #121212;
-    --secondary-bg: #1e1e1e;
-    --accent: #00ffff;
-    --accent2: #7a00ff;
-    --gold: #ffd700;
-    --text-color: #ffffff;
+:root{
+  --primary-bg:#121212;
+  --secondary-bg:#1e1e1e;
+  --text-color:#ffffff;
+  --accent:#7fd7ff;
+  --accent2:#3b82f6;
+  --gold:#e0f2ff;
 }
 
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    color: var(--text-color);
-    background: radial-gradient(circle at top, rgba(0, 255, 255, 0.1), transparent 60%), 
-                linear-gradient(var(--primary-bg), var(--primary-bg)), 
-                url("background.png") center/cover fixed;
-    overflow-x: hidden;
+/* FALLING BLOCKS */
+.mc-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
 }
 
-.page {
-    position: relative;
-    z-index: 1;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+.mc-block{
+  position:absolute;
+  background:rgba(255,255,255,.9);
+  opacity:.75;
+  animation:fall linear infinite;
+  filter:blur(.2px);
+}
+
+@keyframes fall{
+  0%{transform:translateY(-40px) rotate(0deg);opacity:0}
+  10%{opacity:.8}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+/* BASE */
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  color:var(--text-color);
+  background:
+    radial-gradient(circle at top, rgba(127,215,255,.12), transparent 60%),
+    linear-gradient(var(--primary-bg),var(--primary-bg)),
+    url("background.png") center/cover fixed;
+  overflow-x:hidden;
+}
+
+.page{
+  position:relative;
+  z-index:1;
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
 }
 
 /* TOP BAR */
-.top-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background: var(--secondary-bg);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    z-index: 10;
+.top-bar{
+  position:fixed;
+  top:0;left:0;right:0;
+  display:flex;
+  justify-content:space-between;
+  padding:10px 20px;
+  background:var(--secondary-bg);
+  box-shadow:0 2px 10px rgba(0,0,0,.6);
+  z-index:10;
 }
 
-.top-item {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid var(--accent);
-    padding: 10px 16px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-    cursor: pointer;
-    transition: 0.25s;
+.top-item{
+  background:rgba(0,0,0,.8);
+  border:2px solid var(--accent);
+  padding:10px 16px;
+  box-shadow:0 0 20px rgba(127,215,255,.5);
+  cursor:pointer;
+  transition:.25s;
 }
 
-.top-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px rgba(0, 255, 255, 0.9);
+.top-item:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 35px rgba(127,215,255,.9);
 }
 
-header {
-    text-align: center;
-    padding: 130px 20px 80px;
+/* CONTENT */
+section{
+  margin:60px 0;
+  padding:40px;
+  background:var(--secondary-bg);
+  border-radius:8px;
+  box-shadow:0 4px 20px rgba(0,0,0,.5);
 }
 
-h1 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(46px, 7vw, 92px);
-    letter-spacing: 5px;
-    color: var(--gold);
-    animation: mysticTitle 1.8s ease-in-out infinite;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
 }
 
-@keyframes mysticTitle {
-    0% { transform: translateY(0); text-shadow: 0 0 10px var(--gold); }
-    50% { transform: translateY(-18px) scale(1.04); text-shadow: 0 0 30px var(--accent), 0 0 60px var(--accent2); }
-    100% { transform: translateY(0); text-shadow: 0 0 10px var(--gold); }
+.card{
+  background:rgba(0,0,0,.82);
+  padding:22px;
+  text-align:center;
+  border:2px solid var(--accent);
+  box-shadow:0 0 18px rgba(127,215,255,.25);
+  border-radius:8px;
 }
 
-section {
-    margin: 60px 0;
-    padding: 40px;
-    background: var(--secondary-bg);
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+.card span{
+  font-size:28px;
+  display:block;
+  margin-bottom:8px;
 }
 
-h2 {
-    font-family: 'Cinzel', serif;
-    color: var(--gold);
-    text-align: center;
-    margin-bottom: 35px;
+details{
+  background:rgba(0,0,0,.82);
+  border:2px solid var(--accent2);
+  padding:18px;
+  margin-bottom:18px;
+  box-shadow:0 0 22px rgba(59,130,246,.45);
+  border-radius:8px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 22px;
+summary{
+  font-size:20px;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--gold);
 }
 
-.card {
-    background: rgba(0, 0, 0, 0.82);
-    padding: 22px;
-    text-align: center;
-    border: 2px solid var(--accent);
-    box-shadow: 0 0 18px rgba(0, 255, 255, 0.25);
-    border-radius: 8px;
-}
+summary:hover{color:var(--accent)}
 
-.card span {
-    font-size: 28px;
-    display: block;
-    margin-bottom: 8px;
+.market-wrapper{display:flex;align-items:center;gap:12px}
+.market-scroll{
+  display:grid;
+  grid-auto-flow:column;
+  grid-template-rows:repeat(2,auto);
+  gap:22px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
 }
+.market-scroll::-webkit-scrollbar{display:none}
 
-details {
-    background: rgba(0, 0, 0, 0.82);
-    border: 2px solid var(--accent2);
-    padding: 18px;
-    margin-bottom: 18px;
-    box-shadow: 0 0 22px rgba(122, 0, 255, 0.45);
-    border-radius: 8px;
+.market-btn{
+  background:rgba(0,0,0,.8);
+  border:2px solid var(--accent);
+  color:#fff;
+  font-size:22px;
+  padding:10px 14px;
+  cursor:pointer;
 }
-
-summary {
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    color: var(--gold);
-}
-
-summary:hover {
-    color: var(--accent);
-}
-
-.market-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.market-scroll {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: repeat(2, auto);
-    gap: 22px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-}
-
-.market-scroll::-webkit-scrollbar {
-    display: none;
-}
-
-.market-btn {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid var(--accent);
-    color: #fff;
-    font-size: 22px;
-    padding: 10px 14px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.market-btn:hover {
-    background: var(--accent);
-}
+.market-btn:hover{background:var(--accent)}
 </style>
+
 </head>
 
 <body>
@@ -413,82 +398,87 @@ summary:hover {
 document.addEventListener("DOMContentLoaded", () => {
   /* 💰 IDEALE MARKTPREISE */
   const idealPrices = {
-    diamond: { menge: 16, preis: 120 },
-    emerald: { menge: 16, preis: 140 },
-    iron: { menge: 64, preis: 25 },
-    gold: { menge: 32, preis: 45 },
-    netherite: { menge: 1, preis: 2300 },
-    sand: { menge: 64, preis: 6 },
-    sandstein: { menge: 64, preis: 10 },
-    glowstone: { menge: 32, preis: 30 },
-    redstonelampe: { menge: 16, preis: 55 },
-    eichenholzstamm: { menge: 64, preis: 8 },
-    fichtenholzstamm: { menge: 64, preis: 8 },
-    birkenholzstamm: { menge: 64, preis: 8 },
-    tropenholzstamm: { menge: 64, preis: 9 },
-    akazienholzstamm: { menge: 64, preis: 9 },
-    schwarzeichenholzstamm: { menge: 64, preis: 11 },
-    mangrovenholzstamm: { menge: 64, preis: 12 },
-    kirschholzstamm: { menge: 64, preis: 14 },
-    bambusstamm: { menge: 64, preis: 7 },
-    zaubertisch: { menge: 1, preis: 120 },
-    braustand: { menge: 1, preis: 95 },
-    buecherregal: { menge: 16, preis: 90 },
-    endertruhe: { menge: 1, preis: 180 },
-    webstuhl: { menge: 1, preis: 45 },
-    glocke: { menge: 1, preis: 220 },
-    goldapfel: { menge: 1, preis: 80 },
-    verzaubertergoldapfel: { menge: 1, preis: 2500 },
-    totem: { menge: 1, preis: 450 },
-    rossleder: { menge: 1, preis: 60 },
-    rosseisen: { menge: 1, preis: 140 },
-    rossgold: { menge: 1, preis: 220 },
-    rossdiamant: { menge: 1, preis: 420 },
-    sculksensor: { menge: 1, preis: 90 },
-    sculkschreier: { menge: 1, preis: 160 },
-    kalibriertersculksensor: { menge: 1, preis: 220 },
-    schleim: { menge: 32, preis: 40 },
-    schleimblock: { menge: 16, preis: 75 },
-    honigblock: { menge: 16, preis: 70 },
-    kolben: { menge: 16, preis: 35 },
-    klebrigkolben: { menge: 16, preis: 55 },
-    werfer: { menge: 16, preis: 30 },
-    spender: { menge: 16, preis: 45 },
-    amethystscherbe: { menge: 32, preis: 85 },
-    seelaterne: { menge: 16, preis: 120 },
-    elytra: { menge: 1, preis: 1800 }
+    diamond:{menge:16,preis:120},
+    emerald:{menge:16,preis:140},
+    iron:{menge:64,preis:25},
+    gold:{menge:32,preis:45},
+    netherite:{menge:1,preis:2300},
+    sand:{menge:64,preis:6},
+    sandstein:{menge:64,preis:10},
+    glowstone:{menge:32,preis:30},
+    redstonelampe:{menge:16,preis:55},
+    eichenholzstamm:{menge:64,preis:8},
+    fichtenholzstamm:{menge:64,preis:8},
+    birkenholzstamm:{menge:64,preis:8},
+    tropenholzstamm:{menge:64,preis:9},
+    akazienholzstamm:{menge:64,preis:9},
+    schwarzeichenholzstamm:{menge:64,preis:11},
+    mangrovenholzstamm:{menge:64,preis:12},
+    kirschholzstamm:{menge:64,preis:14},
+    bambusstamm:{menge:64,preis:7},
+    zaubertisch:{menge:1,preis:120},
+    braustand:{menge:1,preis:95},
+    buecherregal:{menge:16,preis:90},
+    endertruhe:{menge:1,preis:180},
+    webstuhl:{menge:1,preis:45},
+    glocke:{menge:1,preis:220},
+    goldapfel:{menge:1,preis:80},
+    verzaubertergoldapfel:{menge:1,preis:2500},
+    totem:{menge:1,preis:450},
+    sculksensor:{menge:1,preis:90},
+    sculkschreier:{menge:1,preis:160},
+    kalibriertersculksensor:{menge:1,preis:220},
+    schleim:{menge:32,preis:40},
+    schleimblock:{menge:16,preis:75},
+    honigblock:{menge:16,preis:70},
+    kolben:{menge:16,preis:35},
+    klebrigkolben:{menge:16,preis:55},
+    werfer:{menge:16,preis:30},
+    spender:{menge:16,preis:45},
+    elytra:{menge:1,preis:1800}
   };
 
-  /* PREISE EINSETZEN */
-  document.querySelectorAll("[data-item]").forEach(el => {
-    const key = el.dataset.item;
-    const cfg = idealPrices[key];
-    if (!cfg) return;
-
-    el.innerHTML = `
-      <small>${cfg.menge} Stück</small><br>
-      <strong>${cfg.preis} €</strong>
-    `;
+  document.querySelectorAll("[data-item]").forEach(el=>{
+    const cfg=idealPrices[el.dataset.item];
+    if(!cfg)return;
+    el.innerHTML=`<small>${cfg.menge} Stück</small><br><strong>${cfg.preis} €</strong>`;
   });
 
-  /* 🔍 MARKTSUCHE */
-  const search = document.getElementById("marketSearch");
-  if (search) {
-    search.addEventListener("input", e => {
-      const value = e.target.value.toLowerCase();
-      document.querySelectorAll("#marketGrid .card").forEach(card => {
-        card.style.display = card.dataset.name.includes(value) ? "" : "none";
+  const search=document.getElementById("marketSearch");
+  if(search){
+    search.addEventListener("input",e=>{
+      const v=e.target.value.toLowerCase();
+      document.querySelectorAll("#marketGrid .card").forEach(c=>{
+        c.style.display=c.dataset.name.includes(v)?"":"none";
       });
     });
   }
+
+  /* FALLING BLOCKS */
+  const bg=document.createElement("div");
+  bg.className="mc-bg";
+  document.body.appendChild(bg);
+
+  for(let i=0;i<45;i++){
+    const b=document.createElement("div");
+    b.className="mc-block";
+    const s=Math.random()*14+10;
+    b.style.width=s+"px";
+    b.style.height=s+"px";
+    b.style.left=Math.random()*100+"vw";
+    b.style.animationDuration=(Math.random()*10+8)+"s";
+    b.style.animationDelay=(Math.random()*-20)+"s";
+    bg.appendChild(b);
+  }
 });
 
-/* ⬅➡ SCROLL */
-function scrollMarket(dir) {
+function scrollMarket(dir){
   document.getElementById("marketGrid")
-    ?.scrollBy({ left: dir * 320, behavior: "smooth" });
+    ?.scrollBy({left:dir*320,behavior:"smooth"});
 }
 </script>
 
+
 </body>
 </html>
+
