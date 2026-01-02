@@ -16,6 +16,31 @@
   --accent2:#3b82f6;
   --gold:#e0f2ff;
 }
+/* ANIMIERTE DEATHDEVIL.EU ÜBERSCHRIFT */
+h1{
+  font-family:'Cinzel',serif;
+  font-size:clamp(46px,7vw,92px);
+  letter-spacing:5px;
+  color:var(--gold);
+  animation:mysticTitle 1.8s ease-in-out infinite;
+}
+
+@keyframes mysticTitle{
+  0%{
+    transform:translateY(0);
+    text-shadow:0 0 10px var(--gold);
+  }
+  50%{
+    transform:translateY(-18px) scale(1.04);
+    text-shadow:
+      0 0 30px var(--accent),
+      0 0 60px var(--accent2);
+  }
+  100%{
+    transform:translateY(0);
+    text-shadow:0 0 10px var(--gold);
+  }
+}  /* <-- DIESE KLAMMER HAT GEFEHLT */
 
 /* FALLING BLOCKS */
 .mc-bg{
@@ -481,4 +506,5 @@ function scrollMarket(dir){
 
 </body>
 </html>
+
 
