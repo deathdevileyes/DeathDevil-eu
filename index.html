@@ -28,7 +28,7 @@ h1{
   color:var(--gold);
   animation:mysticTitle 1.8s ease-in-out infinite;
 }
-
+  
 @keyframes mysticTitle{
   0%{
     transform:translateY(0);
@@ -222,6 +222,50 @@ section{
   10%{opacity:.8}
   100%{transform:translateY(110vh) rotate(360deg);opacity:0}
 }
+
+/* ===============================
+   MARKET SCROLL FIX
+   =============================== */
+
+.market-wrapper{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.market-btn{
+  background:rgba(0,0,0,.8);
+  border:2px solid var(--accent);
+  color:#fff;
+  font-size:22px;
+  padding:10px 14px;
+  cursor:pointer;
+}
+
+.market-btn:hover{
+  background:var(--accent);
+}
+
+.market-scroll{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:260px;
+  grid-template-rows:repeat(2, auto);
+  gap:22px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-behavior:smooth;
+  max-width:100%;
+}
+
+.market-scroll::-webkit-scrollbar{
+  display:none;
+}
+
+.market-scroll .card{
+  min-width:260px;
+}
+
 </style>
 
 </head>
@@ -605,6 +649,7 @@ function scrollMarket(dir){
 
 </body>
 </html>
+
 
 
 
