@@ -16,7 +16,11 @@
   --accent2:#3b82f6;
   --gold:#e0f2ff;
 }
-/* ANIMIERTE DEATHDEVIL.EU ÜBERSCHRIFT */
+
+/* ===============================
+   ANIMIERTE ÜBERSCHRIFT
+   =============================== */
+
 h1{
   font-family:'Cinzel',serif;
   font-size:clamp(46px,7vw,92px);
@@ -40,32 +44,79 @@ h1{
     transform:translateY(0);
     text-shadow:0 0 10px var(--gold);
   }
-}  /* <-- DIESE KLAMMER HAT GEFEHLT */
+}
 
-/* FALLING BLOCKS */
-.mc-bg{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
+/* ===============================
+   SERVER FEATURES – EXTRA DESIGN
+   =============================== */
+
+.features{
+  background:linear-gradient(180deg,rgba(15,23,42,.95),rgba(2,6,23,.95));
+  border:2px solid var(--accent);
+  box-shadow:0 0 40px rgba(127,215,255,.25);
+}
+
+.features h2{
+  text-align:center;
+  font-size:34px;
+  margin-bottom:40px;
+  color:var(--gold);
+  text-shadow:0 0 20px rgba(127,215,255,.6);
+}
+
+.features .card{
+  position:relative;
   overflow:hidden;
+  transition:transform .35s ease, box-shadow .35s ease;
 }
 
-.mc-block{
+.features .card::before{
+  content:"";
   position:absolute;
-  background:rgba(255,255,255,.9);
-  opacity:.75;
-  animation:fall linear infinite;
-  filter:blur(.2px);
+  inset:0;
+  background:radial-gradient(circle at top, rgba(127,215,255,.18), transparent 70%);
+  opacity:0;
+  transition:opacity .35s ease;
 }
 
-@keyframes fall{
-  0%{transform:translateY(-40px) rotate(0deg);opacity:0}
-  10%{opacity:.8}
-  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+.features .card:hover::before{
+  opacity:1;
 }
 
-html, body{
+.features .card:hover{
+  transform:translateY(-8px) scale(1.03);
+  box-shadow:
+    0 0 30px rgba(127,215,255,.9),
+    0 0 60px rgba(59,130,246,.6);
+}
+
+.features .card span{
+  font-size:34px;
+}
+
+.features .card small{
+  display:block;
+  margin-top:6px;
+  opacity:.85;
+  font-size:14px;
+}
+
+.features .highlight{
+  border-color:var(--gold);
+  box-shadow:0 0 35px rgba(224,242,255,.8);
+}
+
+.features .highlight:hover{
+  box-shadow:
+    0 0 45px rgba(224,242,255,1),
+    0 0 80px rgba(127,215,255,.8);
+}
+
+/* ===============================
+   GRUNDLAYOUT
+   =============================== */
+
+html,body{
   margin:0;
   font-family:'Inter',sans-serif;
   color:var(--text-color);
@@ -84,7 +135,10 @@ html, body{
   padding:20px;
 }
 
-/* TOP BAR */
+/* ===============================
+   TOP BAR
+   =============================== */
+
 .top-bar{
   position:fixed;
   top:0;left:0;right:0;
@@ -110,7 +164,10 @@ html, body{
   box-shadow:0 0 35px rgba(127,215,255,.9);
 }
 
-/* CONTENT */
+/* ===============================
+   CONTENT
+   =============================== */
+
 section{
   margin:60px 0;
   padding:40px;
@@ -140,44 +197,31 @@ section{
   margin-bottom:8px;
 }
 
-details{
-  background:rgba(0,0,0,.82);
-  border:2px solid var(--accent2);
-  padding:18px;
-  margin-bottom:18px;
-  box-shadow:0 0 22px rgba(59,130,246,.45);
-  border-radius:8px;
+/* ===============================
+   FALLING BLOCKS
+   =============================== */
+
+.mc-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
 }
 
-summary{
-  font-size:20px;
-  font-weight:600;
-  cursor:pointer;
-  color:var(--gold);
+.mc-block{
+  position:absolute;
+  background:rgba(255,255,255,.9);
+  opacity:.75;
+  animation:fall linear infinite;
+  filter:blur(.2px);
 }
 
-summary:hover{color:var(--accent)}
-
-.market-wrapper{display:flex;align-items:center;gap:12px}
-.market-scroll{
-  display:grid;
-  grid-auto-flow:column;
-  grid-template-rows:repeat(2,auto);
-  gap:22px;
-  overflow-x:auto;
-  scroll-behavior:smooth;
+@keyframes fall{
+  0%{transform:translateY(-40px) rotate(0deg);opacity:0}
+  10%{opacity:.8}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
 }
-.market-scroll::-webkit-scrollbar{display:none}
-
-.market-btn{
-  background:rgba(0,0,0,.8);
-  border:2px solid var(--accent);
-  color:#fff;
-  font-size:22px;
-  padding:10px 14px;
-  cursor:pointer;
-}
-.market-btn:hover{background:var(--accent)}
 </style>
 
 </head>
@@ -561,6 +605,7 @@ function scrollMarket(dir){
 
 </body>
 </html>
+
 
 
 
