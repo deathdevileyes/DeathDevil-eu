@@ -1,9 +1,50 @@
 {
   "items": [
-    { "name": "Bruchstein", "amount": 32, "price": 3.00, "icon": "🧱" },
     { "name": "Diamant", "amount": 1, "price": 5.00, "icon": "💎" },
+    { "name": "Diamantblock", "amount": 1, "price": 45.00, "icon": "💠" },
     { "name": "Netherit-Barren", "amount": 1, "price": 25.00, "icon": "🟪" },
+    { "name": "Netherit-Schrott", "amount": 1, "price": 8.50, "icon": "⬛" },
+
     { "name": "Eisenbarren", "amount": 16, "price": 4.20, "icon": "⛓️" },
-    { "name": "Goldbarren", "amount": 16, "price": 6.80, "icon": "🟨" }
+    { "name": "Eisenblock", "amount": 1, "price": 18.00, "icon": "⬜" },
+    { "name": "Goldbarren", "amount": 16, "price": 6.80, "icon": "🟨" },
+    { "name": "Goldblock", "amount": 1, "price": 28.00, "icon": "🟧" },
+
+    { "name": "Kohle", "amount": 32, "price": 2.00, "icon": "⚫" },
+    { "name": "Redstone", "amount": 32, "price": 3.20, "icon": "🔴" },
+    { "name": "Lapislazuli", "amount": 32, "price": 3.00, "icon": "🔵" },
+    { "name": "Smaragd", "amount": 1, "price": 4.50, "icon": "🟢" },
+
+    { "name": "Bruchstein", "amount": 64, "price": 3.00, "icon": "🧱" },
+    { "name": "Stein", "amount": 64, "price": 3.50, "icon": "⬜" },
+    { "name": "Tiefenschiefer", "amount": 64, "price": 4.00, "icon": "⬛" },
+    { "name": "Obsidian", "amount": 16, "price": 6.00, "icon": "🟣" },
+
+    { "name": "Eichenholz", "amount": 64, "price": 3.00, "icon": "🌳" },
+    { "name": "Fichtenholz", "amount": 64, "price": 3.20, "icon": "🌲" },
+    { "name": "Birkenholz", "amount": 64, "price": 3.20, "icon": "🌴" },
+    { "name": "Dschungelholz", "amount": 64, "price": 3.50, "icon": "🌴" },
+
+    { "name": "Weizen", "amount": 64, "price": 2.80, "icon": "🌾" },
+    { "name": "Karotten", "amount": 64, "price": 2.50, "icon": "🥕" },
+    { "name": "Kartoffeln", "amount": 64, "price": 2.50, "icon": "🥔" },
+    { "name": "Zuckerrohr", "amount": 64, "price": 3.80, "icon": "🎋" },
+
+    { "name": "Leder", "amount": 32, "price": 4.00, "icon": "🟫" },
+    { "name": "Faden", "amount": 32, "price": 3.50, "icon": "🧵" },
+    { "name": "Knochen", "amount": 32, "price": 3.80, "icon": "🦴" },
+    { "name": "Schleimball", "amount": 16, "price": 6.50, "icon": "🟢" },
+
+    { "name": "Enderperle", "amount": 16, "price": 8.00, "icon": "🟣" },
+    { "name": "Blaze-Stab", "amount": 8, "price": 9.50, "icon": "🔥" },
+    { "name": "Ghast-Träne", "amount": 8, "price": 10.00, "icon": "👻" },
+
+    { "name": "Verzaubertes Buch", "amount": 1, "price": 12.00, "icon": "📘" },
+    { "name": "Amboss", "amount": 1, "price": 15.00, "icon": "⚒️" },
+    { "name": "Elytra", "amount": 1, "price": 60.00, "icon": "🪽" },
+    { "name": "Shulkerkiste", "amount": 1, "price": 20.00, "icon": "📦" },
+
+    { "name": "Leuchtfeuer", "amount": 1, "price": 120.00, "icon": "🔷" },
+    { "name": "Totem der Unsterblichkeit", "amount": 1, "price": 18.00, "icon": "🗿" }
   ]
 }
