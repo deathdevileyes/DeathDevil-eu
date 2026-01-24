@@ -45,6 +45,36 @@
     { "name": "Shulkerkiste", "amount": 1, "price": 20.00, "icon": "📦" },
 
     { "name": "Leuchtfeuer", "amount": 1, "price": 120.00, "icon": "🔷" },
-    { "name": "Totem der Unsterblichkeit", "amount": 1, "price": 18.00, "icon": "🗿" }
+    { "name": "Totem der Unsterblichkeit", "amount": 1, "price": 18.00, "icon": "🗿" },
+
+    { "name": "Kupferbarren", "amount": 32, "price": 4.50, "icon": "🟠" },
+    { "name": "Kupferblock", "amount": 1, "price": 9.00, "icon": "🟤" },
+    { "name": "Amethyst-Scherbe", "amount": 32, "price": 5.50, "icon": "🔮" },
+    { "name": "Calcit", "amount": 64, "price": 4.00, "icon": "⬜" },
+
+    { "name": "Quarz", "amount": 32, "price": 6.50, "icon": "⚪" },
+    { "name": "Quarzblock", "amount": 16, "price": 9.00, "icon": "⬜" },
+    { "name": "Glowstone", "amount": 16, "price": 7.00, "icon": "💡" },
+    { "name": "Seelensand", "amount": 64, "price": 4.50, "icon": "🟫" },
+
+    { "name": "Netherrack", "amount": 64, "price": 2.50, "icon": "🟥" },
+    { "name": "Basalt", "amount": 64, "price": 3.80, "icon": "⬛" },
+    { "name": "Schwarzerstein", "amount": 64, "price": 4.20, "icon": "⬛" },
+    { "name": "Warped Holz", "amount": 64, "price": 4.50, "icon": "🟦" },
+
+    { "name": "Karmesin Holz", "amount": 64, "price": 4.50, "icon": "🟥" },
+    { "name": "Pilzstiel", "amount": 64, "price": 3.80, "icon": "🍄" },
+    { "name": "Netherwarzen", "amount": 32, "price": 5.50, "icon": "🌺" },
+    { "name": "Endstein", "amount": 64, "price": 6.00, "icon": "🟡" },
+
+    { "name": "Endsteinziegel", "amount": 64, "price": 7.00, "icon": "🟨" },
+    { "name": "Purpurblock", "amount": 64, "price": 6.80, "icon": "🟣" },
+    { "name": "Chorusfrucht", "amount": 32, "price": 5.00, "icon": "🍇" },
+    { "name": "Endstab", "amount": 8, "price": 6.50, "icon": "✨" },
+
+    { "name": "Schießpulver", "amount": 32, "price": 6.80, "icon": "💥" },
+    { "name": "TNT", "amount": 8, "price": 9.00, "icon": "🧨" },
+    { "name": "Spawner", "amount": 1, "price": 250.00, "icon": "🧿" },
+    { "name": "Dreizack", "amount": 1, "price": 22.00, "icon": "🔱" }
   ]
 }
