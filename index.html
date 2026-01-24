@@ -92,6 +92,11 @@
       display: flex;
     }
 
+    #market:hover + #market-dropdown,
+    #market-dropdown:hover {
+      display: flex;
+    }
+
     nav a {
       text-decoration: none;
       color: var(--text-main);
@@ -231,6 +236,9 @@
       </div>
     </div>
     <a href="#" id="market">Marktplatz</a>
+    <div class="dropdown" id="market-dropdown">
+      <span>🛒 Marktplatz wird geladen…</span>
+    </div>
     <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
     <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
   </nav>
@@ -261,6 +269,38 @@
 </section>
 
 <script>
+  // Fix dropdown interaction
+  const serverNav = document.querySelector('.nav-server');
+  const serverDropdown = serverNav.querySelector('.dropdown');
+
+  serverNav.addEventListener('mouseenter', () => {
+    serverDropdown.style.display = 'flex';
+  });
+
+  serverNav.addEventListener('mouseleave', () => {
+    serverDropdown.style.display = 'none';
+  });
+
+  const market = document.getElementById('market');
+  const marketDropdown = document.getElementById('market-dropdown');
+
+  market.addEventListener('mouseenter', () => {
+    marketDropdown.style.display = 'flex';
+  });
+
+  market.addEventListener('mouseleave', () => {
+    marketDropdown.style.display = 'none';
+  });
+
+  marketDropdown.addEventListener('mouseenter', () => {
+    marketDropdown.style.display = 'flex';
+  });
+
+  marketDropdown.addEventListener('mouseleave', () => {
+    marketDropdown.style.display = 'none';
+  });
+
+
   // Falling Minecraft-like blocks animation
   const canvas = document.getElementById('blocks');
   const ctx = canvas.getContext('2d');
