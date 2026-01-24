@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Server Features – DeathDevil.Eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Minecraft', monospace;
+  background: #0b0d10;
+  color: #eaeaea;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  background: rgba(0,0,0,0.85);
+  border-bottom: 1px solid #6e0a16;
+}
+
+header a {
+  color: #2ecc71;
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  margin: 40px 0 10px;
+  color: #2ecc71;
+}
+
+.desc {
+  text-align: center;
+  color: #a0a0a0;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.search input {
+  width: 340px;
+  padding: 12px;
+  background: rgba(20,20,25,0.9);
+  border: 1px solid #6e0a16;
+  color: #eaeaea;
+  font-family: 'Minecraft', monospace;
+}
+
+.section {
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  background: rgba(20,20,25,0.85);
+  border: 1px solid #6e0a16;
+  box-shadow: 0 0 20px rgba(177,18,38,0.6);
+  padding: 30px;
+}
+
+.section h2 {
+  color: #e74c3c;
+  margin-bottom: 25px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  margin-bottom: 18px;
+}
+
+.item b {
+  color: #2ecc71;
+}
+
+.rank h2 {
+  color: #f1c40f;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">⬅ Startseite</a>
+  <a href="marketplace.html">🛒 Marktplatz</a>
+</header>
+
+<h1>✨ Server Features & Befehle</h1>
+
+<div class="desc">
+Alle Funktionen unseres Servers lassen sich bequem über <b>Befehle</b> steuern.<br>
+Mit diesen Commands kannst du reisen, handeln, bauen, verwalten und deinen Spielstil anpassen.
+</div>
+
+<div class="search">
+  <input id="searchInput" placeholder="🔍 Feature oder Befehl suchen…">
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+<h2>⚙️ Allgemeine Server-Features</h2>
+<ul class="list" id="featureList">
+
+<li class="item"><b>/backpack</b> – Öffnet deinen persönlichen Rucksack mit zusätzlichem Stauraum.</li>
+<li class="item"><b>/clans create [Name]</b> – Erstellt einen eigenen Clan mit anderen Spielern.</li>
+<li class="item"><b>/dailyrewards</b> – Erhalte tägliche Belohnungen fürs Spielen.</li>
+<li class="item"><b>/delhome [Name]</b> – Löscht ein gesetztes Home.</li>
+<li class="item"><b>/hilfe</b> – Öffnet das Hilfemenü mit allen wichtigen Infos.</li>
+<li class="item"><b>/home [Name]</b> – Teleportiert dich zu einem deiner Homes.</li>
+<li class="item"><b>/lock</b> – Sichert Türen, Kisten, Öfen & mehr per Rechtsklick.</li>
+<li class="item"><b>/money</b> – Zeigt deinen aktuellen Kontostand an.</li>
+<li class="item"><b>/p h</b> – Teleportiert dich zu deinem Plot.</li>
+<li class="item"><b>/p h 2</b> – Teleportiert dich zu deinem zweiten Plot.</li>
+<li class="item"><b>/pay [Spieler] [Summe]</b> – Sende Geld an einen anderen Spieler.</li>
+<li class="item"><b>/sethome [Name]</b> – Setzt einen Teleportpunkt (Home).</li>
+<li class="item"><b>/tpa [Spieler]</b> – Sendet eine Teleport-Anfrage an einen Spieler.</li>
+<li class="item"><b>/tpaccept</b> – Nimmt eine Teleport-Anfrage an.</li>
+<li class="item"><b>/tpdeny</b> – Lehnt eine Teleport-Anfrage ab.</li>
+<li class="item"><b>/trade [Spieler]</b> – Öffnet ein sicheres Handelsfenster.</li>
+<li class="item"><b>/unlock</b> – Macht gesicherte Kisten oder Türen öffentlich zugänglich.</li>
+<li class="item"><b>/vote</b> – Stimme für den Server ab und erhalte Belohnungen.</li>
+
+</ul>
+</div>
+
+<!-- RÄNGE -->
+<div class="section rank">
+<h2>👑 Rang-Features</h2>
+<ul class="list" id="rankList">
+<li class="item"><b>/feed</b> – Füllt deinen Hunger sofort auf.</li>
+<li class="item"><b>/fly</b> – Ermöglicht dir zu fliegen.</li>
+<li class="item"><b>/god</b> – Macht dich unsterblich (kein Schaden).</li>
+<li class="item"><b>/nick</b> – Ändert deinen Anzeigenamen im Chat.</li>
+</ul>
+</div>
+
+<script>
+const input = document.getElementById("searchInput");
+const items = document.querySelectorAll(".item");
+
+input.addEventListener("input", () => {
+  const q = input.value.toLowerCase();
+  items.forEach(i => {
+    i.style.display = i.textContent.toLowerCase().includes(q) ? "block" : "none";
+  });
+});
+</script>
+
+</body>
+</html>
