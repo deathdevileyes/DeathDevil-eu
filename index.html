@@ -2,256 +2,43 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>DeathDevil.Eu – Minecraft Server</title>
+  <title>Marktplatz – DeathDevil.Eu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Minecraft-like Font -->
   <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
 
   <style>
-    :root {
-      --bg-dark: #0b0d10;
-      --bg-panel: rgba(20, 20, 25, 0.85);
-      --devil-red: #b11226;
-      --devil-dark-red: #6e0a16;
-      --accent-green: #2ecc71;
-      --text-main: #eaeaea;
-      --text-muted: #a0a0a0;
-      --glow-red: 0 0 20px rgba(177,18,38,0.6);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
+      margin: 0;
       font-family: 'Minecraft', monospace;
-      background: var(--bg-dark);
-      color: var(--text-main);
-      overflow-x: hidden;
+      background: #0b0d10;
+      color: #eaeaea;
     }
 
-    /* Background Image */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: url('background.png') center/cover no-repeat;
-      filter: brightness(0.4);
-      z-index: -2;
-    }
-
-    /* Falling blocks canvas */
-    canvas {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* Header */
     header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 20px 40px;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-    }
-
-    .logo {
-      font-size: 22px;
-      color: var(--devil-red);
-      text-shadow: var(--glow-red);
-      margin-right: 40px;
-    }
-
-    nav {
-      display: flex;
-      gap: 30px;
-      position: relative;
-    }
-
-    .status {
-      margin-left: auto;
-      font-size: 14px;
-      color: var(--accent-green);
-    }
-
-    .status span {
-      font-weight: bold;
-    }
-
-    .nav-server {
-      position: relative;
-    }
-
-    
-
-    #market:hover + #market-dropdown,
-    #market-dropdown:hover {
-      display: flex;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--text-main);
-      cursor: pointer;
-    }
-
-    nav a:hover {
-      color: var(--accent-green);
-    }
-
-    /* Dropdown */
-    .dropdown {
-      position: absolute;
-      top: 38px;
-      left: 0;
-      background: var(--bg-panel);
-      border: 1px solid var(--devil-dark-red);
-      padding: 15px;
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      box-shadow: var(--glow-red);
-      z-index: 100;
-    }
-
-    .dropdown button {
-      background: none;
-      border: none;
-      color: var(--text-main);
-      font-family: inherit;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .dropdown button:hover {
-      color: var(--accent-green);
-    }
-
-    .dropdown.active {
-      display: flex;
-    }
-
-    .nav-btn {
-      background: none;
-      border: none;
-      color: var(--text-main);
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    .nav-btn:hover {
-      color: var(--accent-green);
-    }
-
-    .dropdown a {
-      color: var(--text-main);
-    }
-
-    .dropdown a:hover {
-      color: var(--devil-red);
-    }
-
-    
-
-    /* Hero */
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 64px;
-      color: var(--devil-red);
-      text-shadow: 0 0 25px rgba(177,18,38,0.9);
-      animation: pulse 3s infinite;
-    }
-
-    .hero p {
-      margin-top: 20px;
-      max-width: 700px;
-      color: var(--text-muted);
-      font-size: 16px;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    /* Features */
-    .features {
-      background: rgba(0,0,0,0.75);
-      padding: 80px 40px;
-    }
-
-    .features h2 {
-      text-align: center;
-      margin-bottom: 50px;
-      color: var(--accent-green);
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .feature {
-      background: var(--bg-panel);
-      padding: 25px;
-      border: 1px solid var(--devil-dark-red);
-      text-align: center;
-      box-shadow: var(--glow-red);
-      transition: transform 0.2s ease;
-    }
-
-    .feature:hover {
-      transform: translateY(-6px);
-    }
-
-    .feature span {
-      display: block;
-      margin-top: 10px;
-    }
-      .info-boxes {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      margin-bottom: 60px;
-    }
-
-    .info {
-      background: var(--bg-panel);
-      border: 1px solid var(--devil-dark-red);
-      padding: 25px 30px;
-      min-width: 280px;
-      text-align: center;
-      box-shadow: var(--glow-red);
-    }
-    .market {
-      padding: 100px 40px;
       background: rgba(0,0,0,0.8);
+      border-bottom: 1px solid #6e0a16;
+    }
+
+    header a {
+      color: #2ecc71;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    h1 {
       text-align: center;
+      margin: 50px 0 10px;
+      color: #2ecc71;
     }
 
-    .market h2 {
-      color: var(--accent-green);
-      margin-bottom: 15px;
-    }
-
-    .market-desc {
-      color: var(--text-muted);
+    p {
+      text-align: center;
+      color: #a0a0a0;
       margin-bottom: 40px;
     }
 
@@ -259,166 +46,40 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 25px;
-      max-width: 900px;
+      padding: 0 40px 80px;
+      max-width: 1100px;
       margin: auto;
     }
 
-    .market-item {
-      background: var(--bg-panel);
-      border: 1px solid var(--devil-dark-red);
-      padding: 25px;
-      box-shadow: var(--glow-red);
+    .item {
+      background: rgba(20,20,25,0.85);
+      border: 1px solid #6e0a16;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(177,18,38,0.6);
     }
 
-    .market-item span {
+    .item span {
       display: block;
       margin: 10px 0;
     }
-</style>
+  </style>
 </head>
 <body>
-<a id="marktplatz"></a>
-
-<canvas id="blocks"></canvas>
 
 <header>
-  <div class="logo">DeathDevil.Eu</div>
-  <nav>
-    <div class="nav-server">
-      <button class="nav-btn" data-menu="server">Server entdecken ▾</button>
-      <div class="dropdown" data-dropdown="server">
-        <button>Regeln</button>
-        <button>Features</button>
-        <button>Kosmetik</button>
-        <button>Währung</button>
-        <button>Ränge</button>
-        <button>CityBuild</button>
-      </div>
-    </div>
-
-    <div class="nav-server">
-      <button class="nav-btn" data-menu="market">Marktplatz ▾</button>
-      <div class="dropdown" data-dropdown="market">
-        <button class="market-link">🛒 Zum Marktplatz</button>
-      </div>
-    </div>
-    </div>
-
-    <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
-    <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
-  </nav>
-  <div class="status">Server Status: <span>Online</span></div>
+  <a href="index.html">⬅ Zurück zur Startseite</a>
+  <div>🛒 Marktplatz</div>
 </header>
 
-<section class="hero">
-  <h1>DeathDevil.Eu</h1>
-  <p>Deutscher CityBuild Server mit PvP‑Minigames und Ingame‑Währung</p>
-</section>
+<h1>Offizieller Server‑Marktplatz</h1>
+<p>Diese Preise dienen als Richtwert für den Handel auf DeathDevil.Eu</p>
 
-<section class="info-boxes">
-  <div class="info">🎁 <strong>Wöchentliche Item-Verlosung</strong><br>Jeden Samstag auf Discord</div>
-  <div class="info">⚔️ <strong>Nächstes Serverevent</strong><br>Wird bald angekündigt</div>
-</section>
-
-<section class="market">
-  <h2>🛒 Marktplatz</h2>
-  <p class="market-desc">Hier siehst du den offiziellen Server-Wert von Items.</p>
-
-  <div class="market-grid">
-    <div class="market-item">🧱<span>32× Bruchstein</span><strong>3 €</strong></div>
-    <div class="market-item">⛏️<span>1× Diamant</span><strong>5 €</strong></div>
-    <div class="market-item">🔥<span>16× Kohle</span><strong>2 €</strong></div>
-  </div>
-</section>
-
-<section class="features">
-  <h2>Was unser Server bietet</h2>
-  <div class="feature-grid">
-    <div class="feature">🧱<span>PlotSquared</span></div>
-    <div class="feature">☁️<span>SkyBlock</span></div>
-    <div class="feature">🛏️<span>BedWars</span></div>
-    <div class="feature">⚔️<span>Mobarena</span></div>
-    <div class="feature">🔥<span>PvP</span></div>
-    <div class="feature">🗳️<span>VoteSystem</span></div>
-    <div class="feature">💰<span>CoinSystem</span></div>
-  </div>
-</section>
-
-<script>
-  // ===== MODRINTH-LIKE NAVIGATION (STABLE) =====
-  const navButtons = document.querySelectorAll('.nav-btn');
-  const dropdowns = document.querySelectorAll('.dropdown');
-
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const key = btn.dataset.menu;
-
-      dropdowns.forEach(d => {
-        if (d.dataset.dropdown === key) {
-          d.classList.toggle('active');
-        } else {
-          d.classList.remove('active');
-        }
-      });
-    });
-  });
-
-  document.addEventListener('click', () => {
-    dropdowns.forEach(d => d.classList.remove('active'));
-  });
-
-  // ===== MARKTPLATZ NAVIGATION (FIX) =====
-  const marketBtn = document.querySelector('.market-link');
-  const marketSection = document.querySelector('.market');
-
-  if (marketBtn && marketSection) {
-    marketBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dropdowns.forEach(d => d.classList.remove('active'));
-      marketSection.scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-
-  // ===== FALLING BLOCKS ANIMATION =====
-  const canvas = document.getElementById('blocks');
-  const ctx = canvas.getContext('2d');
-  let w, h;
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-
-  const blocks = Array.from({ length: 60 }, () => ({
-    x: Math.random() * w,
-    y: Math.random() * h,
-    s: 8 + Math.random() * 12,
-    v: 0.3 + Math.random() * 0.7
-  }));
-
-  function animate() {
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = 'rgba(177,18,38,0.8)';
-
-    blocks.forEach(b => {
-      ctx.fillRect(b.x, b.y, b.s, b.s);
-      b.y += b.v;
-      if (b.y > h) {
-        b.y = -b.s;
-        b.x = Math.random() * w;
-      }
-    });
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-</script>
+<div class="market-grid">
+  <div class="item">🧱<span>32× Bruchstein</span><strong>3 €</strong></div>
+  <div class="item">⛏️<span>1× Diamant</span><strong>5 €</strong></div>
+  <div class="item">🔥<span>16× Kohle</span><strong>2 €</strong></div>
+</div>
 
 </body>
 </html>
-
