@@ -51,7 +51,7 @@ h1 {
   font-size: 14px;
 }
 
-/* SEARCH + FILTER */
+/* CONTROLS */
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -123,10 +123,9 @@ h1 {
 🔥 Top-Deals werden hervorgehoben.
 </div>
 
-<!-- CONTROLS -->
 <div class="controls">
   <input id="searchInput" placeholder="🔍 Item suchen…">
-  
+
   <select id="sortSelect">
     <option value="default">Sortierung</option>
     <option value="asc">Preis ↑</option>
@@ -146,7 +145,7 @@ h1 {
 let allItems = [];
 let currentCategory = "all";
 
-fetch(window.location.origin + "/prices.json")
+fetch("./prices.json")
   .then(res => {
     if (!res.ok) throw new Error("HTTP " + res.status);
     return res.json();
@@ -230,4 +229,3 @@ function updateAlarm() {
 
 </body>
 </html>
-
