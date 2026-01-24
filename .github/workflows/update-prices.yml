@@ -1,0 +1,36 @@
+name: Update Marketplace Prices
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update prices
+        run: |
+          python << 'EOF'
+          import json, random
+
+          with open("prices.json","r") as f:
+              data = json.load(f)
+
+          for item in data["items"]:
+              change = random.uniform(0.85, 1.15)
+              item["price"] = round(item["price"] * change, 2)
+
+          with open("prices.json","w") as f:
+              json.dump(data, f, indent=2)
+          EOF
+
+      - name: Commit changes
+        run: |
+          git config user.name "DeathDevil Bot"
+          git config user.email "bot@deathdevil.eu"
+          git add prices.json
+          git commit -m "Daily price update" || echo "No changes"
+          git push
