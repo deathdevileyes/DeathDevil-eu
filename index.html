@@ -239,9 +239,45 @@
       text-align: center;
       box-shadow: var(--glow-red);
     }
+    .market {
+      padding: 100px 40px;
+      background: rgba(0,0,0,0.8);
+      text-align: center;
+    }
+
+    .market h2 {
+      color: var(--accent-green);
+      margin-bottom: 15px;
+    }
+
+    .market-desc {
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .market-item {
+      background: var(--bg-panel);
+      border: 1px solid var(--devil-dark-red);
+      padding: 25px;
+      box-shadow: var(--glow-red);
+    }
+
+    .market-item span {
+      display: block;
+      margin: 10px 0;
+    }
 </style>
 </head>
 <body>
+<a id="marktplatz"></a>
 
 <canvas id="blocks"></canvas>
 
@@ -282,6 +318,17 @@
 <section class="info-boxes">
   <div class="info">🎁 <strong>Wöchentliche Item-Verlosung</strong><br>Jeden Samstag auf Discord</div>
   <div class="info">⚔️ <strong>Nächstes Serverevent</strong><br>Wird bald angekündigt</div>
+</section>
+
+<section class="market">
+  <h2>🛒 Marktplatz</h2>
+  <p class="market-desc">Hier siehst du den offiziellen Server-Wert von Items.</p>
+
+  <div class="market-grid">
+    <div class="market-item">🧱<span>32× Bruchstein</span><strong>3 €</strong></div>
+    <div class="market-item">⛏️<span>1× Diamant</span><strong>5 €</strong></div>
+    <div class="market-item">🔥<span>16× Kohle</span><strong>2 €</strong></div>
+  </div>
 </section>
 
 <section class="features">
