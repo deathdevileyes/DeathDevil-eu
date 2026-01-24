@@ -73,6 +73,25 @@
       position: relative;
     }
 
+    .status {
+      margin-left: auto;
+      font-size: 14px;
+      color: var(--accent-green);
+    }
+
+    .status span {
+      font-weight: bold;
+    }
+
+    .nav-server {
+      position: relative;
+    }
+
+    .nav-server:hover .dropdown,
+    .dropdown:hover {
+      display: flex;
+    }
+
     nav a {
       text-decoration: none;
       color: var(--text-main);
@@ -86,7 +105,7 @@
     /* Dropdown */
     .dropdown {
       position: absolute;
-      top: 40px;
+      top: 30px;
       left: 0;
       background: var(--bg-panel);
       border: 1px solid var(--devil-dark-red);
@@ -95,6 +114,7 @@
       flex-direction: column;
       gap: 10px;
       box-shadow: var(--glow-red);
+      z-index: 10;
     }
 
     .dropdown a {
@@ -175,7 +195,22 @@
       display: block;
       margin-top: 10px;
     }
-  </style>
+      .info-boxes {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+
+    .info {
+      background: var(--bg-panel);
+      border: 1px solid var(--devil-dark-red);
+      padding: 25px 30px;
+      min-width: 280px;
+      text-align: center;
+      box-shadow: var(--glow-red);
+    }
+</style>
 </head>
 <body>
 
@@ -187,23 +222,29 @@
     <div class="nav-server">
       <a>Server entdecken</a>
       <div class="dropdown">
-        <a>Regeln</a>
-        <a>Features</a>
-        <a>Kosmetik</a>
-        <a>Währung</a>
-        <a>Ränge</a>
-        <a>CityBuild</a>
+        <a href="#">Regeln</a>
+        <a href="#">Features</a>
+        <a href="#">Kosmetik</a>
+        <a href="#">Währung</a>
+        <a href="#">Ränge</a>
+        <a href="#">CityBuild</a>
       </div>
     </div>
-    <a>Marktplatz</a>
+    <a href="#" id="market">Marktplatz</a>
     <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
     <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
   </nav>
+  <div class="status">Server Status: <span>Online</span></div>
 </header>
 
 <section class="hero">
   <h1>DeathDevil.Eu</h1>
   <p>Deutscher CityBuild Server mit PvP‑Minigames und Ingame‑Währung</p>
+</section>
+
+<section class="info-boxes">
+  <div class="info">🎁 <strong>Wöchentliche Item-Verlosung</strong><br>Jeden Samstag auf Discord</div>
+  <div class="info">⚔️ <strong>Nächstes Serverevent</strong><br>Wird bald angekündigt</div>
 </section>
 
 <section class="features">
