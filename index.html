@@ -2,84 +2,223 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Marktplatz – DeathDevil.Eu</title>
+  <title>DeathDevil.Eu – Minecraft Server</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
 
   <style>
+    :root {
+      --bg-dark: #0b0d10;
+      --bg-panel: rgba(20, 20, 25, 0.85);
+      --devil-red: #b11226;
+      --devil-dark-red: #6e0a16;
+      --accent-green: #2ecc71;
+      --text-main: #eaeaea;
+      --text-muted: #a0a0a0;
+      --glow-red: 0 0 20px rgba(177,18,38,0.6);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
       font-family: 'Minecraft', monospace;
-      background: #0b0d10;
-      color: #eaeaea;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('background.png') center/cover no-repeat;
+      filter: brightness(0.4);
+      z-index: -2;
+    }
+
+    canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
     }
 
     header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       padding: 20px 40px;
-      background: rgba(0,0,0,0.8);
-      border-bottom: 1px solid #6e0a16;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
     }
 
-    header a {
-      color: #2ecc71;
+    .logo {
+      color: var(--devil-red);
+      text-shadow: var(--glow-red);
+      margin-right: 40px;
+      font-size: 22px;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: var(--text-main);
       text-decoration: none;
+    }
+
+    nav a:hover { color: var(--accent-green); }
+
+    .status {
+      margin-left: auto;
+      color: var(--accent-green);
       font-size: 14px;
     }
 
-    h1 {
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      margin: 50px 0 10px;
-      color: #2ecc71;
     }
 
-    p {
+    .hero h1 {
+      font-size: 64px;
+      color: var(--devil-red);
+      text-shadow: 0 0 25px rgba(177,18,38,0.9);
+      animation: pulse 3s infinite;
+    }
+
+    .hero p {
+      margin-top: 20px;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .info-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .info {
+      background: var(--bg-panel);
+      border: 1px solid var(--devil-dark-red);
+      padding: 25px;
+      box-shadow: var(--glow-red);
       text-align: center;
-      color: #a0a0a0;
+      min-width: 260px;
+    }
+
+    .features {
+      background: rgba(0,0,0,0.75);
+      padding: 80px 40px;
+    }
+
+    .features h2 {
+      text-align: center;
+      color: var(--accent-green);
       margin-bottom: 40px;
     }
 
-    .market-grid {
+    .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      padding: 0 40px 80px;
-      max-width: 1100px;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 30px;
+      max-width: 1000px;
       margin: auto;
     }
 
-    .item {
-      background: rgba(20,20,25,0.85);
-      border: 1px solid #6e0a16;
-      padding: 20px;
+    .feature {
+      background: var(--bg-panel);
+      border: 1px solid var(--devil-dark-red);
+      padding: 25px;
       text-align: center;
-      box-shadow: 0 0 20px rgba(177,18,38,0.6);
-    }
-
-    .item span {
-      display: block;
-      margin: 10px 0;
+      box-shadow: var(--glow-red);
     }
   </style>
 </head>
 <body>
 
+<canvas id="blocks"></canvas>
+
 <header>
-  <a href="index.html">⬅ Zurück zur Startseite</a>
-  <div>🛒 Marktplatz</div>
+  <div class="logo">DeathDevil.Eu</div>
+  <nav>
+    <a href="#">Server entdecken</a>
+    <a href="marketplace.html">Marktplatz</a>
+    <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
+    <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
+  </nav>
+  <div class="status">Server Status: Online</div>
 </header>
 
-<h1>Offizieller Server‑Marktplatz</h1>
-<p>Diese Preise dienen als Richtwert für den Handel auf DeathDevil.Eu</p>
+<section class="hero">
+  <h1>DeathDevil.Eu</h1>
+  <p>Deutscher CityBuild Server mit PvP-Minigames und Ingame-Währung</p>
+</section>
 
-<div class="market-grid">
-  <div class="item">🧱<span>32× Bruchstein</span><strong>3 €</strong></div>
-  <div class="item">⛏️<span>1× Diamant</span><strong>5 €</strong></div>
-  <div class="item">🔥<span>16× Kohle</span><strong>2 €</strong></div>
-</div>
+<section class="info-boxes">
+  <div class="info">🎁 <b>Wöchentliche Item-Verlosung</b><br>Jeden Samstag auf Discord</div>
+  <div class="info">⚔️ <b>Nächstes Serverevent</b><br>Wird bald angekündigt</div>
+</section>
+
+<section class="features">
+  <h2>Was unser Server bietet</h2>
+  <div class="feature-grid">
+    <div class="feature">🧱 PlotSquared</div>
+    <div class="feature">☁️ SkyBlock</div>
+    <div class="feature">🛏️ BedWars</div>
+    <div class="feature">⚔️ MobArena</div>
+    <div class="feature">🔥 PvP</div>
+    <div class="feature">🗳️ VoteSystem</div>
+    <div class="feature">💰 CoinSystem</div>
+  </div>
+</section>
+
+<script>
+  const canvas = document.getElementById("blocks");
+  const ctx = canvas.getContext("2d");
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resize);
+  resize();
+
+  const blocks = Array.from({length:60}, () => ({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    s: 8+Math.random()*12,
+    v: 0.3+Math.random()
+  }));
+
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="rgba(177,18,38,0.8)";
+    blocks.forEach(b=>{
+      ctx.fillRect(b.x,b.y,b.s,b.s);
+      b.y+=b.v;
+      if(b.y>canvas.height){
+        b.y=-b.s;
+        b.x=Math.random()*canvas.width;
+      }
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
 
 </body>
 </html>
