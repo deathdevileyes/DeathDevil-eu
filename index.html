@@ -1,660 +1,263 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeathDevil.eu – Minecraft Server</title>
+  <meta charset="UTF-8" />
+  <title>DeathDevil.Eu – Minecraft Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Minecraft-like Font -->
+  <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
 
-<style>
-:root{
-  --primary-bg:#121212;
-  --secondary-bg:#1e1e1e;
-  --text-color:#ffffff;
-  --accent:#7fd7ff;
-  --accent2:#3b82f6;
-  --gold:#e0f2ff;
-}
+  <style>
+    :root {
+      --bg-dark: #0b0d10;
+      --bg-panel: rgba(20, 20, 25, 0.85);
+      --devil-red: #b11226;
+      --devil-dark-red: #6e0a16;
+      --accent-green: #2ecc71;
+      --text-main: #eaeaea;
+      --text-muted: #a0a0a0;
+      --glow-red: 0 0 20px rgba(177,18,38,0.6);
+    }
 
-/* ===============================
-   ANIMIERTE ÜBERSCHRIFT
-   =============================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-h1{
-  font-family:'Cinzel',serif;
-  font-size:clamp(46px,7vw,92px);
-  letter-spacing:5px;
-  color:var(--gold);
-  animation:mysticTitle 1.8s ease-in-out infinite;
-}
-  
-@keyframes mysticTitle{
-  0%{
-    transform:translateY(0);
-    text-shadow:0 0 10px var(--gold);
-  }
-  50%{
-    transform:translateY(-18px) scale(1.04);
-    text-shadow:
-      0 0 30px var(--accent),
-      0 0 60px var(--accent2);
-  }
-  100%{
-    transform:translateY(0);
-    text-shadow:0 0 10px var(--gold);
-  }
-}
+    body {
+      font-family: 'Minecraft', monospace;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
 
-/* ===============================
-   SERVER FEATURES – EXTRA DESIGN
-   =============================== */
+    /* Background Image */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('background.png') center/cover no-repeat;
+      filter: brightness(0.4);
+      z-index: -2;
+    }
 
-.features{
-  background:linear-gradient(180deg,rgba(15,23,42,.95),rgba(2,6,23,.95));
-  border:2px solid var(--accent);
-  box-shadow:0 0 40px rgba(127,215,255,.25);
-}
+    /* Falling blocks canvas */
+    canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-.features h2{
-  text-align:center;
-  font-size:34px;
-  margin-bottom:40px;
-  color:var(--gold);
-  text-shadow:0 0 20px rgba(127,215,255,.6);
-}
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+    }
 
-.features .card{
-  position:relative;
-  overflow:hidden;
-  transition:transform .35s ease, box-shadow .35s ease;
-}
+    .logo {
+      font-size: 22px;
+      color: var(--devil-red);
+      text-shadow: var(--glow-red);
+      margin-right: 40px;
+    }
 
-.features .card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at top, rgba(127,215,255,.18), transparent 70%);
-  opacity:0;
-  transition:opacity .35s ease;
-}
+    nav {
+      display: flex;
+      gap: 30px;
+      position: relative;
+    }
 
-.features .card:hover::before{
-  opacity:1;
-}
+    nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      cursor: pointer;
+    }
 
-.features .card:hover{
-  transform:translateY(-8px) scale(1.03);
-  box-shadow:
-    0 0 30px rgba(127,215,255,.9),
-    0 0 60px rgba(59,130,246,.6);
-}
+    nav a:hover {
+      color: var(--accent-green);
+    }
 
-.features .card span{
-  font-size:34px;
-}
+    /* Dropdown */
+    .dropdown {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      background: var(--bg-panel);
+      border: 1px solid var(--devil-dark-red);
+      padding: 15px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--glow-red);
+    }
 
-.features .card small{
-  display:block;
-  margin-top:6px;
-  opacity:.85;
-  font-size:14px;
-}
+    .dropdown a {
+      color: var(--text-main);
+    }
 
-.features .highlight{
-  border-color:var(--gold);
-  box-shadow:0 0 35px rgba(224,242,255,.8);
-}
+    .dropdown a:hover {
+      color: var(--devil-red);
+    }
 
-.features .highlight:hover{
-  box-shadow:
-    0 0 45px rgba(224,242,255,1),
-    0 0 80px rgba(127,215,255,.8);
-}
+    .nav-server:hover .dropdown {
+      display: flex;
+    }
 
-/* ===============================
-   GRUNDLAYOUT
-   =============================== */
+    /* Hero */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
-html,body{
-  margin:0;
-  font-family:'Inter',sans-serif;
-  color:var(--text-color);
-  background:
-    radial-gradient(circle at top, rgba(127,215,255,.12), transparent 60%),
-    linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
-    url("background.png") center/cover fixed;
-  overflow-x:hidden;
-}
+    .hero h1 {
+      font-size: 64px;
+      color: var(--devil-red);
+      text-shadow: 0 0 25px rgba(177,18,38,0.9);
+      animation: pulse 3s infinite;
+    }
 
-.page{
-  position:relative;
-  z-index:1;
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-}
+    .hero p {
+      margin-top: 20px;
+      max-width: 700px;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
 
-/* ===============================
-   TOP BAR
-   =============================== */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
 
-.top-bar{
-  position:fixed;
-  top:0;left:0;right:0;
-  display:flex;
-  justify-content:space-between;
-  padding:10px 20px;
-  background:var(--secondary-bg);
-  box-shadow:0 2px 10px rgba(0,0,0,.6);
-  z-index:10;
-}
+    /* Features */
+    .features {
+      background: rgba(0,0,0,0.75);
+      padding: 80px 40px;
+    }
 
-.top-item{
-  background:rgba(0,0,0,.8);
-  border:2px solid var(--accent);
-  padding:10px 16px;
-  box-shadow:0 0 20px rgba(127,215,255,.5);
-  cursor:pointer;
-  transition:.25s;
-}
+    .features h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--accent-green);
+    }
 
-.top-item:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 35px rgba(127,215,255,.9);
-}
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
 
-/* ===============================
-   CONTENT
-   =============================== */
+    .feature {
+      background: var(--bg-panel);
+      padding: 25px;
+      border: 1px solid var(--devil-dark-red);
+      text-align: center;
+      box-shadow: var(--glow-red);
+      transition: transform 0.2s ease;
+    }
 
-section{
-  margin:60px 0;
-  padding:40px;
-  background:var(--secondary-bg);
-  border-radius:8px;
-  box-shadow:0 4px 20px rgba(0,0,0,.5);
-}
+    .feature:hover {
+      transform: translateY(-6px);
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:22px;
-}
-
-.card{
-  background:rgba(0,0,0,.82);
-  padding:22px;
-  text-align:center;
-  border:2px solid var(--accent);
-  box-shadow:0 0 18px rgba(127,215,255,.25);
-  border-radius:8px;
-}
-
-.card span{
-  font-size:28px;
-  display:block;
-  margin-bottom:8px;
-}
-
-/* ===============================
-   FALLING BLOCKS
-   =============================== */
-
-.mc-bg{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  overflow:hidden;
-}
-
-.mc-block{
-  position:absolute;
-  background:rgba(255,255,255,.9);
-  opacity:.75;
-  animation:fall linear infinite;
-  filter:blur(.2px);
-}
-
-@keyframes fall{
-  0%{transform:translateY(-40px) rotate(0deg);opacity:0}
-  10%{opacity:.8}
-  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
-}
-
-/* ===============================
-   MARKET SCROLL FIX
-   =============================== */
-
-.market-wrapper{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.market-btn{
-  background:rgba(0,0,0,.8);
-  border:2px solid var(--accent);
-  color:#fff;
-  font-size:22px;
-  padding:10px 14px;
-  cursor:pointer;
-}
-
-.market-btn:hover{
-  background:var(--accent);
-}
-
-.market-scroll{
-  display:grid;
-  grid-auto-flow:column;
-  grid-auto-columns:260px;
-  grid-template-rows:repeat(2, auto);
-  gap:22px;
-  overflow-x:auto;
-  overflow-y:hidden;
-  scroll-behavior:smooth;
-  max-width:100%;
-}
-
-.market-scroll::-webkit-scrollbar{
-  display:none;
-}
-
-.market-scroll .card{
-  min-width:260px;
-}
-
-</style>
-
+    .feature span {
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="top-bar">
-  <div class="top-item" onclick="navigator.clipboard.writeText('DeathDevil.eu')">🌐 <strong>DeathDevil.eu</strong></div>
-  <a class="top-item" href="https://discord.gg/7w2QeHq9rh" target="_blank">💬 Discord</a>
-</div>
-
-<div class="page">
+<canvas id="blocks"></canvas>
 
 <header>
-  <h1>DeathDevil.eu</h1>
-  <p>
-    Willkommen auf <strong>DeathDevil.eu</strong> – deinem deutschen Minecraft-Server
-    mit Fokus auf langfristigen Spielspaß, faire Wirtschaft und eine aktive Community.<br><br>
-    Baue dir im Citybuild dein eigenes Reich auf, handle mit anderen Spielern
-    und steige Schritt für Schritt auf – <strong>ohne Pay-to-Win</strong>.
-  </p>
+  <div class="logo">DeathDevil.Eu</div>
+  <nav>
+    <div class="nav-server">
+      <a>Server entdecken</a>
+      <div class="dropdown">
+        <a>Regeln</a>
+        <a>Features</a>
+        <a>Kosmetik</a>
+        <a>Währung</a>
+        <a>Ränge</a>
+        <a>CityBuild</a>
+      </div>
+    </div>
+    <a>Marktplatz</a>
+    <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
+    <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
+  </nav>
 </header>
 
-<!-- Server-Features -->
+<section class="hero">
+  <h1>DeathDevil.Eu</h1>
+  <p>Deutscher CityBuild Server mit PvP‑Minigames und Ingame‑Währung</p>
+</section>
+
 <section class="features">
-  <h2>Server-Features</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <span>🏙️</span>
-      <strong>Citybuild</strong>
-      <small>Bauen · Handeln · Wirtschaft</small>
-    </div>
-
-    <div class="card">
-      <span>🏝️</span>
-      <strong>Skyblock</strong>
-      <small>Inseln · Upgrades · Fortschritt</small>
-    </div>
-
-    <div class="card">
-      <span>🎰</span>
-      <strong>Casino</strong>
-      <small>Spielen · Gewinnen · Risiko</small>
-    </div>
-
-    <div class="card highlight">
-      <span>🎁</span>
-      <strong>Belohnungssystem</strong>
-      <small>
-        Täglich · Wöchentlich · Monatlich<br>
-        Items · Coins · Exklusive Rewards
-      </small>
-    </div>
-
-    <div class="card">
-      <span>🪙</span>
-      <strong>Coin-System</strong>
-      <small>
-        Coins durchs Spielen verdienen<br>
-        Fortschritt ohne Echtgeld
-      </small>
-    </div>
-
-    <div class="card">
-      <span>🛒</span>
-      <strong>CoinShop</strong>
-      <small>
-        Items · Perks · Haustiere<br>
-        Alles mit Coins kaufbar
-      </small>
-    </div>
-
-    <div class="card">
-      <span>✨</span>
-      <strong>Perk-System</strong>
-      <small>
-        Aktivierbare Vorteile<br>
-        Dauerhaft oder zeitlich begrenzt
-      </small>
-    </div>
-
-    <div class="card">
-      <span>🐾</span>
-      <strong>Haustiere</strong>
-      <small>
-        Kosmetische Begleiter<br>
-        Levelbar & freischaltbar
-      </small>
-    </div>
-
-    <div class="card">
-      <span>☄️</span>
-      <strong>Events & Drops</strong>
-      <small>
-        Monatliche Item-Drops<br>
-        Letzter Samstag im Monat
-      </small>
-    </div>
-
-    <div class="card">
-      <span>📅</span>
-      <strong>Community-Aktionen</strong>
-      <small>
-        Discord-Verlosungen<br>
-        Jeden Montag & Freitag
-      </small>
-    </div>
-
+  <h2>Was unser Server bietet</h2>
+  <div class="feature-grid">
+    <div class="feature">🧱<span>PlotSquared</span></div>
+    <div class="feature">☁️<span>SkyBlock</span></div>
+    <div class="feature">🛏️<span>BedWars</span></div>
+    <div class="feature">⚔️<span>Mobarena</span></div>
+    <div class="feature">🔥<span>PvP</span></div>
+    <div class="feature">🗳️<span>VoteSystem</span></div>
+    <div class="feature">💰<span>CoinSystem</span></div>
   </div>
 </section>
-
-<!-- Ränge -->
-<section>
-  <h2>👑 Ränge</h2>
-  <div class="card" style="max-width:700px;margin:auto">
-    <p style="font-size:18px;line-height:1.6">
-      Alle Ränge sind <strong style="color:var(--accent)">Ingame erspielbar</strong><br><br>
-      <span style="font-size:22px;color:var(--gold)">👑 Premium • Ultra • King</span>
-    </p>
-  </div>
-</section>
-
-<!-- MARKTPREISE -->
-<section>
-
-  <h2>📊 Ideale Marktpreise</h2>
-
-  <input id="marketSearch" placeholder="Item suchen..."
-    style="width:100%;padding:10px;margin-bottom:25px;
-    background:rgba(0,0,0,.7);
-    border:2px solid var(--accent);
-    color:#fff">
-
-  <div class="market-wrapper">
-    <button class="market-btn" onclick="scrollMarket(-1)">⬅</button>
-
-    <div class="market-scroll" id="marketGrid">
-
-      <!-- 💎 WERTVOLLE ITEMS -->
-      <div class="card" data-name="diamant"><span>💠</span>Diamant<br><strong><span data-item="diamond"></span></strong></div>
-      <div class="card" data-name="emerald"><span>🟢</span>Emerald<br><strong><span data-item="emerald"></span></strong></div>
-      <div class="card" data-name="gold"><span>🟡</span>Gold<br><strong><span data-item="gold"></span></strong></div>
-      <div class="card" data-name="eisen"><span>⚙️</span>Eisen<br><strong><span data-item="iron"></span></strong></div>
-      <div class="card" data-name="netherite"><span>🔥</span>Netherite<br><strong><span data-item="netherite"></span></strong></div>
-
-      <!-- 🧱 BAU & REDSTONE -->
-      <div class="card" data-name="sand"><span>🏖️</span>Sand<br><strong><span data-item="sand"></span></strong></div>
-      <div class="card" data-name="sandstein"><span>🏗️</span>Sandstein<br><strong><span data-item="sandstein"></span></strong></div>
-      <div class="card" data-name="glowstone"><span>✨</span>Glowstone<br><strong><span data-item="glowstone"></span></strong></div>
-      <div class="card" data-name="redstonelampe"><span>💡</span>Redstone-Lampe<br><strong><span data-item="redstonelampe"></span></strong></div>
-
-      <div class="card" data-name="kolben"><span>⚙️</span>Kolben<br><strong><span data-item="kolben"></span></strong></div>
-      <div class="card" data-name="klebrigkolben"><span>🧲</span>Klebriger Kolben<br><strong><span data-item="klebrigkolben"></span></strong></div>
-      <div class="card" data-name="werfer"><span>🎯</span>Werfer<br><strong><span data-item="werfer"></span></strong></div>
-      <div class="card" data-name="spender"><span>📦</span>Spender<br><strong><span data-item="spender"></span></strong></div>
-
-      <div class="card" data-name="schleim"><span>🟢</span>Schleim<br><strong><span data-item="schleim"></span></strong></div>
-      <div class="card" data-name="schleimblock"><span>🟩</span>Schleimblock<br><strong><span data-item="schleimblock"></span></strong></div>
-      <div class="card" data-name="honigblock"><span>🍯</span>Honigblock<br><strong><span data-item="honigblock"></span></strong></div>
-
-      <!-- 🪵 HOLZSTÄMME -->
-      <div class="card" data-name="eichenholzstamm"><span>🪵</span>Eichenholzstamm<br><strong><span data-item="eichenholzstamm"></span></strong></div>
-      <div class="card" data-name="fichtenholzstamm"><span>🪵</span>Fichtenholzstamm<br><strong><span data-item="fichtenholzstamm"></span></strong></div>
-      <div class="card" data-name="birkenholzstamm"><span>🪵</span>Birkenholzstamm<br><strong><span data-item="birkenholzstamm"></span></strong></div>
-      <div class="card" data-name="tropenholzstamm"><span>🪵</span>Tropenholzstamm<br><strong><span data-item="tropenholzstamm"></span></strong></div>
-      <div class="card" data-name="akazienholzstamm"><span>🪵</span>Akazienholzstamm<br><strong><span data-item="akazienholzstamm"></span></strong></div>
-      <div class="card" data-name="schwarzeichenholzstamm"><span>🪵</span>Schwarzeichenholzstamm<br><strong><span data-item="schwarzeichenholzstamm"></span></strong></div>
-      <div class="card" data-name="mangrovenholzstamm"><span>🪵</span>Mangrovenholzstamm<br><strong><span data-item="mangrovenholzstamm"></span></strong></div>
-      <div class="card" data-name="kirschholzstamm"><span>🪵</span>Kirschholzstamm<br><strong><span data-item="kirschholzstamm"></span></strong></div>
-      <div class="card" data-name="bambusstamm"><span>🪵</span>Bambusstamm<br><strong><span data-item="bambusstamm"></span></strong></div>
-
-      <!-- 🔮 MAGIE & FUNKTION -->
-      <div class="card" data-name="zaubertisch"><span>🔮</span>Zaubertisch<br><strong><span data-item="zaubertisch"></span></strong></div>
-      <div class="card" data-name="braustand"><span>⚗️</span>Braustand<br><strong><span data-item="braustand"></span></strong></div>
-      <div class="card" data-name="buecherregal"><span>📚</span>Bücherregal<br><strong><span data-item="buecherregal"></span></strong></div>
-      <div class="card" data-name="endertruhe"><span>🧿</span>Endertruhe<br><strong><span data-item="endertruhe"></span></strong></div>
-      <div class="card" data-name="webstuhl"><span>🧵</span>Webstuhl<br><strong><span data-item="webstuhl"></span></strong></div>
-      <div class="card" data-name="glocke"><span>🔔</span>Glocke<br><strong><span data-item="glocke"></span></strong></div>
-
-      <!-- ⭐ SELTEN / ENDGAME -->
-      <div class="card" data-name="goldapfel"><span>🍏</span>Goldapfel<br><strong><span data-item="goldapfel"></span></strong></div>
-      <div class="card" data-name="verzaubertergoldapfel"><span>🌟</span>Verzauberter Goldapfel<br><strong><span data-item="verzaubertergoldapfel"></span></strong></div>
-      <div class="card" data-name="totem"><span>🗿</span>Totem<br><strong><span data-item="totem"></span></strong></div>
-      <div class="card" data-name="elytra"><span>🪽</span>Elytra<br><strong><span data-item="elytra"></span></strong></div>
-
-      <!-- 🧠 SCULK -->
-      <div class="card" data-name="sculksensor"><span>🧠</span>Sculk-Sensor<br><strong><span data-item="sculksensor"></span></strong></div>
-      <div class="card" data-name="sculkschreier"><span>📢</span>Sculk-Schreier<br><strong><span data-item="sculkschreier"></span></strong></div>
-      <div class="card" data-name="kalibriertersculksensor"><span>🎚️</span>Kalibrierter Sculk-Sensor<br><strong><span data-item="kalibriertersculksensor"></span></strong></div>
-
-    </div>
-
-    <button class="market-btn" onclick="scrollMarket(1)">➡</button>
-  </div>
-</section>
-
-<!-- REGELN -->
-<section>
-  <h2>📜 Serverregeln</h2>
-  <details open>
-    <summary>📌 Regeln anzeigen – Version 1.0.0</summary>
-    <ul>
-      <li>❌ Diebstahl (Kisten, Trichter, Farms)</li>
-      <li>❌ Griefing & Verändern fremder Bauwerke</li>
-      <li>❌ Beleidigungen, Provokationen, toxisches Verhalten</li>
-      <li>❌ Spamming & CAPS</li>
-      <li>❌ Links ohne Team-Freigabe</li>
-      <li>❌ Hacks, Cheats, X-Ray, Autoklicker, Duplizieren</li>
-      <li>❌ Teaming in No-Team-Modi</li>
-      <li>⚠ Bugusing & Exploits</li>
-      <li>⚠ Echtgeldhandel, Scamming, Werbung</li>
-      <li>✔ Respektvoller Umgang</li>
-      <li>✔ Team-Anweisungen befolgen</li>
-      <li>ℹ Unwissenheit schützt nicht vor Strafen</li>
-      <li>★ Mit Betreten des Servers akzeptierst du alle Regeln</li>
-      <li>✉ Support: <a href="https://discord.gg/kGGj5vQmKW" target="_blank">Discord</a></li>
-    </ul>
-  </details>
-</section>
-
-<section>
-  <h2>📘 Server erklärt</h2>
-
-  <details>
-    <summary>🎒 Backpack</summary>
-    <p>
-      Öffne dein persönliches Backpack:<br>
-      <strong>/backpack</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🧭 Todespunkt</summary>
-    <p>
-      Kehre zu deinem letzten Todespunkt zurück:<br>
-      <strong>/back</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🏠 Homes</summary>
-    <p>
-      Setze ein Home mit Namen:<br>
-      <strong>/sethome [Name]</strong><br><br>
-      Teleportiere dich zu deinem Home:<br>
-      <strong>/home [Name]</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🧱 PlotGUI</summary>
-    <p>
-      Öffne das Plot-Menü zur Plot-Verwaltung:<br>
-      <strong>/plotgui</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🔐 Türen & Truhen sichern</summary>
-    <p>
-      🔒 Türen sichern:<br>
-      <strong>/lock</strong><br><br>
-
-      🔓 Türen entsichern:<br>
-      <strong>/unlock</strong><br><br>
-
-      📦 Truhen sind <strong>automatisch gesichert</strong>.<br>
-      Öffentlich zugänglich machen:<br>
-      <strong>/unlock</strong><br><br>
-
-      🔐 Wieder sichern:<br>
-      <strong>/lock</strong>
-    </p>
-  </details>
-
-  <details>
-    <summary>🛒 Shop</summary>
-    <p>
-      Öffne den Server-Shop:<br>
-      <strong>/shop</strong>
-    </p>
-  </details>
-</section>
-
-<!-- DISCORD -->
-<section>
-<h2>💬 Discord</h2>
-<div class="grid">
-<a class="card" href="https://discord.gg/7w2QeHq9rh" target="_blank"><span>🔗</span>Discord beitreten</a>
-</div>
-</section>
-
-</div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  /* 💰 IDEALE MARKTPREISE */
-  const idealPrices = {
-    diamond:{menge:16,preis:120},
-    emerald:{menge:16,preis:140},
-    iron:{menge:64,preis:25},
-    gold:{menge:32,preis:45},
-    netherite:{menge:1,preis:2300},
-    sand:{menge:64,preis:6},
-    sandstein:{menge:64,preis:10},
-    glowstone:{menge:32,preis:30},
-    redstonelampe:{menge:16,preis:55},
-    eichenholzstamm:{menge:64,preis:8},
-    fichtenholzstamm:{menge:64,preis:8},
-    birkenholzstamm:{menge:64,preis:8},
-    tropenholzstamm:{menge:64,preis:9},
-    akazienholzstamm:{menge:64,preis:9},
-    schwarzeichenholzstamm:{menge:64,preis:11},
-    mangrovenholzstamm:{menge:64,preis:12},
-    kirschholzstamm:{menge:64,preis:14},
-    bambusstamm:{menge:64,preis:7},
-    zaubertisch:{menge:1,preis:120},
-    braustand:{menge:1,preis:95},
-    buecherregal:{menge:16,preis:90},
-    endertruhe:{menge:1,preis:180},
-    webstuhl:{menge:1,preis:45},
-    glocke:{menge:1,preis:220},
-    goldapfel:{menge:1,preis:80},
-    verzaubertergoldapfel:{menge:1,preis:2500},
-    totem:{menge:1,preis:450},
-    sculksensor:{menge:1,preis:90},
-    sculkschreier:{menge:1,preis:160},
-    kalibriertersculksensor:{menge:1,preis:220},
-    schleim:{menge:32,preis:40},
-    schleimblock:{menge:16,preis:75},
-    honigblock:{menge:16,preis:70},
-    kolben:{menge:16,preis:35},
-    klebrigkolben:{menge:16,preis:55},
-    werfer:{menge:16,preis:30},
-    spender:{menge:16,preis:45},
-    elytra:{menge:1,preis:1800}
-  };
+  // Falling Minecraft-like blocks animation
+  const canvas = document.getElementById('blocks');
+  const ctx = canvas.getContext('2d');
+  let w, h;
 
-  document.querySelectorAll("[data-item]").forEach(el=>{
-    const cfg=idealPrices[el.dataset.item];
-    if(!cfg)return;
-    el.innerHTML=`<small>${cfg.menge} Stück</small><br><strong>${cfg.preis} €</strong>`;
-  });
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
 
-  const search=document.getElementById("marketSearch");
-  if(search){
-    search.addEventListener("input",e=>{
-      const v=e.target.value.toLowerCase();
-      document.querySelectorAll("#marketGrid .card").forEach(c=>{
-        c.style.display=c.dataset.name.includes(v)?"":"none";
-      });
+  window.addEventListener('resize', resize);
+  resize();
+
+  const blocks = Array.from({ length: 60 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    s: 8 + Math.random() * 12,
+    v: 0.3 + Math.random() * 0.7
+  }));
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = 'rgba(177,18,38,0.8)';
+
+    blocks.forEach(b => {
+      ctx.fillRect(b.x, b.y, b.s, b.s);
+      b.y += b.v;
+      if (b.y > h) {
+        b.y = -b.s;
+        b.x = Math.random() * w;
+      }
     });
+
+    requestAnimationFrame(animate);
   }
 
-  /* FALLING BLOCKS */
-  const bg=document.createElement("div");
-  bg.className="mc-bg";
-  document.body.appendChild(bg);
-
-  for(let i=0;i<45;i++){
-    const b=document.createElement("div");
-    b.className="mc-block";
-    const s=Math.random()*14+10;
-    b.style.width=s+"px";
-    b.style.height=s+"px";
-    b.style.left=Math.random()*100+"vw";
-    b.style.animationDuration=(Math.random()*10+8)+"s";
-    b.style.animationDelay=(Math.random()*-20)+"s";
-    bg.appendChild(b);
-  }
-});
-
-function scrollMarket(dir){
-  document.getElementById("marketGrid")
-    ?.scrollBy({left:dir*320,behavior:"smooth"});
-}
+  animate();
 </script>
-
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
