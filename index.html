@@ -263,8 +263,9 @@
     <div class="nav-server">
       <button class="nav-btn" data-menu="market">Marktplatz ▾</button>
       <div class="dropdown" data-dropdown="market">
-        <span>🛒 Marktplatz wird geladen…</span>
+        <button onclick="openMarket()">🛒 Zum Marktplatz</button>
       </div>
+    </div>
     </div>
 
     <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
@@ -318,6 +319,11 @@
 
   document.addEventListener('click', () => {
     dropdowns.forEach(d => d.classList.remove('active'));
+  });
+
+  function openMarket() {
+    window.location.href = '#marktplatz';
+  }
   });
 
   // Falling Minecraft-like blocks animation
