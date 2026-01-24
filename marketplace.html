@@ -147,11 +147,22 @@ let allItems = [];
 let currentCategory = "all";
 
 fetch(window.location.origin + "/prices.json")
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  })
   .then(data => {
-    allItems = data.items;
+    allItems = data.items.map(i => ({
+      ...i,
+      category: i.category || "Sonstiges"
+    }));
     render();
     updateAlarm();
+  })
+  .catch(err => {
+    console.error("FEHLER:", err);
+    document.getElementById("market").innerHTML =
+      "<p style='grid-column:1/-1;text-align:center;color:red'>❌ Preise konnten nicht geladen werden</p>";
   });
 
 const market = document.getElementById("market");
@@ -177,8 +188,9 @@ function render() {
   const q = searchInput.value.toLowerCase();
   if (q) items = items.filter(i => i.name.toLowerCase().includes(q));
 
-  if (currentCategory !== "all")
-    items = items.filter(i => (i.category || "").includes(currentCategory));
+  if (currentCategory !== "all") {
+    items = items.filter(i => i.category === currentCategory);
+  }
 
   if (sortSelect.value === "asc")
     items.sort((a,b)=>a.price-b.price);
@@ -188,7 +200,8 @@ function render() {
   market.innerHTML = "";
 
   if (!items.length) {
-    market.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#a0a0a0'>❌ Keine Items gefunden</p>";
+    market.innerHTML =
+      "<p style='grid-column:1/-1;text-align:center;color:#a0a0a0'>❌ Keine Items gefunden</p>";
     return;
   }
 
@@ -208,10 +221,13 @@ function render() {
 
 function updateAlarm() {
   const best = [...allItems].sort((a,b)=>a.price-b.price).slice(0,2);
-  document.getElementById("alarmLeft").innerHTML = `🔥 ${best[0].name}<br>${best[0].price.toFixed(2)} €`;
-  document.getElementById("alarmRight").innerHTML = `💎 ${best[1].name}<br>${best[1].price.toFixed(2)} €`;
+  document.getElementById("alarmLeft").innerHTML =
+    `🔥 ${best[0].name}<br>${best[0].price.toFixed(2)} €`;
+  document.getElementById("alarmRight").innerHTML =
+    `💎 ${best[1].name}<br>${best[1].price.toFixed(2)} €`;
 }
 </script>
 
 </body>
 </html>
+
