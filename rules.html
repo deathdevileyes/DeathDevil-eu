@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Regeln – DeathDevil.Eu</title>
+<title>Serverregeln – DeathDevil.Eu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
@@ -16,6 +16,9 @@ body {
 }
 
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 18px 30px;
   background: rgba(0,0,0,0.85);
   border-bottom: 1px solid #6e0a16;
@@ -29,8 +32,7 @@ header a {
 h1 {
   text-align: center;
   margin: 40px 0 10px;
-  color: #b11226;
-  text-shadow: 0 0 20px rgba(177,18,38,0.8);
+  color: #e74c3c;
 }
 
 .version {
@@ -41,71 +43,121 @@ h1 {
 
 .section {
   max-width: 1000px;
-  margin: 0 auto 40px;
-  padding: 25px 30px;
+  margin: 0 auto 50px;
+  padding: 30px;
   background: rgba(20,20,25,0.85);
-  border-left: 6px solid;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  border: 1px solid #6e0a16;
+  box-shadow: 0 0 20px rgba(177,18,38,0.6);
 }
 
 .section h2 {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-.section ul {
+.forbidden h2 { color: #e74c3c; }
+.warning h2   { color: #f39c12; }
+.allowed h2   { color: #2ecc71; }
+.info h2      { color: #3498db; }
+
+ul {
   list-style: none;
   padding-left: 0;
 }
 
-.section li {
+li {
   margin: 12px 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* COLORS */
-.forbidden { border-color: #b11226; }
-.forbidden h2 { color: #e74c3c; }
+.forbidden li::before { content: "❌ "; }
+.warning   li::before { content: "⚠️ "; }
+.allowed   li::before { content: "✔️ "; }
+.info      li::before { content: "ℹ️ "; }
 
-.warning { border-color: #f39c12; }
-.warning h2 { color: #f1c40f; }
-
-.allowed { border-color: #2ecc71; }
-.allowed h2 { color: #2ecc71; }
-
-.info { border-color: #3498db; }
-.info h2 { color: #5dade2; }
+.footer {
+  max-width: 1000px;
+  margin: 0 auto 80px;
+  text-align: center;
+  color: #a0a0a0;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <a href="index.html">⬅ Zurück zur Startseite</a>
+  <a href="index.html">⬅ Startseite</a>
+  <a href="marketplace.html">🛒 Marktplatz</a>
 </header>
 
-<h1>📜 Serverregeln – DeathDevil.Eu</h1>
+<h1>📜 Serverregeln</h1>
 <div class="version">Version 1.0.0</div>
 
 <!-- VERBOTEN -->
 <div class="section forbidden">
-  <h2>⛔ Strengstens verboten</h2>
-  <ul>
-    <li>❌ Diebstahl (auch aus Kisten, Trichtern oder Farms)</li>
-    <li>❌ Griefing – Zerstören oder Verändern fremder Bauwerke</li>
-    <li>❌ Beleidigungen, Provokationen oder toxisches Verhalten</li>
-    <li>❌ Spamming oder dauerhaftes Schreiben in CAPS</li>
-    <li>❌ Links im Chat (Ausnahme: Team-Freigabe)</li>
-    <li>❌ Hacks, Cheats oder Mods mit spielerischen Vorteilen</li>
-    <li>❌ X-Ray, X-Ray-Texturepacks oder ähnliche Hilfsmittel</li>
-    <li>❌ Autoklicker, Makros oder AFK-Hilfsmittel</li>
-    <li>❌ Duplizieren von Items, Geld oder Blöcken</li>
-    <li>❌ Teaming in No-Team-Modi</li>
-    <li>❌ Umgehen von Spielmechaniken oder Regelwerken</li>
-  </ul>
+<h2>🚫 Verbotenes Verhalten</h2>
+<ul>
+  <li>Diebstahl ist strengstens verboten (auch aus Kisten, Trichtern und Farms).</li>
+  <li>Griefing oder das absichtliche Zerstören fremder Bauwerke ist verboten.</li>
+  <li>Beleidigungen, Provokationen, Mobbing oder toxisches Verhalten sind untersagt.</li>
+  <li>Spamming sowie dauerhaftes Schreiben in CAPS ist verboten.</li>
+  <li>Links im Chat sind verboten (Ausnahme: Genehmigung durch das Server-Team).</li>
+  <li>Hacks, Cheats oder Modifikationen mit spielerischen Vorteilen sind verboten.</li>
+  <li>X-Ray, X-Ray-Texturepacks oder ähnliche Hilfsmittel sind verboten.</li>
+  <li>Autoklicker, Makros oder AFK-Hilfsmittel sind verboten.</li>
+  <li>Das Duplizieren von Items, Geld oder Blöcken ist verboten.</li>
+  <li>Teaming in Spielmodi ohne Teamfunktion ist verboten.</li>
+  <li>Das Umgehen von Spielmechaniken oder Regelwerken ist untersagt.</li>
+  <li>Rassistische, diskriminierende oder menschenverachtende Inhalte sind strengstens verboten.</li>
+  <li>Das Bauen oder Darstellen extremistischer, politischer oder nationalsozialistischer Inhalte ist verboten.</li>
+</ul>
 </div>
 
-<!-- DISKRIMINIERUNG -->
-<div class="section forbidden">
-  <h2>🚫 Null-Toleranz-Regeln</h2>
-  <ul>
-    <li>❌ Rassistische
+<!-- WARNUNGEN -->
+<div class="section warning">
+<h2>⚠️ Warnungen & Einschränkungen</h2>
+<ul>
+  <li>Bugusing, Exploits oder das absichtliche Ausnutzen von Fehlern ist verboten.</li>
+  <li>Es dürfen nur erlaubte Mods genutzt werden (z. B. OptiFine ohne verbotene Features).</li>
+  <li>Echtgeldhandel, Scamming oder Täuschung anderer Spieler ist untersagt.</li>
+  <li>Werbung für andere Server, Communities oder Dienste ist verboten.</li>
+  <li>AFK-Farmen können bei Missbrauch eingeschränkt oder entfernt werden.</li>
+</ul>
+</div>
+
+<!-- ERWÜNSCHT -->
+<div class="section allowed">
+<h2>✅ Erwünschtes Verhalten</h2>
+<ul>
+  <li>Ein freundlicher, respektvoller Umgang mit anderen Spielern ist ausdrücklich erwünscht.</li>
+  <li>Hilfsbereitschaft gegenüber neuen Spielern wird gerne gesehen.</li>
+  <li>Ein fairer Spielstil trägt zu einer angenehmen Serveratmosphäre bei.</li>
+  <li>Konstruktives Feedback hilft, den Server weiterzuentwickeln.</li>
+  <li>Kreative Bauwerke, Rollenspiel und Community-Projekte sind willkommen.</li>
+  <li>Das Melden von Bugs oder Regelverstößen wird begrüßt.</li>
+</ul>
+</div>
+
+<!-- HINWEISE -->
+<div class="section info">
+<h2>ℹ️ Wichtige Hinweise</h2>
+<ul>
+  <li>Unwissenheit schützt nicht vor Strafen.</li>
+  <li>Das Server-Team behält sich vor, Regeln jederzeit anzupassen.</li>
+  <li>DeathDevil behält sich das Recht vor, die Serverregeln jederzeit zu ändern, anzupassen oder zu erweitern.</li>
+  <li>Spieler sind selbst dafür verantwortlich, sich regelmäßig über aktuelle Regeländerungen zu informieren.</li>
+  <li>Strafen werden situationsabhängig und nach Ermessen des Server-Teams vergeben.</li>
+  <li>Mit dem Betreten des Servers akzeptierst du alle geltenden Regeln.</li>
+</ul>
+</div>
+
+<div class="footer">
+📩 Fragen oder Support?<br>
+Bitte nutze unser <b>Discord-Ticketsystem</b>:<br>
+<a href="https://discord.gg/kGGj5vQmKW" style="color:#2ecc71;text-decoration:none;">
+👉 Zum Discord
+</a>
+</div>
+
+</body>
+</html>
