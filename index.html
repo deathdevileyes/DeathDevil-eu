@@ -87,10 +87,7 @@
       position: relative;
     }
 
-    .nav-server:hover .dropdown,
-    .dropdown:hover {
-      display: flex;
-    }
+    
 
     #market:hover + #market-dropdown,
     #market-dropdown:hover {
@@ -110,7 +107,7 @@
     /* Dropdown */
     .dropdown {
       position: absolute;
-      top: 30px;
+      top: 38px;
       left: 0;
       background: var(--bg-panel);
       border: 1px solid var(--devil-dark-red);
@@ -119,7 +116,36 @@
       flex-direction: column;
       gap: 10px;
       box-shadow: var(--glow-red);
-      z-index: 10;
+      z-index: 100;
+    }
+
+    .dropdown button {
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .dropdown button:hover {
+      color: var(--accent-green);
+    }
+
+    .dropdown.active {
+      display: flex;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .nav-btn:hover {
+      color: var(--accent-green);
     }
 
     .dropdown a {
@@ -130,9 +156,7 @@
       color: var(--devil-red);
     }
 
-    .nav-server:hover .dropdown {
-      display: flex;
-    }
+    
 
     /* Hero */
     .hero {
@@ -225,20 +249,24 @@
   <div class="logo">DeathDevil.Eu</div>
   <nav>
     <div class="nav-server">
-      <a>Server entdecken</a>
-      <div class="dropdown">
-        <a href="#">Regeln</a>
-        <a href="#">Features</a>
-        <a href="#">Kosmetik</a>
-        <a href="#">Währung</a>
-        <a href="#">Ränge</a>
-        <a href="#">CityBuild</a>
+      <button class="nav-btn" data-menu="server">Server entdecken ▾</button>
+      <div class="dropdown" data-dropdown="server">
+        <button>Regeln</button>
+        <button>Features</button>
+        <button>Kosmetik</button>
+        <button>Währung</button>
+        <button>Ränge</button>
+        <button>CityBuild</button>
       </div>
     </div>
-    <a href="#" id="market">Marktplatz</a>
-    <div class="dropdown" id="market-dropdown">
-      <span>🛒 Marktplatz wird geladen…</span>
+
+    <div class="nav-server">
+      <button class="nav-btn" data-menu="market">Marktplatz ▾</button>
+      <div class="dropdown" data-dropdown="market">
+        <span>🛒 Marktplatz wird geladen…</span>
+      </div>
     </div>
+
     <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
     <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
   </nav>
@@ -269,37 +297,28 @@
 </section>
 
 <script>
-  // Fix dropdown interaction
-  const serverNav = document.querySelector('.nav-server');
-  const serverDropdown = serverNav.querySelector('.dropdown');
+  // Modrinth-like click dropdown system
+  const navButtons = document.querySelectorAll('.nav-btn');
+  const dropdowns = document.querySelectorAll('.dropdown');
 
-  serverNav.addEventListener('mouseenter', () => {
-    serverDropdown.style.display = 'flex';
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const key = btn.dataset.menu;
+
+      dropdowns.forEach(d => {
+        if (d.dataset.dropdown === key) {
+          d.classList.toggle('active');
+        } else {
+          d.classList.remove('active');
+        }
+      });
+    });
   });
 
-  serverNav.addEventListener('mouseleave', () => {
-    serverDropdown.style.display = 'none';
+  document.addEventListener('click', () => {
+    dropdowns.forEach(d => d.classList.remove('active'));
   });
-
-  const market = document.getElementById('market');
-  const marketDropdown = document.getElementById('market-dropdown');
-
-  market.addEventListener('mouseenter', () => {
-    marketDropdown.style.display = 'flex';
-  });
-
-  market.addEventListener('mouseleave', () => {
-    marketDropdown.style.display = 'none';
-  });
-
-  marketDropdown.addEventListener('mouseenter', () => {
-    marketDropdown.style.display = 'flex';
-  });
-
-  marketDropdown.addEventListener('mouseleave', () => {
-    marketDropdown.style.display = 'none';
-  });
-
 
   // Falling Minecraft-like blocks animation
   const canvas = document.getElementById('blocks');
