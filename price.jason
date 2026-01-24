@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "name": "Bruchstein", "amount": 32, "price": 3.00, "icon": "🧱" },
+    { "name": "Diamant", "amount": 1, "price": 5.00, "icon": "💎" },
+    { "name": "Netherit-Barren", "amount": 1, "price": 25.00, "icon": "🟪" },
+    { "name": "Eisenbarren", "amount": 16, "price": 4.20, "icon": "⛓️" },
+    { "name": "Goldbarren", "amount": 16, "price": 6.80, "icon": "🟨" }
+  ]
+}
