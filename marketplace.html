@@ -18,8 +18,9 @@
     header {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 20px 40px;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       border-bottom: 1px solid #6e0a16;
     }
 
@@ -28,33 +29,43 @@
       text-decoration: none;
     }
 
+    .alarm {
+      background: rgba(20,20,25,0.85);
+      border: 1px solid #6e0a16;
+      padding: 10px 15px;
+      box-shadow: 0 0 15px rgba(177,18,38,0.6);
+      font-size: 12px;
+      max-width: 220px;
+    }
+
     h1 {
       text-align: center;
       margin: 40px 0 10px;
       color: #2ecc71;
     }
 
-    p {
+    .hint {
       text-align: center;
       color: #a0a0a0;
       margin-bottom: 40px;
+      font-size: 14px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
       gap: 25px;
-      max-width: 1100px;
-      margin: auto;
       padding: 0 40px 80px;
+      max-width: 1200px;
+      margin: auto;
     }
 
     .item {
       background: rgba(20,20,25,0.85);
       border: 1px solid #6e0a16;
-      padding: 20px;
+      padding: 18px;
       text-align: center;
-      box-shadow: 0 0 20px rgba(177,18,38,0.6);
+      box-shadow: 0 0 15px rgba(177,18,38,0.6);
     }
 
     .item span {
@@ -66,18 +77,48 @@
 <body>
 
 <header>
-  <a href="index.html">⬅ Zurück zur Startseite</a>
-  <div>🛒 Marktplatz</div>
+  <div class="alarm" id="alarmLeft">⏳ Preisalarm lädt…</div>
+  <a href="index.html">⬅ Startseite</a>
+  <div class="alarm" id="alarmRight">⏳ Preisalarm lädt…</div>
 </header>
 
-<h1>Offizieller Server-Marktplatz</h1>
-<p>Richtwerte für den Handel auf DeathDevil.Eu</p>
-
-<div class="grid">
-  <div class="item">🧱<span>32× Bruchstein</span><b>3 €</b></div>
-  <div class="item">⛏️<span>1× Diamant</span><b>5 €</b></div>
-  <div class="item">🔥<span>16× Kohle</span><b>2 €</b></div>
+<h1>🛒 Server-Marktplatz</h1>
+<div class="hint">
+ℹ️ Die Preise werden <b>automatisch einmal täglich</b> angepasst.<br>
+Preisalarm zeigt besonders günstige Items des Tages.
 </div>
+
+<div class="grid" id="market"></div>
+
+<script>
+fetch("prices.json")
+  .then(r => r.json())
+  .then(data => {
+    const market = document.getElementById("market");
+
+    data.items.forEach(i => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
+        ${i.icon}
+        <span>${i.amount}× ${i.name}</span>
+        <b>${i.price.toFixed(2)} €</b>
+      `;
+      market.appendChild(div);
+    });
+
+    // Preisalarm (2 beste Deals)
+    const best = [...data.items]
+      .sort((a,b) => a.price - b.price)
+      .slice(0,2);
+
+    document.getElementById("alarmLeft").innerHTML =
+      `🔥 ${best[0].name}<br>${best[0].price.toFixed(2)} €`;
+
+    document.getElementById("alarmRight").innerHTML =
+      `💎 ${best[1].name}<br>${best[1].price.toFixed(2)} €`;
+  });
+</script>
 
 </body>
 </html>
