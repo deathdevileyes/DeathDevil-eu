@@ -10,21 +10,21 @@
   <style>
     :root {
       --bg-dark: #0b0d10;
-      --bg-panel: rgba(20, 20, 25, 0.85);
-      --devil-red: #b11226;
-      --devil-dark-red: #6e0a16;
-      --accent-green: #2ecc71;
-      --text-main: #eaeaea;
-      --text-muted: #a0a0a0;
-      --glow-red: 0 0 20px rgba(177,18,38,0.6);
+      --panel: rgba(20,20,25,0.85);
+      --red: #b11226;
+      --red-dark: #6e0a16;
+      --green: #2ecc71;
+      --text: #eaeaea;
+      --muted: #a0a0a0;
+      --glow: 0 0 25px rgba(177,18,38,0.7);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Minecraft', monospace;
       background: var(--bg-dark);
-      color: var(--text-main);
+      color: var(--text);
       overflow-x: hidden;
     }
 
@@ -33,7 +33,7 @@
       position: fixed;
       inset: 0;
       background: url('background.png') center/cover no-repeat;
-      filter: brightness(0.4);
+      filter: brightness(0.35);
       z-index: -2;
     }
 
@@ -44,107 +44,135 @@
       pointer-events: none;
     }
 
+    /* HEADER */
     header {
       display: flex;
       align-items: center;
-      padding: 20px 40px;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
+      padding: 22px 48px;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(10px);
     }
 
     .logo {
-      color: var(--devil-red);
-      text-shadow: var(--glow-red);
-      margin-right: 40px;
-      font-size: 22px;
+      font-size: 24px;
+      color: var(--red);
+      text-shadow: var(--glow);
+      margin-right: 50px;
     }
 
     nav {
       display: flex;
-      gap: 30px;
+      gap: 34px;
     }
 
     nav a {
-      color: var(--text-main);
+      color: var(--text);
       text-decoration: none;
+      position: relative;
     }
 
-    nav a:hover { color: var(--accent-green); }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: var(--green);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after { width: 100%; }
+    nav a:hover { color: var(--green); }
 
     .status {
       margin-left: auto;
-      color: var(--accent-green);
+      color: var(--green);
       font-size: 14px;
     }
 
+    /* HERO */
     .hero {
-      min-height: 80vh;
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      animation: fadeIn 1.2s ease;
     }
 
     .hero h1 {
-      font-size: 64px;
-      color: var(--devil-red);
-      text-shadow: 0 0 25px rgba(177,18,38,0.9);
-      animation: pulse 3s infinite;
+      font-size: 70px;
+      color: var(--red);
+      text-shadow: var(--glow);
     }
 
     .hero p {
-      margin-top: 20px;
-      color: var(--text-muted);
-      max-width: 600px;
+      margin-top: 18px;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 16px;
     }
 
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
+    /* INFO BOXES */
     .info-boxes {
       display: flex;
       justify-content: center;
       gap: 30px;
-      margin-bottom: 60px;
+      margin-bottom: 80px;
     }
 
     .info {
-      background: var(--bg-panel);
-      border: 1px solid var(--devil-dark-red);
-      padding: 25px;
-      box-shadow: var(--glow-red);
+      background: var(--panel);
+      border: 1px solid var(--red-dark);
+      padding: 28px 34px;
+      box-shadow: var(--glow);
       text-align: center;
-      min-width: 260px;
+      min-width: 280px;
+      transition: 0.25s;
     }
 
+    .info:hover {
+      transform: translateY(-6px);
+    }
+
+    /* FEATURES */
     .features {
       background: rgba(0,0,0,0.75);
-      padding: 80px 40px;
+      padding: 90px 40px;
     }
 
     .features h2 {
       text-align: center;
-      color: var(--accent-green);
-      margin-bottom: 40px;
+      color: var(--green);
+      margin-bottom: 50px;
     }
 
-    .feature-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 32px;
       max-width: 1000px;
       margin: auto;
     }
 
     .feature {
-      background: var(--bg-panel);
-      border: 1px solid var(--devil-dark-red);
-      padding: 25px;
+      background: var(--panel);
+      border: 1px solid var(--red-dark);
+      padding: 30px;
       text-align: center;
-      box-shadow: var(--glow-red);
+      box-shadow: var(--glow);
+      transition: 0.25s;
+    }
+
+    .feature:hover {
+      transform: translateY(-8px) scale(1.02);
     }
   </style>
 </head>
@@ -160,12 +188,12 @@
     <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
     <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
   </nav>
-  <div class="status">Server Status: Online</div>
+  <div class="status">🟢 Server Online</div>
 </header>
 
 <section class="hero">
   <h1>DeathDevil.Eu</h1>
-  <p>Deutscher CityBuild Server mit PvP-Minigames und Ingame-Währung</p>
+  <p>Deutscher CityBuild Server mit PvP-Minigames, Events und eigener Ingame-Währung</p>
 </section>
 
 <section class="info-boxes">
@@ -175,7 +203,7 @@
 
 <section class="features">
   <h2>Was unser Server bietet</h2>
-  <div class="feature-grid">
+  <div class="grid">
     <div class="feature">🧱 PlotSquared</div>
     <div class="feature">☁️ SkyBlock</div>
     <div class="feature">🛏️ BedWars</div>
@@ -191,17 +219,17 @@
   const ctx = canvas.getContext("2d");
 
   function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
   }
-  window.addEventListener("resize", resize);
+  addEventListener("resize", resize);
   resize();
 
-  const blocks = Array.from({length:60}, () => ({
-    x: Math.random()*canvas.width,
-    y: Math.random()*canvas.height,
-    s: 8+Math.random()*12,
-    v: 0.3+Math.random()
+  const blocks = Array.from({length:60},()=>({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    s:8+Math.random()*12,
+    v:0.3+Math.random()
   }));
 
   function animate(){
