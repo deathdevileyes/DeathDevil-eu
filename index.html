@@ -298,7 +298,7 @@
 </section>
 
 <script>
-  // Modrinth-like click dropdown system
+  // ===== MODRINTH-LIKE NAVIGATION (FIXED) =====
   const navButtons = document.querySelectorAll('.nav-btn');
   const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -321,12 +321,7 @@
     dropdowns.forEach(d => d.classList.remove('active'));
   });
 
-  function openMarket() {
-    window.location.href = '#marktplatz';
-  }
-  });
-
-  // Falling Minecraft-like blocks animation
+  // ===== FALLING BLOCKS ANIMATION (RESTORED) =====
   const canvas = document.getElementById('blocks');
   const ctx = canvas.getContext('2d');
   let w, h;
