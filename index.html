@@ -299,7 +299,7 @@
     <div class="nav-server">
       <button class="nav-btn" data-menu="market">Marktplatz ▾</button>
       <div class="dropdown" data-dropdown="market">
-        <button onclick="openMarket()">🛒 Zum Marktplatz</button>
+        <button class="market-link">🛒 Zum Marktplatz</button>
       </div>
     </div>
     </div>
@@ -345,7 +345,7 @@
 </section>
 
 <script>
-  // ===== MODRINTH-LIKE NAVIGATION (FIXED) =====
+  // ===== MODRINTH-LIKE NAVIGATION (STABLE) =====
   const navButtons = document.querySelectorAll('.nav-btn');
   const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -368,7 +368,19 @@
     dropdowns.forEach(d => d.classList.remove('active'));
   });
 
-  // ===== FALLING BLOCKS ANIMATION (RESTORED) =====
+  // ===== MARKTPLATZ NAVIGATION (FIX) =====
+  const marketBtn = document.querySelector('.market-link');
+  const marketSection = document.querySelector('.market');
+
+  if (marketBtn && marketSection) {
+    marketBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdowns.forEach(d => d.classList.remove('active'));
+      marketSection.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // ===== FALLING BLOCKS ANIMATION =====
   const canvas = document.getElementById('blocks');
   const ctx = canvas.getContext('2d');
   let w, h;
@@ -409,3 +421,4 @@
 
 </body>
 </html>
+
