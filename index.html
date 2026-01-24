@@ -19,7 +19,7 @@
       --glow: 0 0 25px rgba(177,18,38,0.7);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Minecraft', monospace;
@@ -68,21 +68,9 @@
     nav a {
       color: var(--text);
       text-decoration: none;
-      position: relative;
+      cursor: pointer;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 2px;
-      background: var(--green);
-      transition: 0.3s;
-    }
-
-    nav a:hover::after { width: 100%; }
     nav a:hover { color: var(--green); }
 
     .status {
@@ -125,7 +113,7 @@
       display: flex;
       justify-content: center;
       gap: 30px;
-      margin-bottom: 80px;
+      margin-bottom: 60px;
     }
 
     .info {
@@ -138,8 +126,18 @@
       transition: 0.25s;
     }
 
-    .info:hover {
-      transform: translateY(-6px);
+    .info:hover { transform: translateY(-6px); }
+
+    /* SERVER INFO */
+    .server-info {
+      max-width: 900px;
+      margin: 0 auto 80px;
+      background: var(--panel);
+      border: 1px solid var(--red-dark);
+      padding: 30px;
+      box-shadow: var(--glow);
+      text-align: center;
+      color: var(--muted);
     }
 
     /* FEATURES */
@@ -174,6 +172,38 @@
     .feature:hover {
       transform: translateY(-8px) scale(1.02);
     }
+
+    /* MODAL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+
+    .modal-box {
+      background: var(--panel);
+      border: 1px solid var(--red-dark);
+      padding: 30px 40px;
+      box-shadow: var(--glow);
+      text-align: center;
+    }
+
+    .modal-box h3 {
+      margin-bottom: 20px;
+      color: var(--green);
+    }
+
+    .modal-box ul {
+      list-style: none;
+    }
+
+    .modal-box li {
+      margin: 10px 0;
+    }
   </style>
 </head>
 <body>
@@ -183,13 +213,28 @@
 <header>
   <div class="logo">DeathDevil.Eu</div>
   <nav>
-    <a href="#">Server entdecken</a>
+    <a id="openDiscover">Server entdecken</a>
     <a href="marketplace.html">Marktplatz</a>
     <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
     <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
   </nav>
   <div class="status">🟢 Server Online</div>
 </header>
+
+<!-- SERVER ENTDECKEN MODAL -->
+<div class="modal" id="discoverModal">
+  <div class="modal-box">
+    <h3>🔎 Server entdecken</h3>
+    <ul>
+      <li>📜 Regeln</li>
+      <li>✨ Features</li>
+      <li>🎭 Kosmetik</li>
+      <li>💰 Währung</li>
+      <li>👑 Ränge</li>
+      <li>🏙️ CityBuild</li>
+    </ul>
+  </div>
+</div>
 
 <section class="hero">
   <h1>DeathDevil.Eu</h1>
@@ -199,6 +244,11 @@
 <section class="info-boxes">
   <div class="info">🎁 <b>Wöchentliche Item-Verlosung</b><br>Jeden Samstag auf Discord</div>
   <div class="info">⚔️ <b>Nächstes Serverevent</b><br>Wird bald angekündigt</div>
+</section>
+
+<section class="server-info">
+  🧑‍💻 Dieser Server wurde vollständig von <b>DeathDevil</b> erstellt und entwickelt.<br><br>
+  ❓ Bei Fragen oder Problemen melde dich bitte über <b>Discord</b> mithilfe des <b>Ticketsystems</b>.
 </section>
 
 <section class="features">
@@ -215,6 +265,7 @@
 </section>
 
 <script>
+  /* FALLING BLOCKS */
   const canvas = document.getElementById("blocks");
   const ctx = canvas.getContext("2d");
 
@@ -246,6 +297,19 @@
     requestAnimationFrame(animate);
   }
   animate();
+
+  /* MODAL LOGIC */
+  const openDiscover = document.getElementById("openDiscover");
+  const modal = document.getElementById("discoverModal");
+
+  openDiscover.onclick = e => {
+    e.preventDefault();
+    modal.style.display = "flex";
+  };
+
+  modal.onclick = e => {
+    if (e.target === modal) modal.style.display = "none";
+  };
 </script>
 
 </body>
