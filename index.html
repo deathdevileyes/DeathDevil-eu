@@ -73,11 +73,12 @@ nav a:hover{color:var(--green)}
   font-size:14px;
 }
 
-/* LEFT BOARD */
+/* SCHWARZES BRETT */
 .news-board{
   position:fixed;
-  top:120px;
   left:20px;
+  top:50%;
+  transform:translateY(-50%);
   width:260px;
   background:#000;
   border:1px solid var(--red-dark);
@@ -95,7 +96,6 @@ nav a:hover{color:var(--green)}
 
 .news-board ul{
   list-style:none;
-  padding:0;
   color:var(--muted);
   font-size:14px;
 }
@@ -246,7 +246,7 @@ nav a:hover{color:var(--green)}
 
 <body>
 
-<!-- NEWS BOARD -->
+<!-- SCHWARZES BRETT -->
 <div class="news-board">
   <h3>📰 Was gibt es Neues</h3>
   <ul>
@@ -274,6 +274,9 @@ nav a:hover{color:var(--green)}
     <a href="features.html">✨ Features</a>
     <a href="cosmetics.html">🎭 Kosmetik</a>
     <a href="ranks.html">👑 Ränge</a>
+    <a href="marketplace.html">🛒 Marktplatz</a>
+    <a>💰 Währung</a>
+    <a>🏙️ CityBuild</a>
   </div>
 </div>
 
@@ -312,7 +315,7 @@ nav a:hover{color:var(--green)}
 </section>
 
 <script>
-/* COPY IP */
+/* JOIN IP KOPIEREN */
 function copyIP(){
   navigator.clipboard.writeText("DeathDevil.Eu");
   alert("IP kopiert: DeathDevil.Eu");
