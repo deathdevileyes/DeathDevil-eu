@@ -50,7 +50,7 @@ h1 {
   line-height: 1.7;
 }
 
-/* LAYOUT */
+/* SECTION */
 .section {
   max-width: 1200px;
   margin: 0 auto 80px;
@@ -80,12 +80,55 @@ h1 {
   image-rendering: pixelated;
 }
 
-/* PARTICLE OVERLAY */
+/* PARTICLE */
 .particle {
   position: absolute;
-  top: -35px;
+  top: -45px;
   font-size: 28px;
+  pointer-events: none;
   display: none;
+}
+
+/* ANIMATION CLASSES */
+.rain   { animation: rain 1.2s linear infinite; }
+.fire   { animation: fire 1s ease-in-out infinite; }
+.magic  { animation: magic 1.8s ease-in-out infinite; }
+.hearts { animation: hearts 1.6s ease-in-out infinite; }
+.snow   { animation: snow 2.2s linear infinite; }
+.dark   { animation: dark 1.5s ease-in-out infinite; }
+
+/* KEYFRAMES */
+@keyframes rain {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(35px); opacity: 0; }
+}
+
+@keyframes fire {
+  from { transform: translateY(10px) scale(1); opacity: 0.6; }
+  to   { transform: translateY(-10px) scale(1.2); opacity: 1; }
+}
+
+@keyframes magic {
+  0% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(-8px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.6; }
+}
+
+@keyframes hearts {
+  0% { transform: translateY(10px); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(-20px); opacity: 0; }
+}
+
+@keyframes snow {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(25px); opacity: 0.7; }
+}
+
+@keyframes dark {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
 }
 
 /* BUTTONS */
@@ -154,8 +197,7 @@ h1 {
 <h1>✨ Kosmetik</h1>
 
 <div class="intro">
-Kosmetik sind <b>rein visuelle Extras</b>, die deinem Charakter einen einzigartigen Look verleihen.<br>
-Sie bieten <b>keinen spielerischen Vorteil</b>.<br><br>
+Kosmetik sind <b>rein visuelle Extras</b> ohne spielerischen Vorteil.<br><br>
 Mit den Rängen <b>Premium</b>, <b>Ultra</b> und <b>King</b> erhältst du Zugriff auf <b>mehr Kosmetik</b>.<br>
 Alle Ränge sind <b>mit Ingame-Geld</b> erhältlich.
 </div>
@@ -176,40 +218,39 @@ Wähle einen Partikel Effekt aus, um zu sehen wie er über deinem Charakter auss
       </p>
 
       <div class="buttons">
-        <button onclick="setParticle('🌧️')">Rain Cloud</button>
-        <button onclick="setParticle('🔥')">Fire Aura</button>
-        <button onclick="setParticle('✨')">Magic</button>
-        <button onclick="setParticle('❤️')">Hearts</button>
-        <button onclick="setParticle('❄️')">Snow</button>
-        <button onclick="setParticle('☠️')">Dark Aura</button>
+        <button onclick="setParticle('🌧️','rain')">Rain Cloud</button>
+        <button onclick="setParticle('🔥','fire')">Fire Aura</button>
+        <button onclick="setParticle('✨','magic')">Magic</button>
+        <button onclick="setParticle('❤️','hearts')">Hearts</button>
+        <button onclick="setParticle('❄️','snow')">Snow</button>
+        <button onclick="setParticle('☠️','dark')">Dark Aura</button>
       </div>
     </div>
   </div>
 
   <!-- CATEGORIES -->
   <div class="categories">
-
-    <div class="cat"><h2>🐾 Pets</h2><p>Begleiter, die dir folgen und deinen Charakter lebendiger machen.</p></div>
-    <div class="cat"><h2>🧨 Gadgets</h2><p>Spielzeuge und kleine Effekte für Spaß und Interaktion.</p></div>
-    <div class="cat"><h2>💫 Partikel Effekte</h2><p>Visuelle Effekte um deinen Spieler, sichtbar für alle.</p></div>
-    <div class="cat"><h2>🐎 Mounts</h2><p>Reittiere, mit denen du stilvoll unterwegs bist.</p></div>
-    <div class="cat"><h2>🎩 Hats</h2><p>Kopfbedeckungen für einen einzigartigen Look.</p></div>
-    <div class="cat"><h2>🛡️ Suits</h2><p>Komplette Outfits, die deinen Charakter verändern.</p></div>
-    <div class="cat"><h2>🕺 Emotes</h2><p>Animationen und Gesten zur Kommunikation.</p></div>
-    <div class="cat"><h2>🏹 Projectile Effects</h2><p>Effekte für Pfeile und geworfene Objekte.</p></div>
-    <div class="cat"><h2>💀 Death Effects</h2><p>Spezielle Effekte beim Tod deines Charakters.</p></div>
-
+    <div class="cat"><h2>🐾 Pets</h2><p>Begleiter, die dir folgen.</p></div>
+    <div class="cat"><h2>🧨 Gadgets</h2><p>Spielzeuge und Effekte.</p></div>
+    <div class="cat"><h2>💫 Partikel Effects</h2><p>Visuelle Effekte um deinen Spieler.</p></div>
+    <div class="cat"><h2>🐎 Mounts</h2><p>Reittiere zur Fortbewegung.</p></div>
+    <div class="cat"><h2>🎩 Hats</h2><p>Kopfbedeckungen.</p></div>
+    <div class="cat"><h2>🛡️ Suits</h2><p>Komplette Outfits.</p></div>
+    <div class="cat"><h2>🕺 Emotes</h2><p>Animationen und Gesten.</p></div>
+    <div class="cat"><h2>🏹 Projectile Effects</h2><p>Effekte bei Pfeilen & Würfen.</p></div>
+    <div class="cat"><h2>💀 Death Effects</h2><p>Effekte beim Tod.</p></div>
   </div>
 
   <div class="rank">
-    👑 Höhere Ränge schalten zusätzliche Kosmetik-Kategorien und Effekte frei.
+    👑 Höhere Ränge schalten zusätzliche Kosmetik frei.
   </div>
 
 </div>
 
 <script>
-function setParticle(icon) {
+function setParticle(icon, type) {
   const p = document.getElementById("particle");
+  p.className = "particle " + type;
   p.textContent = icon;
   p.style.display = "block";
 }
