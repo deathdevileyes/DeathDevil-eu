@@ -11,221 +11,168 @@
 
 <style>
 :root {
-  --bg-dark: #0b0d10;
-  --panel: rgba(20,20,25,0.85);
-  --red: #b11226;
-  --red-dark: #6e0a16;
-  --green: #2ecc71;
-  --text: #eaeaea;
-  --muted: #a0a0a0;
-  --glow: 0 0 25px rgba(177,18,38,0.7);
+  --bg-dark:#0b0d10;
+  --panel:rgba(20,20,25,0.85);
+  --red:#b11226;
+  --red-dark:#6e0a16;
+  --green:#2ecc71;
+  --text:#eaeaea;
+  --muted:#a0a0a0;
+  --glow:0 0 30px rgba(177,18,38,0.8);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: var(--bg-dark);
-  color: var(--text);
-  overflow-x: hidden;
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg-dark);
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url('background.png') center/cover no-repeat;
-  filter: brightness(0.35);
-  z-index: -2;
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('background.png') center/cover no-repeat;
+  filter:brightness(0.35);
+  z-index:-2;
 }
 
-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
 }
 
 /* HEADER */
-header {
-  display: flex;
-  align-items: center;
-  padding: 22px 48px;
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(10px);
+header{
+  display:flex;
+  align-items:center;
+  padding:22px 48px;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(10px);
 }
 
-.logo {
-  font-family: 'Minecraft', monospace;
-  font-size: 24px;
-  color: var(--red);
-  text-shadow: var(--glow);
-  margin-right: 50px;
+.logo{
+  font-family:'Minecraft',monospace;
+  font-size:24px;
+  color:var(--red);
+  text-shadow:var(--glow);
+  margin-right:50px;
 }
 
-nav {
-  display: flex;
-  gap: 34px;
+nav{display:flex;gap:34px;}
+nav a{
+  font-family:'Minecraft',monospace;
+  color:var(--text);
+  text-decoration:none;
 }
+nav a:hover{color:var(--green);}
 
-nav a {
-  font-family: 'Minecraft', monospace;
-  color: var(--text);
-  text-decoration: none;
-  cursor: pointer;
-}
-
-nav a:hover { color: var(--green); }
-
-.status {
-  margin-left: auto;
-  color: var(--green);
-  font-size: 14px;
+.status{
+  margin-left:auto;
+  color:var(--green);
+  font-size:14px;
 }
 
 /* HERO */
-.hero {
-  min-height: 85vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  animation: fadeIn 1.2s ease;
+.hero{
+  min-height:70vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  padding-top:110px;
+  text-align:center;
 }
 
-.hero h1 {
-  font-family: 'Minecraft', monospace;
-  font-size: 70px;
-  color: var(--red);
-  text-shadow: var(--glow);
+.hero h1{
+  font-family:'Minecraft',monospace;
+  font-size:72px;
+  color:var(--red);
+  text-shadow:var(--glow);
+  animation:devilPulse 3s ease-in-out infinite;
 }
 
-.hero p {
-  margin-top: 18px;
-  max-width: 650px;
-  color: var(--muted);
-  font-size: 16px;
+@keyframes devilPulse{
+  0%{text-shadow:0 0 20px rgba(177,18,38,0.5);}
+  50%{text-shadow:0 0 40px rgba(255,50,50,1);}
+  100%{text-shadow:0 0 20px rgba(177,18,38,0.5);}
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.hero p{
+  margin-top:26px;
+  max-width:720px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.8;
 }
 
 /* INFO BOXES */
-.info-boxes {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 60px;
+.info-boxes{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin-top:60px;
 }
 
-.info {
-  background: var(--panel);
-  border: 1px solid var(--red-dark);
-  padding: 28px 34px;
-  box-shadow: var(--glow);
-  text-align: center;
-  min-width: 280px;
-  transition: 0.25s;
+.info{
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  padding:26px 34px;
+  box-shadow:var(--glow);
+  text-align:center;
+  min-width:300px;
+  transition:0.3s;
 }
-
-.info:hover { transform: translateY(-6px); }
-
-/* SERVER INFO */
-.server-info {
-  max-width: 900px;
-  margin: 0 auto 80px;
-  background: var(--panel);
-  border: 1px solid var(--red-dark);
-  padding: 30px;
-  box-shadow: var(--glow);
-  text-align: center;
-  color: var(--muted);
-}
+.info:hover{transform:translateY(-6px);}
 
 /* FEATURES */
-.features {
-  background: rgba(0,0,0,0.75);
-  padding: 90px 40px;
+.features{
+  background:rgba(0,0,0,0.75);
+  padding:90px 40px;
+  margin-top:90px;
 }
 
-.features h2 {
-  font-family: 'Minecraft', monospace;
-  text-align: center;
-  color: var(--green);
-  margin-bottom: 50px;
+.features h2{
+  font-family:'Minecraft',monospace;
+  text-align:center;
+  color:var(--green);
+  margin-bottom:50px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 32px;
-  max-width: 1000px;
-  margin: auto;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:32px;
+  max-width:1100px;
+  margin:auto;
 }
 
-.feature {
-  background: var(--panel);
-  border: 1px solid var(--red-dark);
-  padding: 30px;
-  text-align: center;
-  box-shadow: var(--glow);
-  transition: 0.25s;
+.feature{
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  padding:30px;
+  text-align:center;
+  box-shadow:var(--glow);
+  transition:0.3s;
+}
+.feature:hover{
+  transform:translateY(-8px) scale(1.03);
 }
 
-.feature:hover {
-  transform: translateY(-8px) scale(1.02);
-}
-
-/* MODAL */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 50;
-}
-
-.modal-box {
-  background: var(--panel);
-  border: 1px solid var(--red-dark);
-  padding: 26px 36px;
-  box-shadow: var(--glow);
-  text-align: center;
-}
-
-.modal-box h3 {
-  font-family: 'Minecraft', monospace;
-  margin-bottom: 16px;
-  color: var(--green);
-}
-
-.modal-box ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.modal-box li {
-  margin: 0;
-}
-
-/* 🔧 HIER IST DER LÜCKEN-FIX */
-.modal-box a {
-  display: block;
-  padding: 6px 0;        /* vorher zu groß */
-  line-height: 1.4;     /* fix */
-  font-family: 'Inter', sans-serif;
-  color: var(--text);
-  text-decoration: none;
-}
-
-.modal-box a:hover {
-  color: var(--green);
+/* SERVER INFO */
+.server-info{
+  max-width:900px;
+  margin:90px auto;
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  padding:34px;
+  box-shadow:var(--glow);
+  text-align:center;
+  color:var(--muted);
 }
 </style>
 </head>
@@ -245,64 +192,72 @@ nav a:hover { color: var(--green); }
   <div class="status">🟢 Server Online</div>
 </header>
 
-<!-- SERVER ENTDECKEN MODAL -->
-<div class="modal" id="discoverModal">
-  <div class="modal-box">
-    <h3>🔎 Server entdecken</h3>
-    <ul>
-      <li><a href="rules.html">📜 Regeln</a></li>
-      <li><a href="features.html">✨ Features</a></li>
-      <li><a href="cosmetics.html">🎭 Kosmetik</a></li>
-      <li><a>💰 Währung</a></li>
-      <li><a href="ranks.html">👑 Ränge</a></li>
-      <li><a>🏙️ CityBuild</a></li>
-    </ul>
-  </div>
-</div>
-
 <section class="hero">
   <h1>DeathDevil.Eu</h1>
-  <p>Deutscher CityBuild Server mit PvP-Minigames, Events und eigener Ingame-Währung</p>
-</section>
 
-<section class="info-boxes">
-  <div class="info">🎁 <b>Wöchentliche Item-Verlosung</b><br>Jeden Samstag auf Discord</div>
-  <div class="info">⚔️ <b>Nächstes Serverevent</b><br>Wird bald angekündigt</div>
-</section>
+  <p>
+    Deutscher CityBuild Server mit<br><br>
+    <b>Events • PvP • Wirtschaft • Kosmetik • Community</b>
+  </p>
 
-<section class="server-info">
-  🧑‍💻 Dieser Server wurde vollständig von <b>DeathDevil</b> erstellt und entwickelt.<br><br>
-  ❓ Bei Fragen oder Problemen melde dich bitte über <b>Discord</b> mithilfe des <b>Ticketsystems</b>.
+  <div class="info-boxes">
+    <div class="info">🎁 <b>Wöchentliche Verlosung</b><br>Jeden Samstag auf Discord</div>
+    <div class="info">⚔️ <b>Nächstes Event</b><br>In Kürze verfügbar</div>
+  </div>
 </section>
 
 <section class="features">
-  <h2>Was unser Server bietet</h2>
-  <div class="grid">
-    <div class="feature">🧱 PlotSquared</div>
-    <div class="feature">☁️ SkyBlock</div>
-    <div class="feature">🛏️ BedWars</div>
-    <div class="feature">⚔️ MobArena</div>
-    <div class="feature">🔥 PvP</div>
-    <div class="feature">🗳️ VoteSystem</div>
-    <div class="feature">💰 CoinSystem</div>
-  </div>
+<h2>Was unser Server bietet</h2>
+<div class="grid">
+  <div class="feature">🧱 PlotSquared</div>
+  <div class="feature">💼 Jobs</div>
+  <div class="feature">🎭 Kosmetik</div>
+  <div class="feature">🏦 Banksystem</div>
+  <div class="feature">🛒 Auktionshaus</div>
+  <div class="feature">🔁 Tradesystem</div>
+  <div class="feature">🧟 Villager Defense</div>
+  <div class="feature">🔥 PvP & Events</div>
+</div>
+</section>
+
+<section class="server-info">
+🧑‍💻 Dieser Server wurde vollständig von <b>DeathDevil</b> erstellt und entwickelt.<br><br>
+❓ Bei Fragen oder Problemen melde dich bitte über <b>Discord</b> mithilfe des <b>Ticketsystems</b>.
 </section>
 
 <script>
-const openDiscover = document.getElementById("openDiscover");
-const modal = document.getElementById("discoverModal");
+const canvas=document.getElementById("blocks");
+const ctx=canvas.getContext("2d");
 
-openDiscover.onclick = e => {
-  e.preventDefault();
-  modal.style.display = "flex";
-};
+function resize(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+}
+addEventListener("resize",resize);
+resize();
 
-modal.onclick = e => {
-  if (e.target === modal) modal.style.display = "none";
-};
+const blocks=Array.from({length:60},()=>({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  s:8+Math.random()*12,
+  v:0.4+Math.random()
+}));
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="rgba(177,18,38,0.7)";
+  blocks.forEach(b=>{
+    ctx.fillRect(b.x,b.y,b.s,b.s);
+    b.y+=b.v;
+    if(b.y>canvas.height){
+      b.y=-b.s;
+      b.x=Math.random()*canvas.width;
+    }
+  });
+  requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
 </html>
-
-
