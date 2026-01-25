@@ -44,36 +44,35 @@ h1 {
 .intro {
   text-align: center;
   max-width: 900px;
-  margin: 0 auto 50px;
+  margin: 0 auto 40px;
   color: #a0a0a0;
   font-size: 14px;
   line-height: 1.7;
 }
 
-/* SECTION */
+/* LAYOUT */
 .section {
   max-width: 1200px;
   margin: 0 auto 80px;
   padding: 0 40px;
 }
 
-/* COSMETIC CARD */
-.card {
+/* PREVIEW CARD */
+.preview {
   background: rgba(20,20,25,0.85);
   border: 1px solid #6e0a16;
   box-shadow: 0 0 15px rgba(177,18,38,0.6);
   padding: 30px;
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 30px;
-  margin-bottom: 40px;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
 }
 
 /* STEVE */
 .steve {
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .steve img {
@@ -81,34 +80,66 @@ h1 {
   image-rendering: pixelated;
 }
 
-/* COSMETICS */
-.cosmetics h2 {
+/* PARTICLE OVERLAY */
+.particle {
+  position: absolute;
+  top: -35px;
+  font-size: 28px;
+  display: none;
+}
+
+/* BUTTONS */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.buttons button {
+  background: rgba(30,30,35,0.9);
+  border: 1px solid #6e0a16;
+  color: #eaeaea;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.buttons button:hover {
+  color: #2ecc71;
+}
+
+/* CATEGORIES */
+.categories {
+  margin-top: 60px;
+}
+
+.cat {
+  background: rgba(20,20,25,0.85);
+  border: 1px solid #6e0a16;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 0 12px rgba(177,18,38,0.5);
+}
+
+.cat h2 {
   font-family: 'Minecraft', monospace;
   color: #e74c3c;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
-.list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.list li {
-  margin: 10px 0;
-  color: #e0e0e0;
+.cat p {
+  color: #b0b0b0;
   font-size: 14px;
+  line-height: 1.6;
 }
 
+/* RANK INFO */
 .rank {
-  margin-top: 20px;
-  font-size: 13px;
+  text-align: center;
+  margin-top: 40px;
   color: #a0a0a0;
-}
-
-.rank span {
-  color: #f1c40f;
-  font-weight: 600;
+  font-size: 14px;
 }
 </style>
 </head>
@@ -123,40 +154,66 @@ h1 {
 <h1>✨ Kosmetik</h1>
 
 <div class="intro">
-<b>Kosmetik</b> sind rein visuelle Extras, die dein Spielerlebnis verschönern –  
-sie bieten <b>keinen spielerischen Vorteil</b>.<br><br>
-
-Mit den Rängen <b>Premium</b>, <b>Ultra</b> und <b>King</b> schaltest du weitere Kosmetik frei.<br>
-Alle Ränge können <b>mit Ingame-Geld</b> erworben werden – kein Echtgeld nötig.
+Kosmetik sind <b>rein visuelle Extras</b>, die deinem Charakter einen einzigartigen Look verleihen.<br>
+Sie bieten <b>keinen spielerischen Vorteil</b>.<br><br>
+Mit den Rängen <b>Premium</b>, <b>Ultra</b> und <b>King</b> erhältst du Zugriff auf <b>mehr Kosmetik</b>.<br>
+Alle Ränge sind <b>mit Ingame-Geld</b> erhältlich.
 </div>
 
 <div class="section">
 
-  <!-- CARD 1 -->
-  <div class="card">
+  <!-- PREVIEW -->
+  <div class="preview">
     <div class="steve">
-      <!-- Steve Skin -->
+      <div class="particle" id="particle">🌧️</div>
       <img src="https://mineskin.eu/armor/body/Steve/160.png" alt="Steve">
     </div>
 
-    <div class="cosmetics">
-      <h2>🎨 Beispiel-Kosmetik</h2>
-      <ul class="list">
-        <li>👒 Kopf-Kosmetik (Hüte, Helme, Masken)</li>
-        <li>🪽 Ruecken-Kosmetik (Fluegel, Umhaenge)</li>
-        <li>💫 Partikel-Effekte (Herzen, Feuer, Magie)</li>
-        <li>🐾 Haustiere (laufend oder schwebend)</li>
-        <li>⚔️ Gadgets (Spielzeuge & Effekte)</li>
-        <li>🎵 Emotes & Animationen</li>
-      </ul>
+    <div>
+      <h2 style="font-family:'Minecraft';color:#e74c3c;">🎆 Partikel Vorschau</h2>
+      <p style="color:#b0b0b0;font-size:14px;">
+Wähle einen Partikel Effekt aus, um zu sehen wie er über deinem Charakter aussieht.
+      </p>
 
-      <div class="rank">
-        Verfuegbar ab Rang: <span>Premium / Ultra / King</span>
+      <div class="buttons">
+        <button onclick="setParticle('🌧️')">Rain Cloud</button>
+        <button onclick="setParticle('🔥')">Fire Aura</button>
+        <button onclick="setParticle('✨')">Magic</button>
+        <button onclick="setParticle('❤️')">Hearts</button>
+        <button onclick="setParticle('❄️')">Snow</button>
+        <button onclick="setParticle('☠️')">Dark Aura</button>
       </div>
     </div>
   </div>
 
+  <!-- CATEGORIES -->
+  <div class="categories">
+
+    <div class="cat"><h2>🐾 Pets</h2><p>Begleiter, die dir folgen und deinen Charakter lebendiger machen.</p></div>
+    <div class="cat"><h2>🧨 Gadgets</h2><p>Spielzeuge und kleine Effekte für Spaß und Interaktion.</p></div>
+    <div class="cat"><h2>💫 Partikel Effekte</h2><p>Visuelle Effekte um deinen Spieler, sichtbar für alle.</p></div>
+    <div class="cat"><h2>🐎 Mounts</h2><p>Reittiere, mit denen du stilvoll unterwegs bist.</p></div>
+    <div class="cat"><h2>🎩 Hats</h2><p>Kopfbedeckungen für einen einzigartigen Look.</p></div>
+    <div class="cat"><h2>🛡️ Suits</h2><p>Komplette Outfits, die deinen Charakter verändern.</p></div>
+    <div class="cat"><h2>🕺 Emotes</h2><p>Animationen und Gesten zur Kommunikation.</p></div>
+    <div class="cat"><h2>🏹 Projectile Effects</h2><p>Effekte für Pfeile und geworfene Objekte.</p></div>
+    <div class="cat"><h2>💀 Death Effects</h2><p>Spezielle Effekte beim Tod deines Charakters.</p></div>
+
+  </div>
+
+  <div class="rank">
+    👑 Höhere Ränge schalten zusätzliche Kosmetik-Kategorien und Effekte frei.
+  </div>
+
 </div>
+
+<script>
+function setParticle(icon) {
+  const p = document.getElementById("particle");
+  p.textContent = icon;
+  p.style.display = "block";
+}
+</script>
 
 </body>
 </html>
