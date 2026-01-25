@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Kosmetik – DeathDevil.Eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonts -->
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #0b0d10;
+  color: #eaeaea;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  background: rgba(0,0,0,0.85);
+  border-bottom: 1px solid #6e0a16;
+}
+
+header a {
+  font-family: 'Minecraft', monospace;
+  color: #2ecc71;
+  text-decoration: none;
+}
+
+/* TITEL */
+h1 {
+  font-family: 'Minecraft', monospace;
+  text-align: center;
+  margin: 40px 0 15px;
+  color: #2ecc71;
+}
+
+.intro {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 50px;
+  color: #a0a0a0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* SECTION */
+.section {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  padding: 0 40px;
+}
+
+/* COSMETIC CARD */
+.card {
+  background: rgba(20,20,25,0.85);
+  border: 1px solid #6e0a16;
+  box-shadow: 0 0 15px rgba(177,18,38,0.6);
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* STEVE */
+.steve {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.steve img {
+  width: 160px;
+  image-rendering: pixelated;
+}
+
+/* COSMETICS */
+.cosmetics h2 {
+  font-family: 'Minecraft', monospace;
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  margin: 10px 0;
+  color: #e0e0e0;
+  font-size: 14px;
+}
+
+.rank {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #a0a0a0;
+}
+
+.rank span {
+  color: #f1c40f;
+  font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">⬅ Startseite</a>
+  <a href="marketplace.html">🛒 Marktplatz</a>
+</header>
+
+<h1>✨ Kosmetik</h1>
+
+<div class="intro">
+<b>Kosmetik</b> sind rein visuelle Extras, die dein Spielerlebnis verschönern –  
+sie bieten <b>keinen spielerischen Vorteil</b>.<br><br>
+
+Mit den Rängen <b>Premium</b>, <b>Ultra</b> und <b>King</b> schaltest du weitere Kosmetik frei.<br>
+Alle Ränge können <b>mit Ingame-Geld</b> erworben werden – kein Echtgeld nötig.
+</div>
+
+<div class="section">
+
+  <!-- CARD 1 -->
+  <div class="card">
+    <div class="steve">
+      <!-- Steve Skin -->
+      <img src="https://mineskin.eu/armor/body/Steve/160.png" alt="Steve">
+    </div>
+
+    <div class="cosmetics">
+      <h2>🎨 Beispiel-Kosmetik</h2>
+      <ul class="list">
+        <li>👒 Kopf-Kosmetik (Hüte, Helme, Masken)</li>
+        <li>🪽 Ruecken-Kosmetik (Fluegel, Umhaenge)</li>
+        <li>💫 Partikel-Effekte (Herzen, Feuer, Magie)</li>
+        <li>🐾 Haustiere (laufend oder schwebend)</li>
+        <li>⚔️ Gadgets (Spielzeuge & Effekte)</li>
+        <li>🎵 Emotes & Animationen</li>
+      </ul>
+
+      <div class="rank">
+        Verfuegbar ab Rang: <span>Premium / Ultra / King</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
