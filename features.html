@@ -5,16 +5,21 @@
 <title>Server Features – DeathDevil.Eu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Minecraft Font -->
 <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<!-- Inter Font (lesbar für Texte) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+/* BASIS – wie Marktplatz */
 body {
   margin: 0;
-  font-family: 'Minecraft', monospace;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: #0b0d10;
   color: #eaeaea;
 }
 
+/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
@@ -25,16 +30,24 @@ header {
 }
 
 header a {
+  font-family: 'Minecraft', monospace;
   color: #2ecc71;
   text-decoration: none;
 }
 
+/* TITEL */
 h1 {
+  font-family: 'Minecraft', monospace;
   text-align: center;
   margin: 35px 0 10px;
   color: #2ecc71;
 }
 
+h2 {
+  font-family: 'Minecraft', monospace;
+}
+
+/* BESCHREIBUNG */
 .desc {
   text-align: center;
   color: #a0a0a0;
@@ -43,7 +56,7 @@ h1 {
   line-height: 1.6;
 }
 
-/* SEARCH */
+/* SUCHE */
 .search {
   display: flex;
   justify-content: center;
@@ -54,18 +67,19 @@ h1 {
   background: rgba(20,20,25,0.9);
   border: 1px solid #6e0a16;
   color: #eaeaea;
-  font-family: 'Minecraft', monospace;
   padding: 10px 14px;
   width: 320px;
+  font-family: 'Inter', sans-serif;
 }
 
-/* SECTION */
+/* SEITENLAYOUT */
 .section {
   max-width: 1300px;
   margin: auto;
   padding: 0 40px 80px;
 }
 
+/* PANELS – wie Marktplatz */
 .panel {
   background: rgba(20,20,25,0.85);
   border: 1px solid #6e0a16;
@@ -79,7 +93,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* LIST */
+/* LISTE */
 .list {
   list-style: none;
   padding: 0;
@@ -90,13 +104,16 @@ h1 {
   margin-bottom: 14px;
   line-height: 1.6;
   font-size: 14px;
+  color: #e0e0e0;
 }
 
+/* BEFEHLE */
 .item b {
-  color: #eaeaea;
+  color: #ffffff;
+  font-weight: 600;
 }
 
-/* RANK */
+/* RANG */
 .rank h2 {
   color: #f1c40f;
 }
@@ -150,7 +167,7 @@ Hier findest du eine Übersicht aller wichtigen Commands – alphabetisch & durc
     </ul>
   </div>
 
-  <!-- RANK -->
+  <!-- RANG -->
   <div class="panel rank">
     <h2>👑 Rang-Features</h2>
     <ul class="list">
