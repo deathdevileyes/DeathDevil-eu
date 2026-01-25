@@ -12,7 +12,7 @@
 <style>
 :root{
   --bg:#0b0d10;
-  --panel:rgba(20,20,25,.85);
+  --panel:rgba(20,20,25,.88);
   --red:#b11226;
   --red-dark:#6e0a16;
   --green:#2ecc71;
@@ -46,6 +46,8 @@ header{
   padding:22px 48px;
   background:rgba(0,0,0,.65);
   backdrop-filter:blur(10px);
+  position:relative;
+  z-index:10;
 }
 
 .logo{
@@ -61,6 +63,7 @@ nav a{
   font-family:'Minecraft',monospace;
   color:var(--text);
   text-decoration:none;
+  cursor:pointer;
 }
 nav a:hover{color:var(--green)}
 
@@ -68,6 +71,37 @@ nav a:hover{color:var(--green)}
   margin-left:auto;
   color:var(--green);
   font-size:14px;
+}
+
+/* LEFT BOARD */
+.news-board{
+  position:fixed;
+  top:120px;
+  left:20px;
+  width:260px;
+  background:#000;
+  border:1px solid var(--red-dark);
+  box-shadow:var(--glow);
+  padding:20px;
+  z-index:5;
+}
+
+.news-board h3{
+  font-family:'Minecraft',monospace;
+  color:var(--green);
+  margin-bottom:14px;
+  text-align:center;
+}
+
+.news-board ul{
+  list-style:none;
+  padding:0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.news-board li{
+  margin:10px 0;
 }
 
 /* HERO */
@@ -114,7 +148,7 @@ nav a:hover{color:var(--green)}
   color:var(--green);
 }
 
-/* FEATURES (JETZT OBEN) */
+/* FEATURES */
 .features{
   padding:90px 40px;
 }
@@ -146,7 +180,7 @@ nav a:hover{color:var(--green)}
   transform:translateY(-8px) scale(1.03);
 }
 
-/* INFO BOXES (JETZT UNTEN) */
+/* INFO BOXES */
 .info-boxes{
   display:flex;
   justify-content:center;
@@ -161,9 +195,7 @@ nav a:hover{color:var(--green)}
   box-shadow:var(--glow);
   min-width:300px;
   text-align:center;
-  transition:.3s;
 }
-.info:hover{transform:translateY(-6px)}
 
 /* SERVER INFO */
 .server-info{
@@ -177,25 +209,56 @@ nav a:hover{color:var(--green)}
   color:var(--muted);
 }
 
-/* SCROLL ANIMATION */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s ease;
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:50;
 }
-.reveal.show{
-  opacity:1;
-  transform:none;
+
+.modal-box{
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  padding:28px 36px;
+  box-shadow:var(--glow);
+  text-align:center;
 }
+
+.modal-box h3{
+  font-family:'Minecraft',monospace;
+  color:var(--green);
+  margin-bottom:16px;
+}
+
+.modal-box a{
+  display:block;
+  padding:6px 0;
+  color:var(--text);
+  text-decoration:none;
+}
+.modal-box a:hover{color:var(--green)}
 </style>
 </head>
 
 <body>
 
+<!-- NEWS BOARD -->
+<div class="news-board">
+  <h3>📰 Was gibt es Neues</h3>
+  <ul>
+    <li>🔧 Angepasste Jobs</li>
+    <li>🧟 Villager Defense</li>
+  </ul>
+</div>
+
 <header>
   <div class="logo">DeathDevil.Eu</div>
   <nav>
-    <a href="#">Server entdecken</a>
+    <a id="openDiscover">Server entdecken</a>
     <a href="marketplace.html">Marktplatz</a>
     <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
     <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
@@ -203,19 +266,28 @@ nav a:hover{color:var(--green)}
   <div class="status">🟢 Server Online</div>
 </header>
 
-<section class="hero reveal">
+<!-- SERVER ENTDECKEN MODAL -->
+<div class="modal" id="discoverModal">
+  <div class="modal-box">
+    <h3>🔎 Server entdecken</h3>
+    <a href="rules.html">📜 Regeln</a>
+    <a href="features.html">✨ Features</a>
+    <a href="cosmetics.html">🎭 Kosmetik</a>
+    <a href="ranks.html">👑 Ränge</a>
+  </div>
+</div>
+
+<section class="hero">
   <h1>DeathDevil.Eu</h1>
   <p>
     Deutscher CityBuild Server<br><br>
     <b>Events • PvP • Wirtschaft • Kosmetik • Community</b>
   </p>
 
-  <div class="join-box" onclick="copyIP()">
-    ▶ Join IP: <b>DeathDevil.Eu</b>
-  </div>
+  <div class="join-box" onclick="copyIP()">▶ Join IP: <b>DeathDevil.Eu</b></div>
 </section>
 
-<section class="features reveal">
+<section class="features">
 <h2>Was unser Server bietet</h2>
 <div class="grid">
   <div class="feature">🧱 PlotSquared</div>
@@ -229,12 +301,12 @@ nav a:hover{color:var(--green)}
 </div>
 </section>
 
-<section class="info-boxes reveal">
+<section class="info-boxes">
   <div class="info">🎁 <b>Wöchentliche Verlosung</b><br>Jeden Samstag auf Discord</div>
   <div class="info">⚔️ <b>Nächstes Event</b><br>In Kürze verfügbar</div>
 </section>
 
-<section class="server-info reveal">
+<section class="server-info">
 🧑‍💻 Dieser Server wurde vollständig von <b>DeathDevil</b> erstellt und entwickelt.<br><br>
 ❓ Bei Fragen oder Problemen melde dich bitte über <b>Discord</b> mithilfe des <b>Ticketsystems</b>.
 </section>
@@ -246,16 +318,14 @@ function copyIP(){
   alert("IP kopiert: DeathDevil.Eu");
 }
 
-/* SCROLL REVEAL */
-const reveals=document.querySelectorAll(".reveal");
-window.addEventListener("scroll",()=>{
-  reveals.forEach(el=>{
-    const top=el.getBoundingClientRect().top;
-    if(top<window.innerHeight-80){
-      el.classList.add("show");
-    }
-  });
-});
+/* SERVER ENTDECKEN MODAL */
+const open=document.getElementById("openDiscover");
+const modal=document.getElementById("discoverModal");
+
+open.onclick=()=>modal.style.display="flex";
+modal.onclick=e=>{
+  if(e.target===modal) modal.style.display="none";
+};
 </script>
 
 </body>
