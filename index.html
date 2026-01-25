@@ -10,22 +10,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg-dark:#0b0d10;
-  --panel:rgba(20,20,25,0.85);
+:root{
+  --bg:#0b0d10;
+  --panel:rgba(20,20,25,.85);
   --red:#b11226;
   --red-dark:#6e0a16;
   --green:#2ecc71;
   --text:#eaeaea;
   --muted:#a0a0a0;
-  --glow:0 0 30px rgba(177,18,38,0.8);
+  --glow:0 0 30px rgba(177,18,38,.8);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:'Inter',system-ui,sans-serif;
-  background:var(--bg-dark);
+  background:var(--bg);
   color:var(--text);
   overflow-x:hidden;
 }
@@ -35,15 +35,8 @@ body::before{
   position:fixed;
   inset:0;
   background:url('background.png') center/cover no-repeat;
-  filter:brightness(0.35);
+  filter:brightness(.35);
   z-index:-2;
-}
-
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
 }
 
 /* HEADER */
@@ -51,7 +44,7 @@ header{
   display:flex;
   align-items:center;
   padding:22px 48px;
-  background:rgba(0,0,0,0.65);
+  background:rgba(0,0,0,.65);
   backdrop-filter:blur(10px);
 }
 
@@ -63,13 +56,13 @@ header{
   margin-right:50px;
 }
 
-nav{display:flex;gap:34px;}
+nav{display:flex;gap:34px}
 nav a{
   font-family:'Minecraft',monospace;
   color:var(--text);
   text-decoration:none;
 }
-nav a:hover{color:var(--green);}
+nav a:hover{color:var(--green)}
 
 .status{
   margin-left:auto;
@@ -80,11 +73,7 @@ nav a:hover{color:var(--green);}
 /* HERO */
 .hero{
   min-height:70vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  padding-top:110px;
+  padding-top:90px;
   text-align:center;
 }
 
@@ -93,47 +82,41 @@ nav a:hover{color:var(--green);}
   font-size:72px;
   color:var(--red);
   text-shadow:var(--glow);
-  animation:devilPulse 3s ease-in-out infinite;
+  animation:titleFloat 4s ease-in-out infinite;
 }
 
-@keyframes devilPulse{
-  0%{text-shadow:0 0 20px rgba(177,18,38,0.5);}
-  50%{text-shadow:0 0 40px rgba(255,50,50,1);}
-  100%{text-shadow:0 0 20px rgba(177,18,38,0.5);}
+@keyframes titleFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
 }
 
 .hero p{
-  margin-top:26px;
+  margin:28px auto 40px;
   max-width:720px;
   color:var(--muted);
   font-size:16px;
   line-height:1.8;
 }
 
-/* INFO BOXES */
-.info-boxes{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  margin-top:60px;
-}
-
-.info{
+/* JOIN BOX */
+.join-box{
+  display:inline-block;
   background:var(--panel);
   border:1px solid var(--red-dark);
-  padding:26px 34px;
   box-shadow:var(--glow);
-  text-align:center;
-  min-width:300px;
-  transition:0.3s;
+  padding:18px 30px;
+  font-family:'Minecraft',monospace;
+  cursor:pointer;
+  transition:.3s;
 }
-.info:hover{transform:translateY(-6px);}
+.join-box:hover{
+  transform:scale(1.05);
+  color:var(--green);
+}
 
-/* FEATURES */
+/* FEATURES (JETZT OBEN) */
 .features{
-  background:rgba(0,0,0,0.75);
   padding:90px 40px;
-  margin-top:90px;
 }
 
 .features h2{
@@ -157,16 +140,35 @@ nav a:hover{color:var(--green);}
   padding:30px;
   text-align:center;
   box-shadow:var(--glow);
-  transition:0.3s;
+  transition:.3s;
 }
 .feature:hover{
   transform:translateY(-8px) scale(1.03);
 }
 
+/* INFO BOXES (JETZT UNTEN) */
+.info-boxes{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin:90px 0;
+}
+
+.info{
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  padding:26px 34px;
+  box-shadow:var(--glow);
+  min-width:300px;
+  text-align:center;
+  transition:.3s;
+}
+.info:hover{transform:translateY(-6px)}
+
 /* SERVER INFO */
 .server-info{
   max-width:900px;
-  margin:90px auto;
+  margin:0 auto 90px;
   background:var(--panel);
   border:1px solid var(--red-dark);
   padding:34px;
@@ -174,17 +176,26 @@ nav a:hover{color:var(--green);}
   text-align:center;
   color:var(--muted);
 }
+
+/* SCROLL ANIMATION */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
 </style>
 </head>
 
 <body>
 
-<canvas id="blocks"></canvas>
-
 <header>
   <div class="logo">DeathDevil.Eu</div>
   <nav>
-    <a id="openDiscover">Server entdecken</a>
+    <a href="#">Server entdecken</a>
     <a href="marketplace.html">Marktplatz</a>
     <a href="https://minecraft-mp.com/server/352669/vote/" target="_blank">Vote</a>
     <a href="https://discord.gg/DWBzsTS6" target="_blank">Discord</a>
@@ -192,21 +203,19 @@ nav a:hover{color:var(--green);}
   <div class="status">🟢 Server Online</div>
 </header>
 
-<section class="hero">
+<section class="hero reveal">
   <h1>DeathDevil.Eu</h1>
-
   <p>
-    Deutscher CityBuild Server mit<br><br>
+    Deutscher CityBuild Server<br><br>
     <b>Events • PvP • Wirtschaft • Kosmetik • Community</b>
   </p>
 
-  <div class="info-boxes">
-    <div class="info">🎁 <b>Wöchentliche Verlosung</b><br>Jeden Samstag auf Discord</div>
-    <div class="info">⚔️ <b>Nächstes Event</b><br>In Kürze verfügbar</div>
+  <div class="join-box" onclick="copyIP()">
+    ▶ Join IP: <b>DeathDevil.Eu</b>
   </div>
 </section>
 
-<section class="features">
+<section class="features reveal">
 <h2>Was unser Server bietet</h2>
 <div class="grid">
   <div class="feature">🧱 PlotSquared</div>
@@ -220,43 +229,33 @@ nav a:hover{color:var(--green);}
 </div>
 </section>
 
-<section class="server-info">
+<section class="info-boxes reveal">
+  <div class="info">🎁 <b>Wöchentliche Verlosung</b><br>Jeden Samstag auf Discord</div>
+  <div class="info">⚔️ <b>Nächstes Event</b><br>In Kürze verfügbar</div>
+</section>
+
+<section class="server-info reveal">
 🧑‍💻 Dieser Server wurde vollständig von <b>DeathDevil</b> erstellt und entwickelt.<br><br>
 ❓ Bei Fragen oder Problemen melde dich bitte über <b>Discord</b> mithilfe des <b>Ticketsystems</b>.
 </section>
 
 <script>
-const canvas=document.getElementById("blocks");
-const ctx=canvas.getContext("2d");
-
-function resize(){
-  canvas.width=innerWidth;
-  canvas.height=innerHeight;
+/* COPY IP */
+function copyIP(){
+  navigator.clipboard.writeText("DeathDevil.Eu");
+  alert("IP kopiert: DeathDevil.Eu");
 }
-addEventListener("resize",resize);
-resize();
 
-const blocks=Array.from({length:60},()=>({
-  x:Math.random()*canvas.width,
-  y:Math.random()*canvas.height,
-  s:8+Math.random()*12,
-  v:0.4+Math.random()
-}));
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="rgba(177,18,38,0.7)";
-  blocks.forEach(b=>{
-    ctx.fillRect(b.x,b.y,b.s,b.s);
-    b.y+=b.v;
-    if(b.y>canvas.height){
-      b.y=-b.s;
-      b.x=Math.random()*canvas.width;
+/* SCROLL REVEAL */
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+  reveals.forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top<window.innerHeight-80){
+      el.classList.add("show");
     }
   });
-  requestAnimationFrame(animate);
-}
-animate();
+});
 </script>
 
 </body>
