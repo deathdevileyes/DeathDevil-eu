@@ -66,6 +66,7 @@ h1 {
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: 40px;
+  margin-bottom: 60px;
 }
 
 /* STEVE + CANVAS */
@@ -110,6 +111,35 @@ canvas {
 .buttons button:hover {
   color: #2ecc71;
 }
+
+/* CATEGORIES */
+.cat {
+  background: rgba(20,20,25,0.85);
+  border: 1px solid #6e0a16;
+  box-shadow: 0 0 12px rgba(177,18,38,0.5);
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.cat h2 {
+  font-family: 'Minecraft', monospace;
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+.cat p {
+  color: #b0b0b0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* RANK INFO */
+.rank {
+  text-align: center;
+  margin-top: 40px;
+  color: #a0a0a0;
+  font-size: 14px;
+}
 </style>
 </head>
 
@@ -129,32 +159,45 @@ Mit den Rängen <b>Premium</b>, <b>Ultra</b> und <b>King</b> erhältst du Zugrif
 
 <div class="section">
 
-<div class="preview">
+  <!-- PREVIEW -->
+  <div class="preview">
+    <div class="steve">
+      <canvas id="particles"></canvas>
+      <img src="https://mineskin.eu/armor/body/Steve/160.png" alt="Steve">
+    </div>
 
-  <!-- STEVE + PARTICLES -->
-  <div class="steve">
-    <canvas id="particles"></canvas>
-    <img src="https://mineskin.eu/armor/body/Steve/160.png" alt="Steve">
-  </div>
-
-  <!-- CONTROLS -->
-  <div>
-    <h2 style="font-family:'Minecraft';color:#e74c3c;">🎆 Partikel Vorschau</h2>
-    <p style="color:#b0b0b0;font-size:14px;">
+    <div>
+      <h2 style="font-family:'Minecraft';color:#e74c3c;">🎆 Partikel Vorschau</h2>
+      <p style="color:#b0b0b0;font-size:14px;">
 Diese Vorschau simuliert UltraCosmetics-Effekte im Browser.
-    </p>
+      </p>
 
-    <div class="buttons">
-      <button onclick="setEffect('rain')">Rain Cloud</button>
-      <button onclick="setEffect('fire')">Fire Aura</button>
-      <button onclick="setEffect('magic')">Magic</button>
-      <button onclick="setEffect('hearts')">Hearts</button>
-      <button onclick="setEffect('snow')">Snow</button>
-      <button onclick="setEffect('dark')">Dark Aura</button>
+      <div class="buttons">
+        <button onclick="setEffect('rain')">Rain Cloud</button>
+        <button onclick="setEffect('fire')">Fire Aura</button>
+        <button onclick="setEffect('magic')">Magic</button>
+        <button onclick="setEffect('hearts')">Hearts</button>
+        <button onclick="setEffect('snow')">Snow</button>
+        <button onclick="setEffect('dark')">Dark Aura</button>
+      </div>
     </div>
   </div>
 
-</div>
+  <!-- DESCRIPTIONS -->
+  <div class="cat"><h2>🐾 Pets</h2><p>Begleiter, die dir folgen und rein kosmetisch sind.</p></div>
+  <div class="cat"><h2>🧨 Gadgets</h2><p>Spielzeuge und kleine Effekte für Spaß und Interaktion.</p></div>
+  <div class="cat"><h2>💫 Partikel Effects</h2><p>Visuelle Effekte um oder über deinem Spieler.</p></div>
+  <div class="cat"><h2>🐎 Mounts</h2><p>Kosmetische Reittiere zur Fortbewegung.</p></div>
+  <div class="cat"><h2>🎩 Hats</h2><p>Kopfbedeckungen ohne Gameplay-Einfluss.</p></div>
+  <div class="cat"><h2>🛡️ Suits</h2><p>Komplette kosmetische Outfits.</p></div>
+  <div class="cat"><h2>🕺 Emotes</h2><p>Animationen und Gesten zur Kommunikation.</p></div>
+  <div class="cat"><h2>🏹 Projectile Effects</h2><p>Effekte bei Pfeilen und Wurfobjekten.</p></div>
+  <div class="cat"><h2>💀 Death Effects</h2><p>Visuelle Effekte beim Tod.</p></div>
+
+  <div class="rank">
+    👑 Höhere Ränge schalten zusätzliche Kosmetik frei.
+  </div>
+
 </div>
 
 <script>
@@ -173,69 +216,25 @@ function setEffect(type) {
 
 function spawn() {
   if (particles.length > 120) particles.shift();
-
-  let p = {
-    x: 100 + (Math.random() * 60 - 30),
-    y: 20,
-    vy: Math.random() * 1 + 0.5,
-    life: 0
-  };
-
-  particles.push(p);
+  particles.push({ x: 100 + (Math.random()*60-30), y: 20 });
 }
 
 function update() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  particles.forEach(p => {
-    p.life++;
-
-    if (mode === "rain") {
-      p.y += 3;
-      ctx.fillStyle = "#7fdbff";
-      ctx.fillRect(p.x, p.y, 2, 8);
-    }
-
-    if (mode === "fire") {
-      p.y -= 1.5;
-      ctx.fillStyle = "orange";
-      ctx.fillRect(p.x, p.y, 4, 4);
-    }
-
-    if (mode === "magic") {
-      p.y += Math.sin(p.life/10);
-      ctx.fillStyle = "#c77dff";
-      ctx.fillRect(p.x, p.y, 3, 3);
-    }
-
-    if (mode === "hearts") {
-      p.y -= 1;
-      ctx.fillStyle = "pink";
-      ctx.fillRect(p.x, p.y, 4, 4);
-    }
-
-    if (mode === "snow") {
-      p.y += 0.6;
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(p.x, p.y, 3, 3);
-    }
-
-    if (mode === "dark") {
-      ctx.fillStyle = "rgba(60,0,0,0.8)";
-      ctx.fillRect(p.x, p.y, 5, 5);
-    }
+  particles.forEach(p=>{
+    if(mode==="rain"){p.y+=3;ctx.fillStyle="#7fdbff";ctx.fillRect(p.x,p.y,2,8);}
+    if(mode==="fire"){p.y-=1.5;ctx.fillStyle="orange";ctx.fillRect(p.x,p.y,4,4);}
+    if(mode==="magic"){p.y+=Math.sin(Date.now()/200);ctx.fillStyle="#c77dff";ctx.fillRect(p.x,p.y,3,3);}
+    if(mode==="hearts"){p.y-=1;ctx.fillStyle="pink";ctx.fillRect(p.x,p.y,4,4);}
+    if(mode==="snow"){p.y+=0.6;ctx.fillStyle="#fff";ctx.fillRect(p.x,p.y,3,3);}
+    if(mode==="dark"){ctx.fillStyle="rgba(60,0,0,.8)";ctx.fillRect(p.x,p.y,5,5);}
   });
-
-  particles = particles.filter(p => p.y < canvas.height);
+  particles = particles.filter(p=>p.y<canvas.height);
 }
 
-function loop() {
-  spawn();
-  update();
-  requestAnimationFrame(loop);
-}
-
-loop();
+(function loop(){
+  spawn(); update(); requestAnimationFrame(loop);
+})();
 </script>
 
 </body>
