@@ -11,8 +11,8 @@
 body {
   margin: 0;
   font-family: 'Minecraft', monospace;
-  background: #12151b;
-  color: #cfcfcf;
+  background: #0b0d10;
+  color: #eaeaea;
 }
 
 header {
@@ -21,7 +21,7 @@ header {
   align-items: center;
   padding: 18px 30px;
   background: rgba(0,0,0,0.85);
-  border-bottom: 1px solid #5c0a14;
+  border-bottom: 1px solid #6e0a16;
 }
 
 header a {
@@ -31,68 +31,74 @@ header a {
 
 h1 {
   text-align: center;
-  margin: 40px 0 10px;
+  margin: 35px 0 10px;
   color: #2ecc71;
 }
 
 .desc {
   text-align: center;
-  color: #b6b6b6;
-  max-width: 900px;
-  margin: 0 auto 30px;
-  line-height: 1.75;
-  font-size: 15px;
+  color: #a0a0a0;
+  margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
+/* SEARCH */
 .search {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 }
 
 .search input {
-  width: 360px;
-  padding: 12px;
-  background: rgba(30,33,40,0.95);
-  border: 1px solid #5c0a14;
-  color: #dddddd;
+  background: rgba(20,20,25,0.9);
+  border: 1px solid #6e0a16;
+  color: #eaeaea;
   font-family: 'Minecraft', monospace;
+  padding: 10px 14px;
+  width: 320px;
 }
 
+/* SECTION */
 .section {
-  max-width: 1000px;
-  margin: 0 auto 60px;
-  background: rgba(30,33,40,0.92);
-  border: 1px solid #5c0a14;
-  box-shadow: 0 0 10px rgba(177,18,38,0.28);
-  padding: 34px;
+  max-width: 1300px;
+  margin: auto;
+  padding: 0 40px 80px;
 }
 
-.section h2 {
-  color: #e06c75;
-  margin-bottom: 26px;
+.panel {
+  background: rgba(20,20,25,0.85);
+  border: 1px solid #6e0a16;
+  padding: 28px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 15px rgba(177,18,38,0.6);
 }
 
+.panel h2 {
+  color: #e74c3c;
+  margin-bottom: 20px;
+}
+
+/* LIST */
 .list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .item {
-  margin-bottom: 18px;
-  color: #b6b6b6;
-  line-height: 1.7;
-  font-size: 15px;
+  margin-bottom: 14px;
+  line-height: 1.6;
+  font-size: 14px;
 }
 
-/* Befehle – klar, aber nicht blendend */
 .item b {
-  color: #e2e2e2;
-  font-weight: 600;
+  color: #eaeaea;
 }
 
+/* RANK */
 .rank h2 {
-  color: #e5c07b;
+  color: #f1c40f;
 }
 </style>
 </head>
@@ -107,8 +113,8 @@ h1 {
 <h1>✨ Server Features & Befehle</h1>
 
 <div class="desc">
-Alle Funktionen unseres Servers lassen sich bequem über <b>Befehle</b> steuern.<br>
-Die folgenden Commands helfen dir beim Reisen, Handeln, Bauen, Verwalten und beim täglichen Gameplay.
+Alle Serverfunktionen werden über <b>Befehle</b> gesteuert.<br>
+Hier findest du eine Übersicht aller wichtigen Commands – alphabetisch & durchsuchbar.
 </div>
 
 <div class="search">
@@ -116,39 +122,45 @@ Die folgenden Commands helfen dir beim Reisen, Handeln, Bauen, Verwalten und bei
 </div>
 
 <div class="section">
-<h2>⚙️ Allgemeine Server-Features</h2>
-<ul class="list">
 
-<li class="item"><b>/backpack</b> – Öffnet deinen persönlichen Rucksack mit zusätzlichem Stauraum.</li>
-<li class="item"><b>/clans create [Name]</b> – Erstellt einen eigenen Clan mit anderen Spielern.</li>
-<li class="item"><b>/dailyrewards</b> – Erhalte tägliche Belohnungen fürs Spielen.</li>
-<li class="item"><b>/delhome [Name]</b> – Löscht ein gesetztes Home.</li>
-<li class="item"><b>/hilfe</b> – Öffnet das Hilfemenü mit allen wichtigen Infos.</li>
-<li class="item"><b>/home [Name]</b> – Teleportiert dich zu einem deiner Homes.</li>
-<li class="item"><b>/lock</b> – Sichert Türen, Kisten, Öfen & mehr per Rechtsklick.</li>
-<li class="item"><b>/money</b> – Zeigt deinen aktuellen Kontostand an.</li>
-<li class="item"><b>/p h</b> – Teleportiert dich zu deinem Plot.</li>
-<li class="item"><b>/p h 2</b> – Teleportiert dich zu deinem zweiten Plot.</li>
-<li class="item"><b>/pay [Spieler] [Summe]</b> – Sende Geld an einen anderen Spieler.</li>
-<li class="item"><b>/sethome [Name]</b> – Setzt einen Teleportpunkt.</li>
-<li class="item"><b>/tpa [Spieler]</b> – Sendet eine Teleport-Anfrage.</li>
-<li class="item"><b>/tpaccept</b> – Nimmt eine Teleport-Anfrage an.</li>
-<li class="item"><b>/tpdeny</b> – Lehnt eine Teleport-Anfrage ab.</li>
-<li class="item"><b>/trade [Spieler]</b> – Öffnet ein sicheres Handelsfenster.</li>
-<li class="item"><b>/unlock</b> – Macht gesicherte Objekte öffentlich.</li>
-<li class="item"><b>/vote</b> – Stimme für den Server ab und erhalte Belohnungen.</li>
+  <!-- FEATURES -->
+  <div class="panel">
+    <h2>⚙️ Allgemeine Server-Features</h2>
+    <ul class="list">
 
-</ul>
-</div>
+      <li class="item"><b>/backpack</b> – Öffnet deinen persönlichen Rucksack mit zusätzlichem Stauraum.</li>
+      <li class="item"><b>/clans create [Name]</b> – Erstellt einen eigenen Clan.</li>
+      <li class="item"><b>/dailyrewards</b> – Tägliche Belohnungen fürs Spielen.</li>
+      <li class="item"><b>/delhome [Name]</b> – Löscht ein Home.</li>
+      <li class="item"><b>/hilfe</b> – Öffnet das Hilfemenü.</li>
+      <li class="item"><b>/home [Name]</b> – Teleport zu einem Home.</li>
+      <li class="item"><b>/lock</b> – Sichert Türen, Kisten, Öfen & mehr.</li>
+      <li class="item"><b>/money</b> – Zeigt deinen Kontostand.</li>
+      <li class="item"><b>/p h</b> – Teleportiert dich zu deinem Plot.</li>
+      <li class="item"><b>/p h 2</b> – Teleport zu deinem zweiten Plot.</li>
+      <li class="item"><b>/pay [Spieler] [Summe]</b> – Geld an Spieler senden.</li>
+      <li class="item"><b>/sethome [Name]</b> – Setzt ein Home.</li>
+      <li class="item"><b>/tpa [Spieler]</b> – Teleport-Anfrage senden.</li>
+      <li class="item"><b>/tpaccept</b> – Teleport-Anfrage annehmen.</li>
+      <li class="item"><b>/tpdeny</b> – Teleport-Anfrage ablehnen.</li>
+      <li class="item"><b>/trade [Spieler]</b> – Sicher handeln.</li>
+      <li class="item"><b>/unlock</b> – Sicherungen freigeben.</li>
+      <li class="item"><b>/vote</b> – Für den Server voten.</li>
 
-<div class="section rank">
-<h2>👑 Rang-Features</h2>
-<ul class="list">
-<li class="item"><b>/feed</b> – Füllt deinen Hunger sofort auf.</li>
-<li class="item"><b>/fly</b> – Ermöglicht dir zu fliegen.</li>
-<li class="item"><b>/god</b> – Macht dich unsterblich.</li>
-<li class="item"><b>/nick</b> – Ändert deinen Anzeigenamen im Chat.</li>
-</ul>
+    </ul>
+  </div>
+
+  <!-- RANK -->
+  <div class="panel rank">
+    <h2>👑 Rang-Features</h2>
+    <ul class="list">
+      <li class="item"><b>/feed</b> – Füllt deinen Hunger.</li>
+      <li class="item"><b>/fly</b> – Fliegen aktivieren.</li>
+      <li class="item"><b>/god</b> – Unsterblichkeit.</li>
+      <li class="item"><b>/nick</b> – Namen ändern.</li>
+    </ul>
+  </div>
+
 </div>
 
 <script>
