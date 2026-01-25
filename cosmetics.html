@@ -57,78 +57,38 @@ h1 {
   padding: 0 40px;
 }
 
-/* PREVIEW CARD */
+/* PREVIEW */
 .preview {
   background: rgba(20,20,25,0.85);
   border: 1px solid #6e0a16;
   box-shadow: 0 0 15px rgba(177,18,38,0.6);
   padding: 30px;
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 240px 1fr;
   gap: 40px;
 }
 
-/* STEVE */
+/* STEVE + CANVAS */
 .steve {
   position: relative;
-  display: flex;
-  justify-content: center;
+  width: 200px;
+  margin: auto;
 }
 
 .steve img {
   width: 160px;
+  display: block;
+  margin: auto;
   image-rendering: pixelated;
 }
 
-/* PARTICLE */
-.particle {
+canvas {
   position: absolute;
-  top: -45px;
-  font-size: 28px;
+  top: -60px;
+  left: 0;
+  width: 200px;
+  height: 260px;
   pointer-events: none;
-  display: none;
-}
-
-/* ANIMATION CLASSES */
-.rain   { animation: rain 1.2s linear infinite; }
-.fire   { animation: fire 1s ease-in-out infinite; }
-.magic  { animation: magic 1.8s ease-in-out infinite; }
-.hearts { animation: hearts 1.6s ease-in-out infinite; }
-.snow   { animation: snow 2.2s linear infinite; }
-.dark   { animation: dark 1.5s ease-in-out infinite; }
-
-/* KEYFRAMES */
-@keyframes rain {
-  from { transform: translateY(0); opacity: 1; }
-  to   { transform: translateY(35px); opacity: 0; }
-}
-
-@keyframes fire {
-  from { transform: translateY(10px) scale(1); opacity: 0.6; }
-  to   { transform: translateY(-10px) scale(1.2); opacity: 1; }
-}
-
-@keyframes magic {
-  0% { transform: translateY(0); opacity: 0.6; }
-  50% { transform: translateY(-8px); opacity: 1; }
-  100% { transform: translateY(0); opacity: 0.6; }
-}
-
-@keyframes hearts {
-  0% { transform: translateY(10px); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: translateY(-20px); opacity: 0; }
-}
-
-@keyframes snow {
-  from { transform: translateY(0); opacity: 1; }
-  to   { transform: translateY(25px); opacity: 0.7; }
-}
-
-@keyframes dark {
-  0% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.15); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.7; }
 }
 
 /* BUTTONS */
@@ -136,7 +96,6 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 15px;
 }
 
 .buttons button {
@@ -151,39 +110,6 @@ h1 {
 .buttons button:hover {
   color: #2ecc71;
 }
-
-/* CATEGORIES */
-.categories {
-  margin-top: 60px;
-}
-
-.cat {
-  background: rgba(20,20,25,0.85);
-  border: 1px solid #6e0a16;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 0 12px rgba(177,18,38,0.5);
-}
-
-.cat h2 {
-  font-family: 'Minecraft', monospace;
-  color: #e74c3c;
-  margin-bottom: 10px;
-}
-
-.cat p {
-  color: #b0b0b0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* RANK INFO */
-.rank {
-  text-align: center;
-  margin-top: 40px;
-  color: #a0a0a0;
-  font-size: 14px;
-}
 </style>
 </head>
 
@@ -197,63 +123,119 @@ h1 {
 <h1>✨ Kosmetik</h1>
 
 <div class="intro">
-Kosmetik sind <b>rein visuelle Extras</b> ohne spielerischen Vorteil.<br><br>
-Mit den Rängen <b>Premium</b>, <b>Ultra</b> und <b>King</b> erhältst du Zugriff auf <b>mehr Kosmetik</b>.<br>
-Alle Ränge sind <b>mit Ingame-Geld</b> erhältlich.
+Kosmetik sind <b>rein visuelle Extras</b> ohne spielerischen Vorteil.<br>
+Mit den Rängen <b>Premium</b>, <b>Ultra</b> und <b>King</b> erhältst du Zugriff auf <b>mehr Kosmetik</b>.
 </div>
 
 <div class="section">
 
-  <!-- PREVIEW -->
-  <div class="preview">
-    <div class="steve">
-      <div class="particle" id="particle">🌧️</div>
-      <img src="https://mineskin.eu/armor/body/Steve/160.png" alt="Steve">
-    </div>
+<div class="preview">
 
-    <div>
-      <h2 style="font-family:'Minecraft';color:#e74c3c;">🎆 Partikel Vorschau</h2>
-      <p style="color:#b0b0b0;font-size:14px;">
-Wähle einen Partikel Effekt aus, um zu sehen wie er über deinem Charakter aussieht.
-      </p>
-
-      <div class="buttons">
-        <button onclick="setParticle('🌧️','rain')">Rain Cloud</button>
-        <button onclick="setParticle('🔥','fire')">Fire Aura</button>
-        <button onclick="setParticle('✨','magic')">Magic</button>
-        <button onclick="setParticle('❤️','hearts')">Hearts</button>
-        <button onclick="setParticle('❄️','snow')">Snow</button>
-        <button onclick="setParticle('☠️','dark')">Dark Aura</button>
-      </div>
-    </div>
+  <!-- STEVE + PARTICLES -->
+  <div class="steve">
+    <canvas id="particles"></canvas>
+    <img src="https://mineskin.eu/armor/body/Steve/160.png" alt="Steve">
   </div>
 
-  <!-- CATEGORIES -->
-  <div class="categories">
-    <div class="cat"><h2>🐾 Pets</h2><p>Begleiter, die dir folgen.</p></div>
-    <div class="cat"><h2>🧨 Gadgets</h2><p>Spielzeuge und Effekte.</p></div>
-    <div class="cat"><h2>💫 Partikel Effects</h2><p>Visuelle Effekte um deinen Spieler.</p></div>
-    <div class="cat"><h2>🐎 Mounts</h2><p>Reittiere zur Fortbewegung.</p></div>
-    <div class="cat"><h2>🎩 Hats</h2><p>Kopfbedeckungen.</p></div>
-    <div class="cat"><h2>🛡️ Suits</h2><p>Komplette Outfits.</p></div>
-    <div class="cat"><h2>🕺 Emotes</h2><p>Animationen und Gesten.</p></div>
-    <div class="cat"><h2>🏹 Projectile Effects</h2><p>Effekte bei Pfeilen & Würfen.</p></div>
-    <div class="cat"><h2>💀 Death Effects</h2><p>Effekte beim Tod.</p></div>
-  </div>
+  <!-- CONTROLS -->
+  <div>
+    <h2 style="font-family:'Minecraft';color:#e74c3c;">🎆 Partikel Vorschau</h2>
+    <p style="color:#b0b0b0;font-size:14px;">
+Diese Vorschau simuliert UltraCosmetics-Effekte im Browser.
+    </p>
 
-  <div class="rank">
-    👑 Höhere Ränge schalten zusätzliche Kosmetik frei.
+    <div class="buttons">
+      <button onclick="setEffect('rain')">Rain Cloud</button>
+      <button onclick="setEffect('fire')">Fire Aura</button>
+      <button onclick="setEffect('magic')">Magic</button>
+      <button onclick="setEffect('hearts')">Hearts</button>
+      <button onclick="setEffect('snow')">Snow</button>
+      <button onclick="setEffect('dark')">Dark Aura</button>
+    </div>
   </div>
 
 </div>
+</div>
 
 <script>
-function setParticle(icon, type) {
-  const p = document.getElementById("particle");
-  p.className = "particle " + type;
-  p.textContent = icon;
-  p.style.display = "block";
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = 200;
+canvas.height = 260;
+
+let particles = [];
+let mode = "rain";
+
+function setEffect(type) {
+  mode = type;
+  particles = [];
 }
+
+function spawn() {
+  if (particles.length > 120) particles.shift();
+
+  let p = {
+    x: 100 + (Math.random() * 60 - 30),
+    y: 20,
+    vy: Math.random() * 1 + 0.5,
+    life: 0
+  };
+
+  particles.push(p);
+}
+
+function update() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach(p => {
+    p.life++;
+
+    if (mode === "rain") {
+      p.y += 3;
+      ctx.fillStyle = "#7fdbff";
+      ctx.fillRect(p.x, p.y, 2, 8);
+    }
+
+    if (mode === "fire") {
+      p.y -= 1.5;
+      ctx.fillStyle = "orange";
+      ctx.fillRect(p.x, p.y, 4, 4);
+    }
+
+    if (mode === "magic") {
+      p.y += Math.sin(p.life/10);
+      ctx.fillStyle = "#c77dff";
+      ctx.fillRect(p.x, p.y, 3, 3);
+    }
+
+    if (mode === "hearts") {
+      p.y -= 1;
+      ctx.fillStyle = "pink";
+      ctx.fillRect(p.x, p.y, 4, 4);
+    }
+
+    if (mode === "snow") {
+      p.y += 0.6;
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(p.x, p.y, 3, 3);
+    }
+
+    if (mode === "dark") {
+      ctx.fillStyle = "rgba(60,0,0,0.8)";
+      ctx.fillRect(p.x, p.y, 5, 5);
+    }
+  });
+
+  particles = particles.filter(p => p.y < canvas.height);
+}
+
+function loop() {
+  spawn();
+  update();
+  requestAnimationFrame(loop);
+}
+
+loop();
 </script>
 
 </body>
