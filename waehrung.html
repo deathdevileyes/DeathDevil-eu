@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Währung – DeathDevil.Eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0d10;
+  --panel:rgba(20,20,25,.88);
+  --red:#b11226;
+  --red-dark:#6e0a16;
+  --green:#2ecc71;
+  --text:#eaeaea;
+  --muted:#a0a0a0;
+  --glow:0 0 30px rgba(177,18,38,.8);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('background.png') center/cover no-repeat;
+  filter:brightness(.35);
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  align-items:center;
+  padding:22px 48px;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  font-family:'Minecraft',monospace;
+  font-size:24px;
+  color:var(--red);
+  text-shadow:var(--glow);
+}
+
+/* CONTAINER */
+.container{
+  max-width:1200px;
+  margin:80px auto;
+  padding:40px;
+}
+
+h1,h2,h3{
+  font-family:'Minecraft',monospace;
+}
+
+h1{
+  color:var(--green);
+  text-align:center;
+  margin-bottom:60px;
+}
+
+/* INFO BOX */
+.currency-box{
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  box-shadow:var(--glow);
+  padding:30px;
+  margin-bottom:50px;
+}
+
+.currency-box p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* LAYOUT */
+.layout{
+  display:flex;
+  gap:60px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+
+/* CHESTSHOP VISUAL BOX */
+.chestshop-visual{
+  flex:2;
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  box-shadow:var(--glow);
+  padding:40px;
+  min-height:350px;
+}
+
+.chestshop-visual h2{
+  color:var(--green);
+  margin-bottom:20px;
+}
+
+.chestshop-visual p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* STICKY BOX */
+.sticky-box{
+  flex:1;
+  position:sticky;
+  top:120px;
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  box-shadow:var(--glow);
+  padding:30px;
+  min-width:320px;
+}
+
+.sticky-box h3{
+  color:var(--green);
+  margin-bottom:20px;
+}
+
+.sticky-box p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+pre{
+  background:#111;
+  padding:12px;
+  border-radius:6px;
+  margin:12px 0;
+  color:var(--green);
+}
+
+/* BACK BUTTON */
+.back{
+  display:inline-block;
+  margin-top:60px;
+  font-family:'Minecraft',monospace;
+  color:var(--green);
+  text-decoration:none;
+}
+
+.back:hover{
+  color:var(--red);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DeathDevil.Eu</div>
+</header>
+
+<div class="container">
+
+<h1>💰 Währungssystem</h1>
+
+<!-- EURO -->
+<div class="currency-box">
+<h2>💶 Euro</h2>
+<p>
+Euro sind die Hauptwährung auf unserem Server.<br><br>
+
+Du kannst Euro verdienen durch:<br><br>
+
+• Jobs<br>
+• Verkauf im Server-Shop<br>
+• Verkauf im eigenen ChestShop auf deinem Plot<br>
+• Quests<br>
+• Voten<br>
+• Unser Belohnungssystem<br><br>
+
+Geld kann außerdem an andere Spieler gesendet werden mit:
+</p>
+
+<pre>/pay [Spielername] [Betrag]</pre>
+</div>
+
+<!-- COINS -->
+<div class="currency-box">
+<h2>🪙 PlayerPoints (Coins)</h2>
+<p>
+Coins sind unsere exklusive Währung.<br><br>
+
+Diese erhältst du durch:<br><br>
+
+• Events<br>
+• Quests<br>
+• Belohnungssystem<br><br>
+
+Coins können in exklusiven Shops für besondere Items, Vorteile oder Cosmetics ausgegeben werden.
+</p>
+</div>
+
+<h2 style="margin-bottom:30px;">🏪 ChestShop System</h2>
+
+<div class="layout">
+
+<div class="chestshop-visual">
+<h2>ChestShop Aufbau</h2>
+<p>
+Der ChestShop muss exakt korrekt aufgebaut werden.<br><br>
+
+Platziere eine Truhe auf deinem Plot und erstelle anschließend deinen Shop über das System.
+<br><br>
+Über deinen ChestShop können andere Spieler deine Items direkt kaufen.
+</p>
+</div>
+
+<div class="sticky-box">
+<h3>So erstellst du den ChestShop</h3>
+
+<p>
+<strong>1.</strong> Schaue eine <b>leere Truhe</b> an.<br><br>
+
+<strong>2.</strong> Gebe folgenden Befehl ein:
+</p>
+
+<pre>/scs create &lt;shop-name&gt;</pre>
+
+<p>Beispiel:</p>
+
+<pre>/scs create Eichenholzstamm</pre>
+
+<p>
+<strong>3.</strong> Folge anschließend einfach dem GUI-Menü und stelle deinen Shop fertig ein.
+</p>
+
+</div>
+
+</div>
+
+<a href="index.html" class="back">⬅ Zurück zur Startseite</a>
+
+</div>
+
+</body>
+</html>
