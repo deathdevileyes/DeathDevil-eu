@@ -2,29 +2,27 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Bewertung – DeathDevil.Eu</title>
+<title>Server Bewerten – DeathDevil.Eu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#0b0d10;
-  --panel:rgba(10,10,15,.95);
+  --bg:#050507;
+  --panel:#0f1117;
+  --panel-2:#0c0d12;
   --red:#b11226;
-  --red-dark:#6e0a16;
   --green:#2ecc71;
-  --text:#eaeaea;
-  --muted:#a0a0a0;
-  --glow-red:0 0 25px rgba(177,18,38,.7);
-  --glow-green:0 0 25px rgba(46,204,113,.7);
+  --text:#ffffff;
+  --muted:#9ca3af;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:'Inter',sans-serif;
   background:var(--bg);
   color:var(--text);
   overflow-x:hidden;
@@ -35,7 +33,7 @@ body::before{
   position:fixed;
   inset:0;
   background:url('background.png') center/cover no-repeat;
-  filter:brightness(.25);
+  filter:brightness(.18) blur(2px);
   z-index:-2;
 }
 
@@ -43,20 +41,20 @@ body::before{
 header{
   display:flex;
   align-items:center;
-  padding:22px 48px;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--red-dark);
+  padding:24px 60px;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(177,18,38,.3);
 }
 
 .logo{
   font-family:'Minecraft',monospace;
   font-size:26px;
   color:var(--red);
-  text-shadow:var(--glow-red);
+  letter-spacing:1px;
 }
 
-.back-link{
+.back{
   margin-left:auto;
   font-family:'Minecraft',monospace;
   color:var(--green);
@@ -64,73 +62,68 @@ header{
   transition:.3s;
 }
 
-.back-link:hover{
-  text-shadow:var(--glow-green);
+.back:hover{
+  opacity:.7;
 }
 
-/* CONTENT */
-.container{
+/* MAIN */
+.wrapper{
   max-width:1100px;
-  margin:100px auto;
+  margin:120px auto;
   padding:40px;
 }
 
-.box{
-  background:var(--panel);
-  border:1px solid var(--red-dark);
-  box-shadow:var(--glow-red);
-  padding:60px;
+.card{
+  background:linear-gradient(145deg, var(--panel), var(--panel-2));
+  border:1px solid rgba(177,18,38,.3);
   border-radius:20px;
-  text-align:center;
+  padding:70px 60px;
+  box-shadow:0 0 80px rgba(177,18,38,.15);
   position:relative;
 }
 
-.box::before{
+.card::after{
   content:"";
   position:absolute;
-  inset:-2px;
-  border-radius:22px;
-  background:linear-gradient(45deg, #b11226, #2ecc71);
+  inset:-1px;
+  border-radius:20px;
+  background:linear-gradient(90deg, #b11226, #2ecc71);
+  opacity:.07;
   z-index:-1;
-  filter:blur(25px);
-  opacity:.2;
 }
 
-.box h1{
+.card h1{
   font-family:'Minecraft',monospace;
-  color:var(--green);
-  font-size:40px;
+  font-size:42px;
   margin-bottom:20px;
-  text-shadow:var(--glow-green);
+  text-align:center;
+  color:white;
 }
 
-.box p{
+.card p{
+  text-align:center;
   color:var(--muted);
-  margin-bottom:50px;
+  margin-bottom:60px;
   font-size:16px;
-  line-height:1.8;
 }
 
-/* FORM WRAPPER */
-.form-wrapper{
+/* FORM CONTAINER */
+.form-container{
   background:#000;
-  padding:20px;
+  padding:25px;
   border-radius:16px;
+  border:1px solid rgba(255,255,255,.05);
   box-shadow:0 0 40px rgba(0,0,0,.9);
 }
 
+/* GOOGLE FORM DARK MODE MAGIC */
 iframe{
   width:100%;
   height:900px;
   border:none;
   border-radius:12px;
+  filter:invert(1) hue-rotate(180deg) contrast(1.05);
   background:black;
-  filter:invert(1) hue-rotate(180deg);
-}
-
-/* Entfernt weißen Hintergrund-Effekt */
-iframe body{
-  background:black !important;
 }
 </style>
 </head>
@@ -139,21 +132,20 @@ iframe body{
 
 <header>
   <div class="logo">DeathDevil.Eu</div>
-  <a href="index.html" class="back-link">⬅ Zurück zur Startseite</a>
+  <a href="index.html" class="back">⬅ Zurück</a>
 </header>
 
-<div class="container">
-  <div class="box">
-    <h1>⭐ Server Bewertung</h1>
+<div class="wrapper">
+  <div class="card">
+    <h1>Server Bewerten</h1>
     <p>
-      Deine Meinung zählt!  
-      Hilf uns, DeathDevil.Eu weiter zu verbessern und werde Teil unserer Entwicklung.
+      Deine Meinung ist uns wichtig.  
+      Bewerte unseren Server und hilf uns dabei, DeathDevil.Eu weiter zu verbessern.
     </p>
 
-    <div class="form-wrapper">
+    <div class="form-container">
       <iframe
         src="https://docs.google.com/forms/d/e/1FAIpQLSddhWKCjfZ7_79V3Kss61gj6eVsiO_bQ8rO8Y06iNtxsjEePg/viewform?embedded=true">
-        Formular wird geladen…
       </iframe>
     </div>
 
