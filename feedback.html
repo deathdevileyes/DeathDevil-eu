@@ -1,202 +1,31 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Server Bewertung – DeathDevil.Eu</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg:#0b0d10;
-  --panel:rgba(20,20,25,.88);
-  --red:#b11226;
-  --red-dark:#6e0a16;
-  --green:#2ecc71;
-  --text:#eaeaea;
-  --glow:0 0 30px rgba(177,18,38,.8);
-}
-
-body{
-  font-family:'Inter',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:url('background.png') center/cover no-repeat;
-  filter:brightness(.35);
-  z-index:-1;
-}
-
-header{
-  display:flex;
-  align-items:center;
-  padding:22px 48px;
-  background:rgba(0,0,0,.65);
-}
-
-.logo{
-  font-family:'Minecraft',monospace;
-  font-size:24px;
-  color:var(--red);
-  text-shadow:var(--glow);
-}
-
-.container{
-  max-width:600px;
-  margin:80px auto;
-  padding:40px;
-}
-
-.form-box{
-  background:var(--panel);
-  border:1px solid var(--red-dark);
-  box-shadow:var(--glow);
-  padding:30px;
-}
-
-h1{
-  font-family:'Minecraft',monospace;
-  color:var(--green);
-  text-align:center;
-  margin-bottom:30px;
-}
-
-input, textarea, select{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  background:#111;
-  border:1px solid var(--red-dark);
-  color:var(--text);
-  border-radius:6px;
-}
-
-button{
-  width:100%;
-  padding:12px;
-  margin-top:20px;
-  background:var(--red);
-  border:none;
-  color:white;
-  font-family:'Minecraft',monospace;
-  cursor:pointer;
-}
-
-button:hover{
-  background:var(--green);
-}
-
-#msg{
-  margin-top:15px;
-  text-align:center;
-  color:#ff5555;
-}
-
-.back{
-  display:inline-block;
-  margin-top:40px;
-  font-family:'Minecraft',monospace;
-  color:var(--green);
-  text-decoration:none;
-}
-.back:hover{color:var(--red);}
-</style>
+  <meta charset="UTF-8">
+  <title>Debug Test</title>
 </head>
+<body style="background:#111;color:white;text-align:center;padding-top:100px;">
 
-<body>
+<h1>Firebase Debug</h1>
 
-<header>
-  <div class="logo">DeathDevil.Eu</div>
-</header>
+<form id="testForm">
+  <input type="text" id="name" placeholder="Name">
+  <button type="submit">Absenden</button>
+</form>
 
-<div class="container">
-  <div class="form-box">
-    <h1>⭐ Server bewerten</h1>
+<p id="output"></p>
 
-    <form id="ratingForm">
-      <input type="text" id="name" placeholder="Ingame Name *" required>
-
-      <select id="stars">
-        <option value="5">5 - Fabelhaft</option>
-        <option value="4">4 - Sehr gut</option>
-        <option value="3">3 - Gut</option>
-        <option value="2">2 - Geht so</option>
-        <option value="1">1 - Schlecht</option>
-      </select>
-
-      <textarea id="feedback" placeholder="Dein Feedback"></textarea>
-      <textarea id="wunsch" placeholder="Wünsche / Verbesserungen"></textarea>
-
-      <button type="submit">Bewertung absenden</button>
-    </form>
-
-    <p id="msg"></p>
-  </div>
-
-  <a href="index.html" class="back">⬅ Zurück zur Startseite</a>
-</div>
-
-<!-- Firebase CDN -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+console.log("Script gestartet");
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCnOCp8Ue6c728ndQLz4WJ--o4I2wI1QKU",
-    authDomain: "bewertungen-deathdevileu.firebaseapp.com",
-    projectId: "bewertungen-deathdevileu"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  document.getElementById("ratingForm").addEventListener("submit", async function(e){
-    e.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const stars = parseInt(document.getElementById("stars").value);
-    const feedback = document.getElementById("feedback").value;
-    const wunsch = document.getElementById("wunsch").value;
-
-    if(!name){
-      document.getElementById("msg").innerText = "Bitte Ingame Namen eingeben.";
-      return;
-    }
-
-    try {
-      const ref = db.collection("bewertungen").doc(name);
-      const snap = await ref.get();
-
-      if(snap.exists){
-        document.getElementById("msg").innerText = "Du hast bereits bewertet.";
-        return;
-      }
-
-      await ref.set({
-        name: name,
-        stars: stars,
-        feedback: feedback,
-        wunsch: wunsch,
-        created: new Date()
-      });
-
-      window.location.href = "bewertungen.html";
-
-    } catch(err) {
-      document.getElementById("msg").innerText = "Fehler: " + err.message;
-      console.error(err);
-    }
-  });
-
+document.getElementById("testForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  document.getElementById("output").innerText = "Submit funktioniert!";
+  console.log("Submit ausgelöst");
 });
 </script>
 
