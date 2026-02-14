@@ -109,11 +109,7 @@ button:hover{
 .back:hover{color:var(--red);}
 </style>
 </head>
-  
-<script>
-alert("Seite lädt JavaScript");
-</script>
-  
+
 <body>
 
 <header>
@@ -147,50 +143,60 @@ alert("Seite lädt JavaScript");
   <a href="index.html" class="back">⬅ Zurück zur Startseite</a>
 </div>
 
-<!-- Firebase CDN Version -->
+<!-- Firebase CDN -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyCnOCp8Ue6c728ndQLz4WJ--o4I2wI1QKU",
-  authDomain: "bewertungen-deathdevileu.firebaseapp.com",
-  projectId: "bewertungen-deathdevileu"
-};
+document.addEventListener("DOMContentLoaded", function() {
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+  const firebaseConfig = {
+    apiKey: "AIzaSyCnOCp8Ue6c728ndQLz4WJ--o4I2wI1QKU",
+    authDomain: "bewertungen-deathdevileu.firebaseapp.com",
+    projectId: "bewertungen-deathdevileu"
+  };
 
-document.getElementById("ratingForm").addEventListener("submit", async function(e){
-  e.preventDefault();
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-  const name = document.getElementById("name").value.trim();
-  const stars = parseInt(document.getElementById("stars").value);
-  const feedback = document.getElementById("feedback").value;
-  const wunsch = document.getElementById("wunsch").value;
+  document.getElementById("ratingForm").addEventListener("submit", async function(e){
+    e.preventDefault();
 
-  if(!name){
-    document.getElementById("msg").innerText = "Bitte Ingame Namen eingeben.";
-    return;
-  }
+    const name = document.getElementById("name").value.trim();
+    const stars = parseInt(document.getElementById("stars").value);
+    const feedback = document.getElementById("feedback").value;
+    const wunsch = document.getElementById("wunsch").value;
 
-  const ref = db.collection("bewertungen").doc(name);
-  const snap = await ref.get();
+    if(!name){
+      document.getElementById("msg").innerText = "Bitte Ingame Namen eingeben.";
+      return;
+    }
 
-  if(snap.exists){
-    document.getElementById("msg").innerText = "Du hast bereits bewertet.";
-    return;
-  }
+    try {
+      const ref = db.collection("bewertungen").doc(name);
+      const snap = await ref.get();
 
-  await ref.set({
-    name: name,
-    stars: stars,
-    feedback: feedback,
-    wunsch: wunsch,
-    created: new Date()
+      if(snap.exists){
+        document.getElementById("msg").innerText = "Du hast bereits bewertet.";
+        return;
+      }
+
+      await ref.set({
+        name: name,
+        stars: stars,
+        feedback: feedback,
+        wunsch: wunsch,
+        created: new Date()
+      });
+
+      window.location.href = "bewertungen.html";
+
+    } catch(err) {
+      document.getElementById("msg").innerText = "Fehler: " + err.message;
+      console.error(err);
+    }
   });
 
-  window.location.href = "bewertungen.html";
 });
 </script>
 
