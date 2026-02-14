@@ -2,50 +2,72 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Bewertungen – DeathDevil.Eu</title>
+<title>Server Bewertung – DeathDevil.Eu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body{
   font-family:Inter,sans-serif;
   background:#0b0d10;
-  color:white;
-  padding:40px;
-}
-.stat{
-  margin-bottom:30px;
-  font-size:18px;
-}
-.bar{
-  background:#333;
-  height:20px;
-  margin:5px 0;
-  border-radius:4px;
-}
-.fill{
-  background:gold;
-  height:100%;
-  border-radius:4px;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 .box{
   background:#141419;
-  padding:15px;
-  margin-bottom:15px;
-  border-radius:10px;
+  padding:40px;
+  width:400px;
+  border-radius:12px;
 }
+input,textarea,select{
+  width:100%;
+  margin:10px 0;
+  padding:10px;
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+}
+button{
+  width:100%;
+  padding:12px;
+  background:#b11226;
+  border:none;
+  color:white;
+  cursor:pointer;
+  border-radius:6px;
+}
+button:hover{background:#2ecc71;}
+#msg{margin-top:10px;color:#ff5555;}
 </style>
 </head>
 <body>
 
-<h1>📊 Server Bewertungen</h1>
+<div class="box">
+<h2>⭐ Server bewerten</h2>
 
-<div id="stats" class="stat"></div>
-<div id="distribution"></div>
-<hr>
-<div id="list"></div>
+<input type="text" id="name" placeholder="Ingame Name" required>
+
+<select id="stars">
+<option value="5">5 - Fabelhaft</option>
+<option value="4">4 - Sehr gut</option>
+<option value="3">3 - Gut</option>
+<option value="2">2 - Geht so</option>
+<option value="1">1 - Schlecht</option>
+</select>
+
+<textarea id="feedback" placeholder="Dein Feedback"></textarea>
+<textarea id="wunsch" placeholder="Wünsche / Verbesserungen"></textarea>
+
+<button onclick="send()">Absenden</button>
+<p id="msg"></p>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCnOCp8Ue6c728ndQLz4WJ--o4I2wI1QKU",
@@ -56,40 +78,35 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const snapshot = await getDocs(collection(db, "bewertungen"));
+window.send = async function(){
 
-let total = 0;
-let count = 0;
-let starsCount = {1:0,2:0,3:0,4:0,5:0};
+  const name = document.getElementById("name").value.trim();
+  const stars = Number(document.getElementById("stars").value);
+  const feedback = document.getElementById("feedback").value;
+  const wunsch = document.getElementById("wunsch").value;
 
-snapshot.forEach(doc=>{
-  const data = doc.data();
-  total += data.stars;
-  count++;
-  starsCount[data.stars]++;
+  if(!name){
+    document.getElementById("msg").innerText = "Bitte Ingame Namen eingeben.";
+    return;
+  }
 
-  document.getElementById("list").innerHTML += `
-    <div class="box">
-      <strong>${data.name}</strong> – ⭐ ${data.stars}/5<br>
-      ${data.feedback || ""}<br>
-      <em>${data.wunsch || ""}</em>
-    </div>
-  `;
-});
+  const ref = doc(db, "bewertungen", name);
+  const exists = await getDoc(ref);
 
-const avg = count ? (total/count).toFixed(2) : 0;
+  if(exists.exists()){
+    document.getElementById("msg").innerText = "Du hast bereits bewertet.";
+    return;
+  }
 
-document.getElementById("stats").innerHTML =
-  `⭐ Durchschnitt: ${avg}/5 | 📈 Bewertungen: ${count}`;
+  await setDoc(ref, {
+    name,
+    stars,
+    feedback,
+    wunsch,
+    date: new Date()
+  });
 
-for(let i=5;i>=1;i--){
-  const percent = count ? (starsCount[i]/count)*100 : 0;
-  document.getElementById("distribution").innerHTML += `
-    ${i} ⭐
-    <div class="bar">
-      <div class="fill" style="width:${percent}%"></div>
-    </div>
-  `;
+  window.location.href = "bewertungen.html";
 }
 </script>
 
