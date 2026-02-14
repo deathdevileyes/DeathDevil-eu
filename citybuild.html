@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>CityBuild – DeathDevil.Eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0d10;
+  --panel:rgba(20,20,25,.88);
+  --red:#b11226;
+  --red-dark:#6e0a16;
+  --green:#2ecc71;
+  --text:#eaeaea;
+  --muted:#a0a0a0;
+  --glow:0 0 30px rgba(177,18,38,.8);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('background.png') center/cover no-repeat;
+  filter:brightness(.35);
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  align-items:center;
+  padding:22px 48px;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  font-family:'Minecraft',monospace;
+  font-size:24px;
+  color:var(--red);
+  text-shadow:var(--glow);
+}
+
+/* CONTAINER */
+.container{
+  max-width:1100px;
+  margin:80px auto;
+  padding:40px;
+}
+
+h1,h2,h3{
+  font-family:'Minecraft',monospace;
+}
+
+h1{
+  text-align:center;
+  color:var(--green);
+  margin-bottom:60px;
+}
+
+/* MODE BOX */
+.mode-box{
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  box-shadow:var(--glow);
+  padding:30px;
+  margin-bottom:35px;
+  transition:.3s;
+}
+
+.mode-box:hover{
+  transform:translateY(-5px);
+}
+
+.mode-box h3{
+  color:var(--green);
+  margin-bottom:15px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.mode-box p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* BACK */
+.back{
+  display:inline-block;
+  margin-top:50px;
+  font-family:'Minecraft',monospace;
+  color:var(--green);
+  text-decoration:none;
+}
+
+.back:hover{
+  color:var(--red);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DeathDevil.Eu</div>
+</header>
+
+<div class="container">
+
+<h1>🏙️ Welche CityBuild-Arten bietet unser Server?</h1>
+
+<div class="mode-box">
+  <h3>📍 Klassische Plotwelt</h3>
+  <p>
+  In unserer klassischen Plotwelt erhält jeder Spieler ein eigenes Grundstück.
+  Hier kannst du frei bauen, handeln und deine Projekte verwirklichen.
+  Ideal für Wirtschaft, Shops, Community-Bauten und langfristige Bauprojekte.
+  </p>
+</div>
+
+<div class="mode-box">
+  <h3>☁️ SkyBlock</h3>
+  <p>
+  Du startest auf einer kleinen schwebenden Insel mit minimalen Ressourcen.
+  Durch kluge Planung, Farm-Systeme und Handel baust du deine Insel Schritt für Schritt aus.
+  Perfekt für Spieler, die strategisches Wirtschaften und Fortschritt lieben.
+  </p>
+</div>
+
+<div class="mode-box">
+  <h3>🌴 OneBlock</h3>
+  <p>
+  Bei OneBlock startest du mit nur einem einzigen Block.
+  Jeder Abbau generiert neue Blöcke und Phasen, die immer komplexer werden.
+  Ein dynamischer Spielmodus mit ständigem Fortschritt und neuen Herausforderungen.
+  </p>
+</div>
+
+<div class="mode-box">
+  <h3>🧪 AcidIsland</h3>
+  <p>
+  Eine Variante von SkyBlock mit erhöhter Schwierigkeit.
+  Dich umgibt gefährliche Säure statt normales Wasser.
+  Ressourcenmanagement und Vorsicht sind hier entscheidend für dein Überleben.
+  </p>
+</div>
+
+<div class="mode-box">
+  <h3>🧱 Boxed</h3>
+  <p>
+  Du startest in einem begrenzten Raum, der sich nur durch Fortschritt erweitert.
+  Neue Bereiche schaltest du durch Erfolge frei.
+  Ideal für Spieler, die strukturierte Herausforderungen mögen.
+  </p>
+</div>
+
+<div class="mode-box">
+  <h3>🌊 Poseidon</h3>
+  <p>
+  Eine einzigartige Unterwasserwelt.
+  Nach einem Schiffbruch baust du deine Basis im Ozean auf
+  und meisterst besondere Umgebungsbedingungen.
+  Ein Survival-Erlebnis mit völlig neuem Spielgefühl.
+  </p>
+</div>
+
+<a href="index.html" class="back">⬅ Zurück zur Startseite</a>
+
+</div>
+
+</body>
+</html>
