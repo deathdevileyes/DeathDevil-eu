@@ -148,14 +148,56 @@ button:hover{
   <a href="index.html" class="back">⬅ Zurück zur Startseite</a>
 </div>
 
-<script>
-document.getElementById("ratingForm").addEventListener("submit", function(e) {
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCnOCp8Ue6c728ndQLz4WJ--o4I2wI1QKU",
+  authDomain: "bewertungen-deathdevileu.firebaseapp.com",
+  projectId: "bewertungen-deathdevileu"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+document.getElementById("ratingForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
-  document.getElementById("msg").innerText = "Formular funktioniert!";
-  alert("Button funktioniert jetzt!");
+  try {
+    const name = document.getElementById("name").value.trim();
+    const stars = Number(document.getElementById("stars").value);
+    const feedback = document.getElementById("feedback").value;
+    const wunsch = document.getElementById("wunsch").value;
+
+    if(!name){
+      document.getElementById("msg").innerText = "Bitte Ingame Namen eingeben.";
+      return;
+    }
+
+    const ref = doc(db, "bewertungen", name);
+    const snap = await getDoc(ref);
+
+    if(snap.exists()){
+      document.getElementById("msg").innerText = "Du hast bereits bewertet.";
+      return;
+    }
+
+    await setDoc(ref, {
+      name: name,
+      stars: stars,
+      feedback: feedback,
+      wunsch: wunsch,
+      created: new Date()
+    });
+
+    window.location.href = "bewertungen.html";
+
+  } catch (error) {
+    console.error("Firebase Fehler:", error);
+    document.getElementById("msg").innerText = "Fehler: " + error.message;
+  }
 });
 </script>
-
 </body>
 </html>
