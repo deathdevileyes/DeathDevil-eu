@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Server Bewertung – DeathDevil.Eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0d10;
+  --panel:rgba(20,20,25,.88);
+  --red:#b11226;
+  --red-dark:#6e0a16;
+  --green:#2ecc71;
+  --text:#eaeaea;
+  --muted:#a0a0a0;
+  --glow:0 0 30px rgba(177,18,38,.8);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('background.png') center/cover no-repeat;
+  filter:brightness(.35);
+  z-index:-1;
+}
+
+header{
+  display:flex;
+  align-items:center;
+  padding:22px 48px;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  font-family:'Minecraft',monospace;
+  font-size:24px;
+  color:var(--red);
+  text-shadow:var(--glow);
+}
+
+.container{
+  max-width:800px;
+  margin:80px auto;
+  padding:40px;
+}
+
+h1{
+  font-family:'Minecraft',monospace;
+  text-align:center;
+  color:var(--green);
+  margin-bottom:50px;
+}
+
+.form-box{
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  box-shadow:var(--glow);
+  padding:30px;
+}
+
+label{
+  display:block;
+  margin-top:20px;
+  margin-bottom:8px;
+  font-weight:500;
+}
+
+input, textarea, select{
+  width:100%;
+  padding:12px;
+  background:#111;
+  border:1px solid var(--red-dark);
+  color:var(--text);
+  border-radius:6px;
+}
+
+textarea{
+  resize:vertical;
+  min-height:120px;
+}
+
+.stars{
+  display:flex;
+  gap:10px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+.stars input{
+  display:none;
+}
+
+.stars label{
+  color:#555;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.stars input:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label{
+  color:gold;
+}
+
+button{
+  margin-top:30px;
+  padding:12px 20px;
+  background:var(--red);
+  border:none;
+  color:white;
+  font-family:'Minecraft',monospace;
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  background:var(--green);
+}
+
+.back{
+  display:inline-block;
+  margin-top:40px;
+  font-family:'Minecraft',monospace;
+  color:var(--green);
+  text-decoration:none;
+}
+.back:hover{color:var(--red);}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DeathDevil.Eu</div>
+</header>
+
+<div class="container">
+
+<h1>⭐ Server Bewertung</h1>
+
+<div class="form-box">
+
+<form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+
+<label>🎮 Dein Ingame-Name *</label>
+<input type="text" name="Ingame-Name" required>
+
+<label>⭐ Bewertung</label>
+<div class="stars">
+  <input type="radio" name="Bewertung" value="5" id="5"><label for="5">★</label>
+  <input type="radio" name="Bewertung" value="4" id="4"><label for="4">★</label>
+  <input type="radio" name="Bewertung" value="3" id="3"><label for="3">★</label>
+  <input type="radio" name="Bewertung" value="2" id="2"><label for="2">★</label>
+  <input type="radio" name="Bewertung" value="1" id="1"><label for="1">★</label>
+</div>
+
+<label>💬 Dein Feedback</label>
+<textarea name="Feedback"></textarea>
+
+<label>💡 Wünsche / Verbesserungen</label>
+<textarea name="Wünsche"></textarea>
+
+<button type="submit">Bewertung absenden</button>
+
+</form>
+
+</div>
+
+<a href="index.html" class="back">⬅ Zurück zur Startseite</a>
+
+</div>
+
+</body>
+</html>
