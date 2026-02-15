@@ -90,7 +90,7 @@ header{
 h1{
   font-family:'Minecraft',monospace;
   color:var(--green);
-  margin-bottom:20px;
+  margin-bottom:25px;
   text-align:center;
 }
 
@@ -105,8 +105,12 @@ input, textarea{
   font-size:15px;
 }
 
-textarea{resize:vertical;min-height:120px;}
+textarea{
+  resize:vertical;
+  min-height:120px;
+}
 
+/* ⭐ Sterne links → rechts */
 .stars{
   display:flex;
   justify-content:center;
@@ -119,15 +123,18 @@ textarea{resize:vertical;min-height:120px;}
 }
 
 .stars label{
-  font-size:30px;
+  font-size:34px;
   cursor:pointer;
   color:#444;
-  transition:.3s;
+  transition:.2s ease;
 }
 
-.stars input:checked ~ label,
 .stars label:hover,
 .stars label:hover ~ label{
+  color:gold;
+}
+
+.stars input:checked ~ label{
   color:gold;
 }
 
@@ -144,7 +151,9 @@ button{
   transition:.3s;
 }
 
-button:hover{background:var(--green);}
+button:hover{
+  background:var(--green);
+}
 
 .note{
   text-align:center;
@@ -171,11 +180,20 @@ button:hover{background:var(--green);}
       <input type="text" name="Ingame Name" placeholder="Ingame Name *" required>
 
       <div class="stars">
-        <input type="radio" id="star5" name="Bewertung" value="5" required><label for="star5">★</label>
-        <input type="radio" id="star4" name="Bewertung" value="4"><label for="star4">★</label>
-        <input type="radio" id="star3" name="Bewertung" value="3"><label for="star3">★</label>
-        <input type="radio" id="star2" name="Bewertung" value="2"><label for="star2">★</label>
-        <input type="radio" id="star1" name="Bewertung" value="1"><label for="star1">★</label>
+        <input type="radio" id="star1" name="Bewertung" value="1" required>
+        <label for="star1">★</label>
+
+        <input type="radio" id="star2" name="Bewertung" value="2">
+        <label for="star2">★</label>
+
+        <input type="radio" id="star3" name="Bewertung" value="3">
+        <label for="star3">★</label>
+
+        <input type="radio" id="star4" name="Bewertung" value="4">
+        <label for="star4">★</label>
+
+        <input type="radio" id="star5" name="Bewertung" value="5">
+        <label for="star5">★</label>
       </div>
 
       <textarea name="Feedback" placeholder="Dein Feedback"></textarea>
