@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Spenden – DeathDevil.Eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0d10;
+  --panel:rgba(20,20,25,.88);
+  --blue:#3498db;
+  --blue-dark:#21628b;
+  --green:#2ecc71;
+  --text:#eaeaea;
+  --muted:#a0a0a0;
+  --glow:0 0 30px rgba(52,152,219,.6);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Hintergrundbild */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('background.png') center/cover no-repeat;
+  z-index:-3;
+}
+
+/* Overlay Blur */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(6px);
+  z-index:-2;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  align-items:center;
+  padding:22px 48px;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  font-family:'Minecraft',monospace;
+  font-size:24px;
+  color:var(--blue);
+  text-shadow:var(--glow);
+}
+
+.back{
+  margin-left:auto;
+  font-family:'Minecraft',monospace;
+  color:var(--green);
+  text-decoration:none;
+  transition:.3s;
+}
+
+.back:hover{
+  color:var(--blue);
+}
+
+/* CONTENT */
+.container{
+  max-width:900px;
+  margin:80px auto;
+  padding:30px;
+}
+
+.box{
+  background:var(--panel);
+  border:1px solid var(--blue-dark);
+  box-shadow:var(--glow);
+  padding:50px;
+  text-align:center;
+  border-radius:12px;
+}
+
+h1{
+  font-family:'Minecraft',monospace;
+  color:var(--blue);
+  margin-bottom:15px;
+}
+
+p{
+  color:var(--text);
+  margin-bottom:20px;
+  line-height:1.8;
+  font-size:18px;
+}
+
+.icon{
+  font-size:50px;
+  color:var(--green);
+  margin-bottom:12px;
+}
+
+/* BUTTON */
+.button {
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  background:var(--blue);
+  color:white;
+  padding:16px 28px;
+  border-radius:8px;
+  font-size:20px;
+  font-weight:600;
+  text-decoration:none;
+  margin-top:30px;
+  transition:.3s;
+}
+
+.button:hover {
+  background:var(--blue-dark);
+}
+
+/* ICON IMAGE */
+.button img {
+  width:32px;
+  height:32px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DeathDevil.Eu</div>
+  <a href="index.html" class="back">⬅ Zurück zur Startseite</a>
+</header>
+
+<div class="container">
+  <div class="box">
+
+    <h1>Unterstütze unseren Server 💙</h1>
+    <p>
+      Damit DeathDevil.Eu weiter bestehen kann, sind wir auf deine Hilfe angewiesen!  
+      Alle Spenden werden **ausschließlich für den Erhalt und die Verbesserung des Servers** verwendet.
+    </p>
+
+    <p>
+      Durch deine Spende können wir:
+    </p>
+
+    <p class="icon">⚙️ 🛠️ 🚀</p>
+    <p style="font-size:16px; color:var(--muted)">
+      ➤ Server-Hosting Kosten decken<br>
+      ➤ Leistungs-Upgrades für bessere Performance<br>
+      ➤ Stabilen & langfristigen Betrieb sichern<br>
+      ➤ Neue Features & Plugins finanzieren
+    </p>
+
+    <!-- Donation Button -->
+    <a class="button" href="https://zap-hosting.com/de/shop/donation/6b5c4573e8aaeb6697e3b656c4b03f1f/" target="_blank">
+      <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/payment_method_zap_hosting_icon_168528.png" alt="ZapHosting Icon">
+      Jetzt Spenden
+    </a>
+
+    <p style="margin-top:25px; font-size:14px; color:var(--muted)">
+      Vielen Dank für deine Unterstützung! Jeder Beitrag hilft unserem Projekt.
+    </p>
+
+  </div>
+</div>
+
+</body>
+</html>
