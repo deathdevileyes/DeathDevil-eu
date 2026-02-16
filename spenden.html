@@ -30,7 +30,7 @@ body{
   position:relative;
 }
 
-/* Hintergrundbild */
+/* Hintergrund */
 body::before{
   content:"";
   position:fixed;
@@ -39,7 +39,6 @@ body::before{
   z-index:-3;
 }
 
-/* Overlay Blur */
 body::after{
   content:"";
   position:fixed;
@@ -116,26 +115,27 @@ p{
 .button {
   display:inline-flex;
   align-items:center;
-  gap:12px;
-  background:var(--blue);
+  gap:14px;
+  background:linear-gradient(45deg,#2ecc71,#27ae60);
   color:white;
-  padding:16px 28px;
-  border-radius:8px;
+  padding:16px 32px;
+  border-radius:10px;
   font-size:20px;
   font-weight:600;
   text-decoration:none;
   margin-top:30px;
   transition:.3s;
+  box-shadow:0 0 25px rgba(46,204,113,.6);
 }
 
 .button:hover {
-  background:var(--blue-dark);
+  transform:scale(1.05);
+  box-shadow:0 0 40px rgba(46,204,113,.9);
 }
 
-/* ICON IMAGE */
-.button img {
-  width:32px;
-  height:32px;
+.coin-icon{
+  width:28px;
+  height:28px;
 }
 </style>
 </head>
@@ -151,16 +151,17 @@ p{
   <div class="box">
 
     <h1>Unterstütze unseren Server 💙</h1>
-    <p>
-      Damit DeathDevil.Eu weiter bestehen kann, sind wir auf deine Hilfe angewiesen!  
-      Alle Spenden werden **ausschließlich für den Erhalt und die Verbesserung des Servers** verwendet.
-    </p>
 
     <p>
-      Durch deine Spende können wir:
+      Damit DeathDevil.Eu weiter bestehen kann, sind wir auf deine Hilfe angewiesen.
+      <br><br>
+      <b>Alle Spenden werden ausschließlich für den Servererhalt und Upgrades verwendet.</b>
     </p>
+
+    <p>Durch deine Unterstützung können wir:</p>
 
     <p class="icon">⚙️ 🛠️ 🚀</p>
+
     <p style="font-size:16px; color:var(--muted)">
       ➤ Server-Hosting Kosten decken<br>
       ➤ Leistungs-Upgrades für bessere Performance<br>
@@ -170,7 +171,16 @@ p{
 
     <!-- Donation Button -->
     <a class="button" href="https://zap-hosting.com/de/shop/donation/6b5c4573e8aaeb6697e3b656c4b03f1f/" target="_blank">
-      <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/payment_method_zap_hosting_icon_168528.png" alt="ZapHosting Icon">
+      <svg class="coin-icon" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="26" fill="#2ecc71"/>
+        <circle cx="32" cy="32" r="20" fill="#27ae60"/>
+        <text x="32" y="39"
+              text-anchor="middle"
+              font-size="24"
+              font-family="Arial, sans-serif"
+              fill="white"
+              font-weight="bold">€</text>
+      </svg>
       Jetzt Spenden
     </a>
 
