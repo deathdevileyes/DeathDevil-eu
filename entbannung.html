@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Entbannungsantrag – DeathDevil.Eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0d10;
+  --panel:rgba(20,20,25,.9);
+  --red:#b11226;
+  --red-dark:#6e0a16;
+  --green:#2ecc71;
+  --text:#eaeaea;
+  --muted:#a0a0a0;
+  --glow:0 0 25px rgba(177,18,38,.6);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  position:relative;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('background.png') center/cover no-repeat;
+  filter:brightness(.35);
+  z-index:-2;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(6px);
+  z-index:-1;
+}
+
+header{
+  display:flex;
+  align-items:center;
+  padding:22px 48px;
+  background:rgba(0,0,0,.65);
+}
+
+.logo{
+  font-family:'Minecraft',monospace;
+  font-size:24px;
+  color:var(--red);
+  text-shadow:var(--glow);
+}
+
+.back{
+  margin-left:auto;
+  font-family:'Minecraft',monospace;
+  color:var(--green);
+  text-decoration:none;
+}
+
+.container{
+  max-width:900px;
+  margin:90px auto;
+  padding:40px;
+}
+
+.box{
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  box-shadow:var(--glow);
+  padding:50px;
+  border-radius:12px;
+}
+
+h1{
+  font-family:'Minecraft',monospace;
+  color:var(--red);
+  margin-bottom:15px;
+  text-align:center;
+}
+
+.subtitle{
+  color:var(--muted);
+  margin-bottom:35px;
+  text-align:center;
+}
+
+input, textarea{
+  width:100%;
+  padding:12px;
+  margin:10px 0 20px;
+  background:#111;
+  border:1px solid var(--red-dark);
+  color:var(--text);
+  border-radius:6px;
+}
+
+textarea{
+  resize:vertical;
+  min-height:120px;
+}
+
+.checkbox{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  background:var(--red);
+  border:none;
+  color:white;
+  font-family:'Minecraft',monospace;
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  background:var(--green);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DeathDevil.Eu</div>
+  <a href="index.html" class="back">⬅ Zurück</a>
+</header>
+
+<div class="container">
+  <div class="box">
+
+    <h1>Entbannungsantrag</h1>
+    <p class="subtitle">
+      Du wurdest vom Server ausgeschlossen und möchtest einen Antrag auf Entbannung stellen?  
+      Bitte fülle dieses Formular vollständig und ehrlich aus.
+    </p>
+
+    <form action="https://formspree.io/f/mlgwopel" method="POST">
+
+      <input type="text" name="Ingame Name" placeholder="Ingame Name *" required>
+      <input type="text" name="Discord Name" placeholder="Discord Name *" required>
+      <input type="text" name="Grund des Banns" placeholder="Grund des Banns *" required>
+
+      <textarea name="Was ist passiert?" placeholder="Was ist passiert? *" required></textarea>
+
+      <textarea name="Warum entbannen?" placeholder="Warum sollten wir dich entbannen? *" required></textarea>
+
+      <div class="checkbox">
+        <input type="checkbox" required>
+        <label>Ich bestätige, dass meine Angaben der Wahrheit entsprechen.</label>
+      </div>
+
+      <button type="submit">Antrag absenden</button>
+
+    </form>
+
+  </div>
+</div>
+
+</body>
+</html>
