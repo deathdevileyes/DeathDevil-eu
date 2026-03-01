@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>mcMMO – DeathDevil.Eu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0d10;
+  --panel:rgba(20,20,25,.9);
+  --red:#b11226;
+  --red-dark:#6e0a16;
+  --green:#2ecc71;
+  --text:#eaeaea;
+  --muted:#a0a0a0;
+  --glow:0 0 25px rgba(177,18,38,.6);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('background.png') center/cover no-repeat;
+  filter:brightness(.35);
+  z-index:-2;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(6px);
+  z-index:-1;
+}
+
+header{
+  display:flex;
+  align-items:center;
+  padding:22px 48px;
+  background:rgba(0,0,0,.65);
+}
+
+.logo{
+  font-family:'Minecraft',monospace;
+  font-size:24px;
+  color:var(--red);
+  text-shadow:var(--glow);
+}
+
+.back{
+  margin-left:auto;
+  font-family:'Minecraft',monospace;
+  color:var(--green);
+  text-decoration:none;
+}
+
+.container{
+  max-width:900px;
+  margin:90px auto;
+  padding:40px;
+}
+
+.box{
+  background:var(--panel);
+  border:1px solid var(--red-dark);
+  box-shadow:var(--glow);
+  padding:50px;
+  border-radius:12px;
+}
+
+h1{
+  font-family:'Minecraft',monospace;
+  color:var(--green);
+  margin-bottom:15px;
+  text-align:center;
+}
+
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:40px;
+}
+
+/* Accordion */
+
+.accordion{
+  background:#111;
+  border:1px solid var(--red-dark);
+  margin-bottom:10px;
+  cursor:pointer;
+  padding:15px;
+  font-family:'Minecraft',monospace;
+  transition:.3s;
+}
+
+.accordion:hover{
+  background:#181818;
+}
+
+.panel{
+  display:none;
+  background:#0e0e0e;
+  padding:20px;
+  border:1px solid var(--red-dark);
+  border-top:none;
+  margin-bottom:10px;
+  color:var(--muted);
+  line-height:1.7;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DeathDevil.Eu</div>
+  <a href="index.html" class="back">⬅ Zurück</a>
+</header>
+
+<div class="container">
+<div class="box">
+
+<h1>mcMMO System</h1>
+
+<p class="subtitle">
+Erlebe ein vollständiges RPG-Skillsystem und verbessere deine Fähigkeiten durch aktives Spielen.
+</p>
+
+
+<div class="accordion">⛏️ Was ist mcMMO?</div>
+<div class="panel">
+mcMMO ist ein erweitertes RPG-Skillsystem, das dir ermöglicht, durch normale Aktivitäten auf dem Server Erfahrung zu sammeln und deine Fähigkeiten zu verbessern.
+
+Während du spielst, erhältst du automatisch Erfahrungspunkte durch Aktionen wie Mining, Holzfällen, Farming oder Kämpfen. Mit jedem Levelaufstieg wirst du stärker, effizienter und erhältst neue Vorteile.
+
+Dieses System sorgt für langfristigen Fortschritt und macht dein Spielerlebnis deutlich abwechslungsreicher und motivierender.
+</div>
+
+
+<div class="accordion">⭐ Welche Skills gibt es?</div>
+<div class="panel">
+
+Verfügbare Skills:
+
+<br><br>
+
+⛏️ Mining – Mehr Erze und schnelleres Abbauen<br>
+🪓 Holzfällen – Ganze Bäume auf einmal fällen<br>
+🌾 Farming – Verbesserte Ernte und mehr Drops<br>
+⚔️ Kampf – Mehr Schaden und Kampfstärke<br>
+🏹 Bogenschießen – Verbesserte Treffer und Schaden<br>
+🛠️ Reparieren – Werkzeuge effizient reparieren<br>
+🎣 Angeln – Bessere und seltene Drops<br>
+🧪 Alchemie – Verbesserte Tränke und Effekte
+
+<br><br>
+
+Je höher dein Level, desto stärker werden deine Fähigkeiten.
+</div>
+
+
+<div class="accordion">🎁 Welche Belohnungen erhältst du?</div>
+<div class="panel">
+
+Durch das Leveln deiner Skills erhältst du:
+
+<br><br>
+
+• Mehr Drops aus Blöcken und Ressourcen<br>
+• Schnellere Abbaugeschwindigkeit<br>
+• Spezialfähigkeiten<br>
+• Verbesserte Werkzeugeffizienz<br>
+• Coins und Serverbelohnungen<br>
+• Langfristigen Fortschritt
+
+<br><br>
+
+Dein Fortschritt bleibt dauerhaft gespeichert.
+</div>
+
+
+<div class="accordion">⚡ Spezialfähigkeiten</div>
+<div class="panel">
+
+Mit steigendem Level schaltest du Spezialfähigkeiten frei:
+
+<br><br>
+
+⛏️ Super Breaker – Extrem schnelles Mining<br>
+🪓 Tree Feller – Ganze Bäume auf einmal abbauen<br>
+⚔️ Berserk – Mehr Schaden mit Äxten<br>
+🏹 Skill Shot – Erhöhter Bogenschaden<br>
+🛠️ Repair – Werkzeuge reparieren und verbessern
+
+<br><br>
+
+Diese Fähigkeiten werden mit deinem Level stärker.
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+
+for (var i = 0; i < acc.length; i++) {
+
+  acc[i].onclick = function() {
+
+    var panel = this.nextElementSibling;
+
+    if(panel.style.display === "block"){
+      panel.style.display = "none";
+    }else{
+      panel.style.display = "block";
+    }
+
+  }
+
+}
+</script>
+
+
+</body>
+</html>
