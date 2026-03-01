@@ -17,7 +17,7 @@ body {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 18px 30px;
   background: rgba(0,0,0,0.85);
@@ -27,15 +27,6 @@ header {
 header a {
   color: #2ecc71;
   text-decoration: none;
-}
-
-.alarm {
-  background: rgba(20,20,25,0.85);
-  border: 1px solid #6e0a16;
-  padding: 10px 14px;
-  box-shadow: 0 0 15px rgba(177,18,38,0.6);
-  font-size: 12px;
-  max-width: 200px;
 }
 
 h1 {
@@ -54,28 +45,16 @@ h1 {
 /* CONTROLS */
 .controls {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
   margin-bottom: 35px;
 }
 
-.controls input,
-.controls select,
-.controls button {
+.controls input {
   background: rgba(20,20,25,0.9);
   border: 1px solid #6e0a16;
   color: #eaeaea;
   font-family: 'Minecraft', monospace;
   padding: 10px 14px;
-}
-
-.controls button {
-  cursor: pointer;
-}
-
-.controls button.active {
-  border-color: #2ecc71;
 }
 
 /* GRID */
@@ -106,51 +85,17 @@ h1 {
   border-color: #2ecc71;
   box-shadow: 0 0 25px rgba(46,204,113,0.9);
 }
-.modal-box a:hover{color:var(--green)}
-
-/* ===================================== */
-/* 🔥 PREMIUM RESPONSIVE SYSTEM */
-/* ===================================== */
-
-@media (max-width: 768px){
-  header{flex-direction:column;padding:20px;gap:15px;text-align:center;}
-  .logo{margin-right:0;}
-  nav{flex-wrap:wrap;justify-content:center;gap:14px;}
-  nav a{font-size:14px;}
-  .status{margin-left:0;font-size:13px;}
-  .hero{padding-top:60px;}
-  .hero h1{font-size:38px;}
-  .hero p{font-size:14px;padding:0 15px;}
-  .join-box{width:90%;max-width:320px;}
-  .features{padding:60px 20px;}
-  .grid{grid-template-columns:1fr;}
-  .info-boxes{flex-direction:column;align-items:center;gap:20px;}
-  .info{width:90%;min-width:auto;}
-  .server-info{padding:25px 20px;}
-}
-
-@media (min-width: 769px) and (max-width: 1100px){
-  .hero h1{font-size:52px;}
-  .grid{grid-template-columns:repeat(2,1fr);}
-  .info-boxes{flex-wrap:wrap;justify-content:center;}
-}
-
-@media (min-width: 1600px){
-  .hero h1{font-size:90px;}
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="alarm" id="alarmLeft">⏳ Preisalarm…</div>
   <a href="index.html">⬅ Startseite</a>
-  <div class="alarm" id="alarmRight">⏳ Preisalarm…</div>
 </header>
 
 <h1>🛒 Server-Marktplatz</h1>
+
 <div class="hint">
 ℹ️ Preise ändern sich <b>automatisch täglich</b>.<br>
 🔥 Top-Deals werden hervorgehoben.
@@ -158,25 +103,13 @@ h1 {
 
 <div class="controls">
   <input id="searchInput" placeholder="🔍 Item suchen…">
-
-  <select id="sortSelect">
-    <option value="default">Sortierung</option>
-    <option value="asc">Preis ↑</option>
-    <option value="desc">Preis ↓</option>
-  </select>
-
-  <button data-cat="all" class="active">Alle</button>
-  <button data-cat="Erze">Erze</button>
-  <button data-cat="Farm">Farm</button>
-  <button data-cat="Nether">Nether</button>
-  <button data-cat="End">End</button>
 </div>
 
 <div class="grid" id="market"></div>
 
 <script>
+
 let allItems = [];
-let currentCategory = "all";
 
 fetch("./prices.json")
   .then(res => {
@@ -189,45 +122,29 @@ fetch("./prices.json")
       category: i.category || "Sonstiges"
     }));
     render();
-    updateAlarm();
   })
   .catch(err => {
-    console.error("FEHLER:", err);
+    console.error(err);
     document.getElementById("market").innerHTML =
       "<p style='grid-column:1/-1;text-align:center;color:red'>❌ Preise konnten nicht geladen werden</p>";
   });
 
 const market = document.getElementById("market");
 const searchInput = document.getElementById("searchInput");
-const sortSelect = document.getElementById("sortSelect");
-const buttons = document.querySelectorAll(".controls button");
-
-buttons.forEach(btn => {
-  btn.onclick = () => {
-    buttons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    currentCategory = btn.dataset.cat;
-    render();
-  };
-});
 
 searchInput.oninput = render;
-sortSelect.onchange = render;
 
 function render() {
+
   let items = [...allItems];
 
   const q = searchInput.value.toLowerCase();
-  if (q) items = items.filter(i => i.name.toLowerCase().includes(q));
 
-  if (currentCategory !== "all") {
-    items = items.filter(i => i.category === currentCategory);
+  if (q) {
+    items = items.filter(i =>
+      i.name.toLowerCase().includes(q)
+    );
   }
-
-  if (sortSelect.value === "asc")
-    items.sort((a,b)=>a.price-b.price);
-  if (sortSelect.value === "desc")
-    items.sort((a,b)=>b.price-a.price);
 
   market.innerHTML = "";
 
@@ -237,29 +154,29 @@ function render() {
     return;
   }
 
-  const cheapest = [...items].sort((a,b)=>a.price-b.price)[0];
+  const cheapest =
+    [...items].sort((a,b)=>a.price-b.price)[0];
 
   items.forEach(i => {
+
     const div = document.createElement("div");
-    div.className = "item" + (i === cheapest ? " deal" : "");
+
+    div.className =
+      "item" + (i === cheapest ? " deal" : "");
+
     div.innerHTML = `
       ${i.icon}
       <span>${i.amount}× ${i.name}</span>
       <b>${i.price.toFixed(2)} €</b>
     `;
+
     market.appendChild(div);
+
   });
+
 }
 
-function updateAlarm() {
-  const best = [...allItems].sort((a,b)=>a.price-b.price).slice(0,2);
-  document.getElementById("alarmLeft").innerHTML =
-    `🔥 ${best[0].name}<br>${best[0].price.toFixed(2)} €`;
-  document.getElementById("alarmRight").innerHTML =
-    `💎 ${best[1].name}<br>${best[1].price.toFixed(2)} €`;
-}
 </script>
 
 </body>
 </html>
-
