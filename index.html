@@ -401,9 +401,30 @@ nav a:hover{
   <h2>📰 Was gibt es Neues</h2>
   <div class="updates-box">
     <ul>
-      <li>🔧 Angepasste Jobs</li>
-      <li>🧟 Villager Defense überarbeitet</li>
+      <li>⚔️ SurvivalGames demnächst aktiv</li>
+      <li>🛠️ McMMO überarbeitet</li>
+      <li>🎒 Backpack System hinzugefügt</li>
+      <li>🏗️ FreeBuild jetzt auch im Kreativmodus verfügbar</li>
     </ul>
+  </div>
+</section>
+
+<section class="updates">
+  <h2>⏳ Nächster Farmwelt Reset</h2>
+
+  <div class="updates-box" style="text-align:center">
+
+    <p style="margin-bottom:10px">
+      Die Farmwelt wird regelmäßig zurückgesetzt,
+      damit neue Ressourcen verfügbar sind.
+    </p>
+
+    <h3 id="countdown" style="color:#2ecc71;font-size:26px;font-family:Minecraft"></h3>
+
+    <p style="margin-top:10px;color:#a0a0a0">
+      Reset betrifft: Farmwelt • Nether • End
+    </p>
+
   </div>
 </section>
 
@@ -432,16 +453,37 @@ nav a:hover{
 </section>
 
 <script>
+
 /* BLOCK ANIMATION */
 const canvas=document.getElementById("blocks");
 const ctx=canvas.getContext("2d");
-function resize(){canvas.width=innerWidth;canvas.height=innerHeight}
-addEventListener("resize",resize);resize();
-const blocks=[...Array(80)].map(()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,s:6+Math.random()*10,v:.4+Math.random()}));
+
+function resize(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight
+}
+
+addEventListener("resize",resize);
+resize();
+
+const blocks=[...Array(80)].map(()=>({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  s:6+Math.random()*10,
+  v:.4+Math.random()
+}));
+
 (function anim(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.fillStyle="rgba(177,18,38,.8)";
-  blocks.forEach(b=>{ctx.fillRect(b.x,b.y,b.s,b.s);b.y+=b.v;if(b.y>canvas.height){b.y=-b.s;b.x=Math.random()*canvas.width}});
+  blocks.forEach(b=>{
+    ctx.fillRect(b.x,b.y,b.s,b.s);
+    b.y+=b.v;
+    if(b.y>canvas.height){
+      b.y=-b.s;
+      b.x=Math.random()*canvas.width
+    }
+  });
   requestAnimationFrame(anim);
 })();
 
@@ -452,14 +494,40 @@ function copyIP(){
 }
 
 /* MODAL */
-document.getElementById("openDiscover").onclick=()=>document.getElementById("discoverModal").style.display="flex";
-document.getElementById("discoverModal").onclick=e=>{
-  if(e.target.id==="discoverModal") e.target.style.display="none";
+document.getElementById("openDiscover").onclick=()=>{
+  document.getElementById("discoverModal").style.display="flex";
 };
+
+document.getElementById("discoverModal").onclick=e=>{
+  if(e.target.id==="discoverModal"){
+    e.target.style.display="none";
+  }
+};
+
+/* FARM RESET COUNTDOWN */
+
+const resetDate = new Date("2026-03-17 18:00:00").getTime();
+
+setInterval(()=>{
+
+  const now = new Date().getTime();
+  const distance = resetDate - now;
+
+  const days = Math.floor(distance / (1000*60*60*24));
+  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+
+},1000);
+
 </script>
 
 </body>
 </html>
+
 
 
 
