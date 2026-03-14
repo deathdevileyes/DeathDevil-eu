@@ -10,11 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
-  background: #0b0d10;
   color: #eaeaea;
+
+  background:
+    linear-gradient(rgba(10,10,12,0.88), rgba(10,10,12,0.95)),
+    url("images/minecraft-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 /* HEADER */
@@ -91,37 +99,13 @@ li {
   font-size: 14px;
   line-height: 1.6;
 }
-.modal-box a:hover{color:var(--green)}
 
 /* ===================================== */
-/* 🔥 PREMIUM RESPONSIVE SYSTEM */
+/* RESPONSIVE */
 /* ===================================== */
 
 @media (max-width: 768px){
   header{flex-direction:column;padding:20px;gap:15px;text-align:center;}
-  .logo{margin-right:0;}
-  nav{flex-wrap:wrap;justify-content:center;gap:14px;}
-  nav a{font-size:14px;}
-  .status{margin-left:0;font-size:13px;}
-  .hero{padding-top:60px;}
-  .hero h1{font-size:38px;}
-  .hero p{font-size:14px;padding:0 15px;}
-  .join-box{width:90%;max-width:320px;}
-  .features{padding:60px 20px;}
-  .grid{grid-template-columns:1fr;}
-  .info-boxes{flex-direction:column;align-items:center;gap:20px;}
-  .info{width:90%;min-width:auto;}
-  .server-info{padding:25px 20px;}
-}
-
-@media (min-width: 769px) and (max-width: 1100px){
-  .hero h1{font-size:52px;}
-  .grid{grid-template-columns:repeat(2,1fr);}
-  .info-boxes{flex-wrap:wrap;justify-content:center;}
-}
-
-@media (min-width: 1600px){
-  .hero h1{font-size:90px;}
 }
 
 </style>
@@ -148,9 +132,9 @@ Höhere Ränge schalten zusätzliche Funktionen, Kosmetik und Vorteile frei.
     <h2>🟢 Premium</h2>
     <div class="price">💰 Kosten: 50.000 € (Ingame)</div>
     <ul>
+      <li><b>Commands:</b> /nick</li>
       <li>4× /sethome</li>
       <li>Wöchentliche Belohnungen</li>
-      <li>Ausgewählte Tags (/tags)</li>
       <li>Bis zu 4 Plots</li>
       <li>Perks: Nachtsicht, Jumpboost, kein Hunger</li>
       <li>Robot Haustier</li>
@@ -164,9 +148,9 @@ Höhere Ränge schalten zusätzliche Funktionen, Kosmetik und Vorteile frei.
     <h2>🔵 Ultra</h2>
     <div class="price">💰 Kosten: 500.000 € (Ingame)</div>
     <ul>
+      <li><b>Commands:</b> /nick • /fly • /feed</li>
       <li>6× /sethome</li>
       <li>Monatliche Belohnungen</li>
-      <li>Mehr Tags (/tags)</li>
       <li>Bis zu 6 Plots</li>
       <li>Perks: Instant Smelt, Leuchten, kein Feuer- & Fallschaden, XP behalten</li>
       <li>Gorilla, Raccoon & Turtle Haustiere</li>
@@ -180,8 +164,8 @@ Höhere Ränge schalten zusätzliche Funktionen, Kosmetik und Vorteile frei.
     <h2>🟡 King</h2>
     <div class="price">💰 Kosten: 2.500.000 € (Ingame)</div>
     <ul>
+      <li><b>Commands:</b> /nick • /fly • /feed • /god</li>
       <li>12× /sethome</li>
-      <li>Exklusive Tags (/tags)</li>
       <li>Bis zu 8 Plots</li>
       <li>Perks: Doppelte XP, Fast Run, doppelter Drop, Stärke, Inventar behalten</li>
       <li>Monkey, Giraffe & Dragon Haustiere</li>
